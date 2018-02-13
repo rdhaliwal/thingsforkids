@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_13_074504) do
+ActiveRecord::Schema.define(version: 2018_02_13_074726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "listings", force: :cascade do |t|
+    t.string "business_name"
+    t.integer "min_age"
+    t.integer "max_age"
+    t.integer "activity_type"
+    t.text "days_available", default: [], array: true
+    t.text "description"
+    t.string "logo"
+    t.string "facbook_url"
+    t.string "instagram_url"
+    t.string "manager_name"
+    t.string "manager_job_title"
+    t.string "phone"
+    t.string "email"
+    t.string "website"
+    t.decimal "price"
+    t.string "zip_code"
+    t.string "please_bring"
+    t.boolean "indoors"
+    t.boolean "outdoors"
+    t.boolean "parties"
+    t.boolean "disability_access"
+    t.boolean "parking"
+    t.boolean "free_trial"
+    t.boolean "undercover"
+    t.boolean "bbq"
+    t.boolean "toilets"
+    t.boolean "highchairs"
+    t.boolean "baby_change_room"
+    t.datetime "opens_at"
+    t.datetime "closes_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
