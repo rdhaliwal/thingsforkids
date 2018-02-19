@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       session[:zip_code] = params[:zip_code] if session[:zip_code].blank?
       matched_listings = Listing.match_zip_code(zip_code)
       listings = @q.result(distinct: true)
-      @listings = listings.where(id: matched_listings.ids)
+      @listings = listings.where(id: matched_listings.ids).page(params[:page])
     end
 
     respond_to do |format|

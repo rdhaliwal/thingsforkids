@@ -1,4 +1,6 @@
 class Listing < ApplicationRecord
+  paginates_per 6
+
   enum activity_type: {
     classes: 1,
     parks_playground: 2,
