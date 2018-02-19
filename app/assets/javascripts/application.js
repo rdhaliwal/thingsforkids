@@ -13,4 +13,14 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery.min
+//= require bootstrap
+//= require modernizr.custom
+//= require dependencies
+//= require select2.min
+//= require bootstrap-slider
+//= require jquery.stellar.min
+//= require gmap3.min
+//= require owl.carousel.min
+//= require main
 //= require_tree .

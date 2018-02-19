@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="Estato is HTML5 Template for houses, apartmanents and vacation rentals. If you have houses for rent - you need to check our template!">
+    <meta name="author" content="CreateIT">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="keywords" content="real estate template, real estate agency, html5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no">
+
     <title>Thingsforkids</title>
+    <%= favicon_link_tag "/images/content/estato-favicon.png" %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="ct-headroom--scrollUpBoth cssAnimate">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIjilmMEnfn4h1qOfm3eubSf6PuvGAZzs"></script>
+    <%= render "shared/navbar" %>
+      <%= yield %>
+    <%= render "shared/footer" %>
   </body>
+
 </html>

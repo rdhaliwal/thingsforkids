@@ -1,0 +1,169 @@
+<section>
+  <div class="container" style="width: 100%">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="ct-u-marginTop80 hidden-md hidden-lg"></div>
+          <%= form_for @listing, url: root_path, html: {class: "ct-formSearch--fullWidth ct-u-marginBottom50 ct-u-paddingTop30", role: "form"} do |f| %>
+            <div class="form-group">
+              <div class="ct-u-displayTableVertical ct-u-marginBottom20">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="ct-form--item">
+                      <%= label_tag "Age range" %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-">
+                    <div class="ct-u-displayTableCell">
+                      <div class="col-md-8 text-center">
+                        <input type="text" class="slider ct-js-sliderAmount" value="" data-slider-tooltip="hide" data-slider-handle="square" data-slider-min="5000" data-slider-max="5000000" data-slider-step="5000" data-slider-value="[1000000,2000000]">
+                        <%= f.label :min_age, class: "pull-left" %>
+                        <%= f.label :max_age, class: "pull-right" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <% Listing.activity_types.keys.each do |key| %>
+                  <div class="row">
+                    <div class="col-md-3 pull-left">
+                      <%= f.check_box :activity_type %>
+                    </div>
+                      <%= f.label key %>
+                  </div>
+                <% end %>
+                <hr>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= label_tag "Availabele Days" %>
+                  </div>
+                </div>
+
+                <% Listing::WEEK_DAYS.each do |day| %>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <%= f.check_box :days_available %>
+                    </div>
+                      <%= f.label day %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="ct-itemProducts ct-u-marginBottom30 ct-hover">
+              <a href="product-single.html">
+                <div class="ct-main-content">
+                  <div class="ct-imageBox">
+                    <%= image_tag "content/property-6.jpg", alt: "" %><i class="fa fa-eye"></i>
+                  </div>
+
+                  <div class="ct-main-text">
+                    <div class="ct-product--tilte">
+                      9541 Rustic Forest Crescent, Falmouth
+                    </div>
+
+                    <div class="ct-product--price">
+                      <span>$ 450,000</span>
+                    </div>
+
+                    <div class="ct-product--description">
+                      Beautiful apartment in a great, very calm and safe place.
+                    </div>
+                  </div>
+                </div>
+                <div class="ct-product--meta">
+                  <div class="ct-icons">
+                    <span>
+                      <i class="fa fa-bed"></i> 3
+                    </span>
+
+                    <span>
+                      <i class="fa fa-cutlery"></i> 2
+                    </span>
+                  </div>
+
+                  <div class="ct-text">
+                    <span> Area: <span>105 m2</span></span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="ct-itemProducts ct-u-marginBottom30 ct-hover">
+              <a href="product-single.html">
+                <div class="ct-main-content">
+                  <div class="ct-imageBox">
+                    <%= image_tag "content/property-8.jpg", alt: "" %><i class="fa fa-eye"></i>
+                  </div>
+
+                  <div class="ct-main-text">
+                    <div class="ct-product--tilte">
+                      8553 Fallen Creek Bend, North Carolina
+                    </div>
+
+                    <div class="ct-product--price">
+                      <span>$ 450,000</span>
+                    </div>
+
+                    <div class="ct-product--description">
+                      Beautiful apartment in a great, very calm and safe place.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ct-product--meta">
+                  <div class="ct-icons">
+                    <span>
+                        <i class="fa fa-bed"></i> 3
+                    </span>
+                    <span>
+                        <i class="fa fa-cutlery"></i> 2
+                    </span>
+                  </div>
+
+                  <div class="ct-text">
+                    <span> Area: <span>105 m2</span></span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix visible-sm"></div>
+      <div class="clearfix visible-md visible-lg"></div>
+
+      <div class="col-lg-4">
+        <div class="ct-js-googleMap ct-googleMap ct-googleMap-2col ct-js-googleMap--group" data-location="Richmond" data-icon="assets/images/marker-house.png" data-display-desc="true" data-zoom="14" data-height="1750" id="map">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ct-pagination text-center">
+          <ul class="pagination">
+            <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ct-u-marginBottom30 hidden-lg hidden-md"></div>
+  </div>
+</section>
