@@ -262,10 +262,12 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   jbuilder (~> 2.5)
+  kaminari
   listen (>= 3.0.5, < 3.2)
   pg
   puma (~> 3.11)
   rails (~> 5.2.0.rc1)
+  ransack
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

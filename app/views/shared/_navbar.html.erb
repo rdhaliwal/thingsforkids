@@ -224,50 +224,52 @@
       </div>
     </div>
   </div>
-<nav class="navbar yamm ct-navbar--noDecoration" role="navigation" data-heighttopbar="40px" data-startnavbar="0">
-  <div class="container ct-u-margin0">
-    <div class="navbar-header ct-panel--navbar">
-      <%= link_to root_path do %>
-        <%= image_tag "content/logo.png", alt: "logo" %>
-      <% end %>
-    </div>
-    <div class="ct-panelBox">
-      <div class="ct-panel--text ct-panel--navbar ct-fw-600"><a href="#">8 534 Listings</a></div>
-      <ul class="ct-panel--socials ct-panel--navbar list-inline list-unstyled">
-        <li>
-          <%= link_to "https://www.facebook.com/createITpl" do %>
-            <div class="ct-socials ct-socials--circle">
-              <i class="fa fa-facebook"></i>
-            </div>
-            <% end %>
-          </li>
 
+  <nav class="navbar yamm ct-navbar--noDecoration" role="navigation" data-heighttopbar="40px" data-startnavbar="0">
+    <div class="container ct-u-margin0">
+      <div class="navbar-header ct-panel--navbar">
+        <%= link_to root_path do %>
+          <%= image_tag "content/logo.png", alt: "logo" %>
+        <% end %>
+      </div>
+      <div class="ct-panelBox">
+        <div class="ct-panel--text ct-panel--navbar ct-fw-600"><a href="#">8 534 Listings</a></div>
+        <ul class="ct-panel--socials ct-panel--navbar list-inline list-unstyled">
           <li>
-            <%= link_to "https://twitter.com/createitpl" do %>
+            <%= link_to "https://www.facebook.com/createITpl" do %>
               <div class="ct-socials ct-socials--circle">
-                <i class="fa fa-twitter"></i>
+                <i class="fa fa-facebook"></i>
               </div>
-            <% end %>
-          </li>
+              <% end %>
+            </li>
 
-          <li>
-            <%= link_to "#" do %>
-              <div class="ct-socials ct-socials--circle">
-                <i class="fa fa-instagram"></i>
-              </div>
-            <% end %>
-          </li>
+            <li>
+              <%= link_to "https://twitter.com/createitpl" do %>
+                <div class="ct-socials ct-socials--circle">
+                  <i class="fa fa-twitter"></i>
+                </div>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to "#" do %>
+                <div class="ct-socials ct-socials--circle">
+                  <i class="fa fa-instagram"></i>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav ct-navbar--fadeInUp">
+          <li class="dropdown active"> <%= link_to "Home", root_path %></li>
+          <li class="dropdown"><%= link_to "Add a listing", root_path %></li>
+          <li class="dropdown"><%= link_to "About us", "#" %></li>
+          <li class="dropdown"><%= link_to "Contact Us", "#" %></li>
         </ul>
+      </div>
+      <div class="ct-shapeBottom"></div>
     </div>
-
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav ct-navbar--fadeInUp">
-        <li class="dropdown active"> <%= link_to "Home", root_path %></li>
-        <li class="dropdown"><%= link_to "Add a listing", root_path %></li>
-        <li class="dropdown"><%= link_to "About us", "#" %></li>
-        <li class="dropdown"><%= link_to "Contact Us", "#" %></li>
-      </ul>
-    </div>
-    <div class="ct-shapeBottom"></div>
-  </div>
-</nav>
+  </nav>
+</div>

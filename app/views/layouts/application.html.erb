@@ -13,13 +13,18 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyARuFVkZ7z_nGJQbPfySrhhqEOsVFYj0vI" %>
   </head>
 
   <body class="ct-headroom--scrollUpBoth cssAnimate">
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIjilmMEnfn4h1qOfm3eubSf6PuvGAZzs"></script>
     <%= render "shared/navbar" %>
-      <%= yield %>
+    <%= yield %>
     <%= render "shared/footer" %>
   </body>
 
+  <script type="text/javascript">
+    $(function() {
+      <%= yield :js_init %>
+    });
+  </script>
 </html>

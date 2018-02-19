@@ -1,7 +1,7 @@
 class Listing < ApplicationRecord
   enum activity_type: {
     classes: 1,
-    parks_playeground: 2,
+    parks_playground: 2,
     play_centers: 3,
     kid_cafes: 4,
     poi:       5,
@@ -9,4 +9,6 @@ class Listing < ApplicationRecord
   }
 
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
+
+  scope :match_zip_code, ->(zip_code) {where('zip_code = ?', zip_code)}
 end

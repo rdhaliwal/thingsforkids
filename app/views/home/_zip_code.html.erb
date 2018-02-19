@@ -1,0 +1,24 @@
+<div id="zipcode-form">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card zip-code-modal">
+        <%= form_tag(root_path, method: :get, remote: true, class: "contactForm validateIt ct-formContact--map ct-form--darkStyle form-height" ) do %>
+          <div class="form-group">
+            <div class="ct-form--item ct-u-marginBottom20">
+              <%= text_field_tag "zip_code", nil, class: "form-control input-lg", id: "zip-code-text", required: true, placeholder: "Enter your zipcode here" %>
+            </div>
+
+            <div class="col-md-4 ct-form--item pull-right">
+              <%= submit_tag "Search", class: "btn btn-warning center-block", id: "zip-code-submit" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% content_for :js_init  do %>
+  ZipCode.init();
+<% end %>
