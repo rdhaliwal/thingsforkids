@@ -1,8 +1,4 @@
-<% if params[:page].blank? %>
-  $('#listings').html("<%= j render partial: 'home/listing', collection: @listings %>");
-<% else %>
-  $('#listings').prepend("<%= j render partial: 'home/listing', collection: @listings %>");
-<% end %>
+$('#listings').prepend("<%= j render partial: 'home/listing', collection: @listings %>");
 
 <% if @listings.next_page %>
   $('.pagination').replaceWith('<%= j paginate @listings %>');

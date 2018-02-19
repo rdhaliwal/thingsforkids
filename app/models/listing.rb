@@ -13,4 +13,8 @@ class Listing < ApplicationRecord
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
 
   scope :match_zip_code, ->(zip_code) {where('zip_code = ?', zip_code)}
+
+  def full_address
+    "#{address}, #{city}, #{state} #{zip_code}".html_safe
+  end
 end

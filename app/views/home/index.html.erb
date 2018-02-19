@@ -91,5 +91,5 @@
   <% else %>
     SearchFilters.disable_content(true);
   <% end %>
-  Map.initmap();
+  Map.initmap(<%= "#{@listings.ids}" if @listings.present? %>);
 <% end %>

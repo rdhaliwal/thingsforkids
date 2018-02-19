@@ -16,4 +16,11 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+  def addresses
+    listings = Listing.where(id: params[:listings].first.split(',')).collect(&:full_address) if params[:listings].present?
+    respond_to do |format|
+      format.json { render json: { listings: listings }}
+    end
+  end
 end
