@@ -12,7 +12,7 @@
   SearchFilters.load_lists = ->
     $(window).data('ajaxready', true).scroll ->
       return if $(window).data('ajaxready') == false
-      if ($(document).scrollTop() >= ($(document).height() - $(window).height()) - 600)
+      if ($(document).scrollTop() >= ($(document).height() - $(window).height()) - 400)
         $(window).data('ajaxready', false);
         url = $('.pagination .next-page').attr('href')
         if url

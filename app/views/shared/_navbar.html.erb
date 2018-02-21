@@ -161,32 +161,6 @@
               <div class="ct-panel--item ct-email">
                 <a href="#"><i class="fa fa-envelope-o"></i> example@example.com</a>
               </div>
-              <ul class="nav navbar-nav ct-switcher--language">
-                <li class="dropdown">
-                  <a href="#">
-                    <i class="fa fa-globe"></i>
-                    English
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#">
-                        English
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Spanish
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        German
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
 
               <div id="ct-js-navSearch">
                 <i class="fa fa-search"></i>
@@ -209,15 +183,15 @@
           <div class="col-sm-5 col-md-4">
             <div class="ct-panel--user ct-panel--right text-right">
               <div class="ct-panel--item ct-email">
-                <a href="properties.html"><i class="fa fa-home"></i> My Properties</a>
+                <%= link_to new_user_session_path do %>
+                  <i class="fa fa-user"></i> Login
+                <% end %>
               </div>
 
               <div class="ct-panel--item ct-email">
-                <a href="login.html"><i class="fa fa-user"></i> Login</a>
-              </div>
-
-              <div class="ct-panel--item ct-email">
-                <a href="registration.html"><i class="fa fa-plus-square"></i> Register</a>
+                <%= link_to new_user_registration_path do %>
+                  <i class="fa fa-plus-square"></i> Register
+                <% end %>
               </div>
             </div>
           </div>

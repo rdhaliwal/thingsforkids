@@ -36,10 +36,12 @@
 
               <% Listing.activity_types.each do |key, value| %>
                 <div class="row">
-                  <label>
-                    <%= f.check_box "activity_type_in", { class: "activity-check", include_hidden: false, multiple: true },value %>
-                    <%= key %>
-                  </label>
+                  <div class="checkbox">
+                    <label>
+                      <%= f.check_box "activity_type_in", { class: "activity-check", include_hidden: false, multiple: true },value %>
+                      <%= key %>
+                    </label>
+                  </div>
                 </div>
               <% end %>
               <hr>
@@ -52,10 +54,12 @@
 
               <% Listing::WEEK_DAYS.each do |day| %>
                 <div class="row">
-                  <label>
-                    <%= f.check_box "days_available_in", { class: 'activity-check', include_hidden: false, multiple: true },  day %>
-                    <%= day %>
-                  </label>
+                  <div class="checkbox">
+                    <label>
+                      <%= f.check_box "days_available_in", { class: 'activity-check', include_hidden: false, multiple: true },  day %>
+                      <%= day %>
+                    </label>
+                  </div>
                 </div>
               <% end %>
             </div>
