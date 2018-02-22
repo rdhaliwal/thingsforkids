@@ -1,32 +1,31 @@
 class Listing < ApplicationRecord
-  paginates_per 6
-
   has_one_attached :logo
-
   has_many_attached :images
 
+  scope :match_zip_code, -> (zip_code) { where(zip_code: zip_code) }
+
   enum activity_type: {
-    classes: 1,
-    parks_playground: 2,
-    play_centers: 3,
-    kid_cafes: 4,
-    poi:       5,
-    children_centers: 6,
+    'POI' => 1,
+    'Classes' => 2,
+    'Play Centres' => 3,
+    'Childcare Centres' => 4,
+    'Kid Friendly Cafes' => 5,
+    'Parks & Playgrounds' => 6,
   }
 
-  validate :sanitize_array_input
+  before_save :sanitize_array_input
+
+  paginates_per 6
 
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
 
-  scope :match_zip_code, ->(zip_code) {where('zip_code = ?', zip_code)}
-
   def full_address
-    "#{address}, #{city}, #{state} #{zip_code}".html_safe
+    "#{address}, #{city}, #{state} #{zip_code}"
   end
 
-
   private
+
     def sanitize_array_input
-      self.days_available = self.days_available.drop(1)
+      self.days_available = days_available.reject { |d| d.blank? }
     end
 end
