@@ -7,7 +7,7 @@
 
   SearchFilters.disable_content = (disable) ->
     if disable
-      $('#footer, #navbar, #filters').addClass 'disabled-content'
+      $('#footer, #navbar, #filters, #mobile-nav').addClass 'disabled-content'
 
   SearchFilters.load_lists = ->
     $(window).data('ajaxready', true).scroll ->

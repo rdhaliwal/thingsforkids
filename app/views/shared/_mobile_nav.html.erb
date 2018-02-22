@@ -1,0 +1,16 @@
+<div id="mobile-nav">
+  <nav class="ct-menuMobile">
+    <ul class="ct-menuMobile-navbar">
+      <li class="dropdown active"> <%= link_to "Home", root_path %></li>
+      <li class="dropdown"><%= link_to "Add a listing" %></li>
+      <li class="dropdown active"><%= link_to "About us" %></li>
+      <li class="dropdown"><%= link_to "Contact us" %></li>
+      <li class="dropdown"><%= link_to "Login" %></li>
+      <li class="dropdown"><%= link_to "Sign Up" %></li>
+    </ul>
+  </nav>
+
+  <% if controller_name == "home" && action_name == "index" %>
+   <%= render "shared/filters", css_class: "ct-searchFormMobile ct-u-marginBottom50" %>
+  <% end %>
+</div>

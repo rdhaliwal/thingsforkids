@@ -17,9 +17,12 @@
   </head>
 
   <body class="ct-headroom--scrollUpBoth cssAnimate">
-    <%= render "shared/navbar" %>
-    <%= yield %>
-    <%= render "shared/footer" %>
+    <%= render "shared/mobile_nav" %>
+    <div id="ct-js-wrapper" class="ct-pageWrapper">
+      <%= render "shared/navbar" %>
+      <%= yield %>
+      <%= render "shared/footer" %>
+    </div>
   </body>
 
   <script type="text/javascript">
