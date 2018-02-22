@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
     </button>
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "content/logo.png", alt: "Estato" %>
+      <%= image_tag 'logo.png', alt: 'logo' %>
     <% end %>
     <button type="button" class="searchForm-toggle">
       <span class="sr-only">Toggle navigation</span>
@@ -15,64 +15,17 @@
     </button>
   </div>
 
-  <div class="ct-topBar ">
-    <div class="container ct-u-margin0">
-      <div class="row">
-        <div class="col-sm-7 col-md-8">
-          <div class="ct-panel--contact ct-panel--left">
-            <div class="ct-panel--item ct-email">
-              <a href="#"><i class="fa fa-envelope-o"></i> example@example.com</a>
-            </div>
-
-            <div id="ct-js-navSearch">
-              <i class="fa fa-search"></i>
-              <input placeholder="Search ..." required type="text" name="field[]" class="form-control input-lg ct-input--search">
-            </div>
-
-            <div class="ct-navbar-search">
-              <form role="form">
-                <button class="ct-navbar-search-button" type="submit">
-                  <i class="fa fa-search fa-fw"></i>
-                </button>
-                <div class="form-group">
-                  <input id="search" placeholder="Search ..." required type="text" class="form-control input-lg">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-5 col-md-4">
-          <div class="ct-panel--user ct-panel--right text-right">
-            <div class="ct-panel--item ct-email">
-              <%= link_to new_user_session_path do %>
-                <i class="fa fa-user"></i> Login
-              <% end %>
-            </div>
-
-            <div class="ct-panel--item ct-email">
-              <%= link_to new_user_registration_path do %>
-                <i class="fa fa-plus-square"></i> Register
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <nav class="navbar yamm ct-navbar--noDecoration" role="navigation" data-heighttopbar="40px" data-startnavbar="0">
     <div class="container ct-u-margin0">
       <div class="navbar-header ct-panel--navbar">
         <%= link_to root_path do %>
-          <%= image_tag "content/logo.png", alt: "logo" %>
+          <%= image_tag 'logo.png', alt: 'logo' %>
         <% end %>
       </div>
       <div class="ct-panelBox">
-        <div class="ct-panel--text ct-panel--navbar ct-fw-600"><a href="#">8 534 Listings</a></div>
         <ul class="ct-panel--socials ct-panel--navbar list-inline list-unstyled">
           <li>
-            <%= link_to "https://www.facebook.com/createITpl" do %>
+            <%= link_to '', target: '_blank' do %>
               <div class="ct-socials ct-socials--circle">
                 <i class="fa fa-facebook"></i>
               </div>
@@ -80,15 +33,7 @@
             </li>
 
             <li>
-              <%= link_to "https://twitter.com/createitpl" do %>
-                <div class="ct-socials ct-socials--circle">
-                  <i class="fa fa-twitter"></i>
-                </div>
-              <% end %>
-            </li>
-
-            <li>
-              <%= link_to "#" do %>
+              <%= link_to '#', target: '_blank' do %>
                 <div class="ct-socials ct-socials--circle">
                   <i class="fa fa-instagram"></i>
                 </div>
@@ -105,6 +50,7 @@
           <li class="dropdown"><%= link_to "Contact Us", "#" %></li>
         </ul>
       </div>
+
       <div class="ct-shapeBottom"></div>
     </div>
   </nav>
