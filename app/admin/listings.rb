@@ -15,7 +15,8 @@ ActiveAdmin.register Listing do
       f.input :days_available, as: :check_boxes, collection: Listing::WEEK_DAYS
     end
     f.inputs "Add logo" do
-      f.file_field :logo
+      f.file_field :logo unless f.object.logo.attached?
+      f.input :logo, hint: image_tag(f.object.logo, size: "75x75") if f.object.logo.attached?
     end
     f.inputs :facbook_url
     f.inputs :instagram_url
@@ -53,7 +54,51 @@ ActiveAdmin.register Listing do
         f.file_field :images, name: "listing[images][]"
       end
     end
+    render 'admin/listings/images', listing: f.object
 
     f.actions
+  end
+
+  index do
+    selectable_column
+    id_column
+    column :business_name
+    column :age_range
+    column :activity_type
+    column :days_available
+    column :zip_code
+
+    actions
+  end
+
+  show do
+    default_main_content
+
+    panel "Images" do
+      render 'admin/listings/images', listing: listing
+    end
+  end
+
+  action_item :remove_logo, only: :edit do
+    if resource.logo.attached?
+      link_to 'Remove Logo', remove_logo_admin_listing_path
+    end
+  end
+
+  member_action :remove_logo do
+    resource.logo.delete
+    redirect_to edit_admin_listing_path(resource), notice: "Logo removed successfully."
+  end
+
+  collection_action :remove_image do
+    resource = Listing.find_by(id: params[:listing_id])
+    return redirect_to admin_root_path, notice: "Ambigious input" unless resource.present?
+    image = resource.images.find_by(id: params[:id])
+    if image.present?
+      image.delete
+      redirect_to edit_admin_listing_path(resource), notice: "Image Removed successfully."
+    else
+      redirect_to edit_admin_listing_path(resource), notice: "Image not found."
+    end
   end
 end

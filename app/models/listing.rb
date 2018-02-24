@@ -4,6 +4,10 @@ class Listing < ApplicationRecord
 
   scope :match_zip_code, -> (zip_code) { where(zip_code: zip_code) }
 
+  has_one_attached :logo
+
+  has_many_attached :images
+
   enum activity_type: {
     'POI' => 1,
     'Classes' => 2,
@@ -25,7 +29,11 @@ class Listing < ApplicationRecord
 
   private
 
-    def sanitize_array_input
-      self.days_available = days_available.reject { |d| d.blank? }
-    end
+  def sanitize_array_input
+    self.days_available = days_available.reject { |d| d.blank? }
+  end
+
+  def age_range
+    "#{min_age} - #{max_age}"
+  end
 end
