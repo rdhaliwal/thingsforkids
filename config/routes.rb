@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     get 'addresses', on: :collection
   end
 
+  resources :users, only: [:edit, :update]
+
   root "home#index"
 end

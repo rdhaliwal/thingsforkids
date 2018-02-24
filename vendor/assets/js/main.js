@@ -186,10 +186,6 @@ function makekenburns($element) {
                 } else {
                     $this.css('min-height', $height + "px");
                     $this.css('height', $height + "px");
-                    if(jQuery.browser.mozilla){
-                        $this.css('height', $height + "px");
-                        $this.css('min-height', $height + "px");
-                    }
                 }
             }
 
