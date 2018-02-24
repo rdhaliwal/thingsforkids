@@ -3,6 +3,7 @@ class Listing < ApplicationRecord
   has_many_attached :images
 
   scope :match_zip_code, -> (zip_code) { where(zip_code: zip_code) }
+  scope :match_days, -> (days) { where('days_available && array[?]', days) }
 
   has_one_attached :logo
 

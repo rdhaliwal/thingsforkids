@@ -3,7 +3,7 @@
 
   SearchFilters.fetch_lists = ->
     $('#filters').on 'change', '.activity-check', ->
-        $('.form').submit()
+      $('.form').submit()
 
   SearchFilters.disable_content = (disable) ->
     if disable

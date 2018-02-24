@@ -1,23 +1,22 @@
 <%= search_form_for @q, url: root_path, remote: true, html: { class: css_class, role: "form" } do |f| %>
-  <div class="form-group">
+  <div class="form-group mt-40">
     <div class="ct-u-displayTableVertical ct-u-marginBottom20">
       <div class="row">
         <div class="col-md-12">
-          <div class="ct-form--item">
-            <%= label_tag "Age range" %>
+          <div class="ct-u-displayTableCell">
+            <div class="col-md-8 text-center">
+              <div class="ct-u-displayTableCell">
+                <input type="text" class="slider ct-js-sliderTicks" value="" data-slider-handle="square" data-slider-min="5" data-slider-max="50" data-slider-step="1" data-slider-value="[5,30]"/>
+                <label class="text-center center-block">Age range</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-12">
-          <div class="ct-u-displayTableCell">
-            <div class="col-md-8 text-center">
-              <input type="text" class="slider ct-js-sliderAmount"  id="age-range" value="" data-slider-tooltip="hide" data-slider-handle="square" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="[2, 5]">
-              <label class="pull-left">1</label>
-              <label class="pull-right">10</label>
-            </div>
-          </div>
+          <%= label_tag "Activity Type" %>
         </div>
       </div>
 
@@ -25,7 +24,7 @@
         <div class="row">
           <div class="checkbox">
             <label>
-              <%= f.check_box "activity_type_in", { class: "activity-check", include_hidden: false, multiple: true },value %>
+              <%= f.check_box "activity_type_in", { class: "activity-check", include_hidden: false, multiple: true }, value %>
               <%= key %>
             </label>
           </div>
@@ -43,7 +42,7 @@
         <div class="row">
           <div class="checkbox">
             <label>
-              <%= f.check_box "days_available_in", { class: 'activity-check', include_hidden: false, multiple: true },  day %>
+              <%= check_box_tag "days_available[]", day, nil, { class: "activity-check", include_hidden: false, multiple: true } %>
               <%= day %>
             </label>
           </div>
