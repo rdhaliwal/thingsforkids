@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: root_path, remote: true, html: { class: css_class, role: "form" } do |f| %>
+<%= search_form_for @q, url: root_path, html: { class: css_class, role: "form" } do |f| %>
   <div class="form-group mt-40">
     <div class="ct-u-displayTableVertical ct-u-marginBottom20">
       <div class="row">
@@ -6,8 +6,10 @@
           <div class="ct-u-displayTableCell">
             <div class="col-md-8 text-center">
               <div class="ct-u-displayTableCell">
-                <input type="text" name= "age_range" class="slider" value="" data-slider-handle="square" data-slider-min="5" data-slider-max="10" data-slider-step="1" data-slider-value="[5, 10]"/>
+                <input type="text" name= "age_range" id="age_range" class="slider" value="" data-slider-handle="square" data-slider-min="5" data-slider-max="10" data-slider-step="1" data-slider-value="[<%= @min_age %>, <%= @max_age %>]"/>
                 <label class="text-center center-block">Age range</label>
+                <%= f.hidden_field :min_age_gteq, value: @min_age, class: "min-age" %>
+                <%= f.hidden_field :max_age_lteq, value: @max_age, class: "max-age" %>
               </div>
             </div>
           </div>

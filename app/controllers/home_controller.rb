@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
+  before_action :set_slider_values
+
   def index
     zip_code = params[:zip_code] || session[:zip_code]
     @q = Listing.ransack(params[:q])
-
     if zip_code.present?
       session[:zip_code] = params[:zip_code] if session[:zip_code].blank?
       matched_listings = Listing.match_zip_code(zip_code)
@@ -22,4 +23,13 @@ class HomeController < ApplicationController
       format.json { render json: { listings: listings }}
     end
   end
+
+  private
+    def set_slider_values
+      if params[:age_range].present?
+        @min_age, @max_age = params[:age_range].split(',')
+      else
+        @min_age, @max_age = 5, 10
+      end
+    end
 end

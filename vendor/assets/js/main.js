@@ -346,7 +346,15 @@ function makekenburns($element) {
 
         //Bootstrap slider init
         if($('.slider').length > 0){
-            $('.slider').slider();
+            $('.slider').slider().on('slideStop', function(ev){
+                var values = $(this).val().split(',');
+                if (values != ""){
+                  $('.min-age').val(values[0]);
+                  $('.max-age').val(values[1]);
+                  $('.slider').attr('data-slider-value', `[${values[0]}, ${values[1]}]`)
+                  $(this).parents('.form').submit();
+                }
+            });
         }
 
 
