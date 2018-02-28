@@ -2,19 +2,21 @@ class ListingsController < ApplicationController
   before_action :set_slider_values
 
   def index
-    postcode = params[:postcode] || session[:postcode]
-    @q = Listing.ransack(params[:q])
+    session[:postcode] = session[:postcode] || params[:postcode]
 
-    if postcode.present?
-      session[:postcode] = params[:postcode] if session[:postcode].blank?
-      lat, lng = ConvertPostcode.call(postcode)
+    listings  = params[:days_available].present? ? Listing.match_days(params[:days_available]) : Listing
+    @q        = listings.ransack(params[:q])
+    @listings = @q.result(distinct: true)
+
+    if session[:postcode].present?
+      # Lat, Lng should also be stored in session to save a lookup to google apis on each request.
+      lat, lng = ConvertPostcode.call(session[:postcode])
       if lat.present? && lng.present?
-        matched_listings = Listing.match_days(params[:days_available]).ids if params[:days_available].present?
-        @listings = @q.result(distinct: true).where(id: matched_listings) if matched_listings.present?
-        @listings = @q.result(distinct: true) unless matched_listings.present?
-        @listings = @listings.match_postcode(lat, lng).page(params[:page])
+        @listings = @listings.match_postcode(lat, lng)
       end
     end
+
+    @listings = @listings.page(params[:page])
 
     respond_to do |format|
       format.html
