@@ -1,6 +1,7 @@
 class Listing < ApplicationRecord
   has_one_attached :logo
   has_many_attached :images
+  belongs_to :user
 
   scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
@@ -12,6 +13,11 @@ class Listing < ApplicationRecord
     'Childcare Centres' => 4,
     'Kid Friendly Cafes' => 5,
     'Parks & Playgrounds' => 6,
+  }
+
+  enum listing_type: {
+    free:     1,
+    premium:  2,
   }
 
   before_save :sanitize_array_input
@@ -27,13 +33,17 @@ class Listing < ApplicationRecord
     "#{address}, #{city}, #{state} #{postcode}"
   end
 
-  private
-
-  def sanitize_array_input
-    self.days_available = days_available.reject { |d| d.blank? }
+  def location
+    "#{city}, #{state} #{zip_code}"
   end
 
   def age_range
     "#{min_age} - #{max_age}"
+  end
+
+  private
+
+  def sanitize_array_input
+    self.days_available = days_available.reject { |d| d.blank? }
   end
 end

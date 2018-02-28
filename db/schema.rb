@@ -104,6 +104,9 @@ ActiveRecord::Schema.define(version: 2018_02_28_051008) do
     t.string "state"
     t.float "latitude"
     t.float "longitude"
+    t.bigint "user_id"
+    t.integer "listing_type"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,4 +127,6 @@ ActiveRecord::Schema.define(version: 2018_02_28_051008) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "listings", "users", on_delete: :cascade
 end

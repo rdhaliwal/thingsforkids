@@ -1,0 +1,69 @@
+<section class="ct-u-paddingTop50 ct-u-paddingBottom60" id="my-listings">
+  <div class="container">
+    <div class="ct-section--products">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="ct-sortingBar ct-u-paddingRight10 ct-u-paddingLeft10 ct-u-marginBottom30">
+            <div class="ct-sortingTitle pull-left">
+              <h4 class="text-uppercase">My Properties</h4>
+            </div>
+
+            <ul class="ct-showPages list-inline list-unstyled pull-right ct-u-paddingBoth15">
+              <li class="ct-showElements is-active" id="ct-js-showTiles">
+                <a href="#">
+                  <i class="fa fa-th fa-fw"></i>
+                </a>
+              </li>
+              <li class="ct-showElements" id="ct-js-showList">
+                <a href="#">
+                  <i class="fa fa-th-list fa-fw"></i>
+                </a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="row ct-js-search-results ct-showProducts--default">
+            <% @listings.each do |listing| %>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="ct-itemProducts ct-u-marginBottom30 ct-hover">
+                  <%= link_to my_listing_path(listing)  do %>
+                    <div class="ct-main-content list-height">
+                      <div class="ct-imageBox">
+                        <% if listing.logo.attached? %>
+                          <%= image_tag listing.logo, alt: "", class: "image-style" %><i class="fa fa-eye"></i>
+                        <% end %>
+                      </div>
+
+                      <div class="ct-main-text">
+                        <div class="ct-product--tilte">
+                          <%= listing.full_address %>
+                        </div>
+
+                        <div class="ct-product--price">
+                          <span><%= listing.price %></span>
+                        </div>
+
+                        <div class="ct-product--description" id="scrollable-content">
+                          <%= listing.description %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="ct-pagination text-center">
+            <%= paginate @listings %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% content_for :js_init do %>
+  MyListings.init();
+<% end %>
