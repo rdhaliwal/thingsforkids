@@ -1,0 +1,15 @@
+<% if @listings.present? %>
+  <% if params[:page].blank? %>
+    $('#listings').html("<%= j render @listings %>");
+  <% else %>
+    $('#listings').prepend("<%= j render @listings %>");
+  <% end %>
+<% end %>
+
+Map.initmap(<%= "#{@listings.ids}" if @listings.present? %>);
+
+<% if @listings.next_page %>
+  $('.pagination').replaceWith('<%= j paginate @listings %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

@@ -34,7 +34,7 @@
 
     $.ajax
       type: 'GET'
-      url: "/home/addresses?listings[]=#{listings}",
+      url: "/listings/addresses?listings[]=#{listings}",
       dataType: 'json'
       success: (listings) ->
         for listing_address in listings.listings

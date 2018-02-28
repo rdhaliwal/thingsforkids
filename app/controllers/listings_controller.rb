@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ListingsController < ApplicationController
   before_action :set_slider_values
 
   def index

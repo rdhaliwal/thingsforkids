@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  root "home#index"
+  root "listings#index"
 
-  resources :home, only: [:index] do
+  resources :listings, only: [:index] do
     get 'addresses', on: :collection
   end
 

@@ -16,8 +16,10 @@
 
       <div class="col-lg-5 col-lg-pull-4">
         <div class="row">
-          <div id = "listings">
-            <%= render partial: "home/listing", collection: @listings  %>
+          <div id="listings">
+            <% if @listings.present? %>
+              <%= render @listings %>
+            <% end %>
           </div>
         </div>
       </div>
