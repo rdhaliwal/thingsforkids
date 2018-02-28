@@ -18,6 +18,9 @@ gem 'devise'
 gem 'activeadmin'
 gem 'ransack'
 gem 'kaminari'
+gem 'geocoder', git: 'https://github.com/alexreisner/geocoder.git'
+gem 'httparty'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

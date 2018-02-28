@@ -1,7 +1,7 @@
 ActiveAdmin.register Listing do
   permit_params :activity_type, :min_age, :max_age, :business_name, :description, :logo,
                 :facbook_url, :instagram_url, :manager_name, :manager_job_title, :phone, :email, :website, :price,
-                :zip_code, :please_bring, :indoors, :outdoors, :parties, :disability_access, :parking, :free_trial,
+                :postcode, :please_bring, :indoors, :outdoors, :parties, :disability_access, :parking, :free_trial,
                 :undercover, :bbq, :toilets, :highchairs, :baby_change_room, :opens_at, :closes_at, :address, :city, :state,
                 days_available: [], images: []
 
@@ -26,7 +26,7 @@ ActiveAdmin.register Listing do
     f.inputs :email
     f.inputs :website
     f.inputs :price
-    f.inputs :zip_code
+    f.inputs :postcode
     f.inputs :please_bring
     f.inputs :indoors
     f.inputs :outdoors
@@ -66,7 +66,7 @@ ActiveAdmin.register Listing do
     column :age_range
     column :activity_type
     column :days_available
-    column :zip_code
+    column :postcode
 
     actions
   end

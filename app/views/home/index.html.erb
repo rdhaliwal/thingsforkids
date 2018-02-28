@@ -1,5 +1,5 @@
-<% if session[:zip_code].blank? %>
-  <%= render "zip_code" %>
+<% if session[:postcode].blank? %>
+  <%= render "postcode" %>
 <% end %>
 
 <section>
@@ -37,7 +37,7 @@
 <% content_for :js_init do %>
   SearchFilters.fetch_lists();
   SearchFilters.load_lists();
-  <% if session[:zip_code].present? %>
+  <% if session[:postcode].present? %>
     SearchFilters.disable_content(false);
   <% else %>
     SearchFilters.disable_content(true);

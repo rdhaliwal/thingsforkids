@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/alexreisner/geocoder.git
+  revision: bab2e367880b02505dea077951bfada987e2c93d
+  specs:
+    geocoder (1.4.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -105,6 +111,8 @@ GEM
     has_scope (0.7.1)
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
+    httparty (0.16.0)
+      multi_xml (>= 0.5.2)
     i18n (0.9.4)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.8.0)
@@ -150,6 +158,7 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.2)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     nio4r (2.2.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -261,6 +270,8 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  geocoder!
+  httparty
   jbuilder (~> 2.5)
   kaminari
   listen (>= 3.0.5, < 3.2)

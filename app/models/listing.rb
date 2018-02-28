@@ -2,7 +2,7 @@ class Listing < ApplicationRecord
   has_one_attached :logo
   has_many_attached :images
 
-  scope :match_zip_code, -> (zip_code) { where(zip_code: zip_code) }
+  scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
 
   enum activity_type: {
@@ -20,8 +20,11 @@ class Listing < ApplicationRecord
 
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
 
+  geocoded_by :full_address
+  after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
+
   def full_address
-    "#{address}, #{city}, #{state} #{zip_code}"
+    "#{address}, #{city}, #{state} #{postcode}"
   end
 
   private

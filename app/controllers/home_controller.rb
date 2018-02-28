@@ -2,13 +2,18 @@ class HomeController < ApplicationController
   before_action :set_slider_values
 
   def index
-    zip_code = params[:zip_code] || session[:zip_code]
+    postcode = params[:postcode] || session[:postcode]
     @q = Listing.ransack(params[:q])
-    if zip_code.present?
-      session[:zip_code] = params[:zip_code] if session[:zip_code].blank?
-      matched_listings = Listing.match_zip_code(zip_code)
-      matched_listings = matched_listings.match_days(params[:days_available]) if params[:days_available].present?
-      @listings = @q.result(distinct: true).where(id: matched_listings.ids).page(params[:page])
+
+    if postcode.present?
+      session[:postcode] = params[:postcode] if session[:postcode].blank?
+      lat, lng = ConvertPostcode.call(postcode)
+      if lat.present? && lng.present?
+        matched_listings = Listing.match_days(params[:days_available]).ids if params[:days_available].present?
+        @listings = @q.result(distinct: true).where(id: matched_listings) if matched_listings.present?
+        @listings = @q.result(distinct: true) unless matched_listings.present?
+        @listings = @listings.match_postcode(lat, lng).page(params[:page])
+      end
     end
 
     respond_to do |format|
