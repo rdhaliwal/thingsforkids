@@ -1,9 +1,12 @@
 <div class="col-xs-12 col-sm-4 col-md-6">
   <div class="ct-itemProducts ct-u-marginBottom30 ct-hover" id="lists">
-    <a href="product-single.html">
+    <%= link_to listing do %>
       <div class="ct-main-content list-height">
         <div class="ct-imageBox">
-          <%= image_tag "content/property-6.jpg", alt: "" %><i class="fa fa-eye"></i>
+          <% if listing.logo.attached? %>
+            <%= image_tag listing.logo, alt: "", class: "image-style" %>
+            <i class="fa fa-eye"></i>
+          <% end %>
         </div>
 
         <div class="ct-main-text">
@@ -20,6 +23,6 @@
           </div>
         </div>
       </div>
-    </a>
+    <% end %>
   </div>
 </div>

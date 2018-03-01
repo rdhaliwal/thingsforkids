@@ -34,7 +34,7 @@ class Listing < ApplicationRecord
   end
 
   def location
-    "#{city}, #{state} #{zip_code}"
+    "#{city}, #{state} #{postcode}"
   end
 
   def age_range

@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   root "listings#index"
 
-  resources :listings, only: [:index] do
+  resources :listings, only: [:index, :show] do
     get 'addresses', on: :collection
   end
 
   resources :users, only: [:edit, :update]
-  resources :my_listings
+  resources :my_listings, only: [:index]
 end

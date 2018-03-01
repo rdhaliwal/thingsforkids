@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_action :set_slider_values
+  before_action :set_listing, only: [:show]
 
   def index
     session[:postcode] = session[:postcode] || params[:postcode]
@@ -24,6 +25,9 @@ class ListingsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def addresses
     listings = Listing.where(id: params[:listings].first.split(',')).collect(&:full_address) if params[:listings].present?
     respond_to do |format|
@@ -38,5 +42,9 @@ class ListingsController < ApplicationController
       else
         @min_age, @max_age = 5, 10
       end
+    end
+
+    def set_listing
+      @listing = Listing.find(params[:id])
     end
 end
