@@ -351,7 +351,7 @@ function makekenburns($element) {
                 if (values != ""){
                   $('.min-age').val(values[0]);
                   $('.max-age').val(values[1]);
-                  $('.slider').attr('data-slider-value', `[${values[0]}, ${values[1]}]`)
+                  $('.slider').attr('data-slider-value', '[${values[0]}, ${values[1]}]');
                   $(this).parents('.form').submit();
                 }
             });
