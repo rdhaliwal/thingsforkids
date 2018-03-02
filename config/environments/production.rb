@@ -89,6 +89,23 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  ActionMailer::Base.smtp_settings = {
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      email_prefix: "Error",
+      sender_address: %{"notifier" <notifier@thingsforkids.com>},
+      exception_recipients: %w{ahmadsaleem93@gmail.com}
+    }
+
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

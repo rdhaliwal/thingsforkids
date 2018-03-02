@@ -22,6 +22,7 @@ gem 'geocoder', git: 'https://github.com/alexreisner/geocoder.git'
 gem 'httparty'
 gem 'aws-sdk-s3', '~> 1'
 gem 'stripe'
+gem 'exception_notification'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
