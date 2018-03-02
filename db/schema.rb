@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_28_051008) do
+ActiveRecord::Schema.define(version: 2018_03_01_082741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,10 +102,13 @@ ActiveRecord::Schema.define(version: 2018_02_28_051008) do
     t.string "address"
     t.string "city"
     t.string "state"
-    t.float "latitude"
-    t.float "longitude"
     t.bigint "user_id"
     t.integer "listing_type"
+    t.float "latitude"
+    t.float "longitude"
+    t.text "short_description"
+    t.boolean "has_paid", default: false
+    t.string "subscription_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
@@ -124,6 +127,7 @@ ActiveRecord::Schema.define(version: 2018_02_28_051008) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

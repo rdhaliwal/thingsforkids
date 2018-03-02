@@ -23,7 +23,7 @@
             <div class="clearfix"></div>
           </div>
 
-          <div class="row ct-js-search-results ct-showProducts--default">
+          <div class="row ct-js-search-results ct-showProducts--default" id="listings">
             <% @listings.each do |listing| %>
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="ct-itemProducts ct-u-marginBottom30 ct-hover">
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="ct-product--description" id="scrollable-content">
-                          <%= listing.description %>
+                          <%= listing.short_description %>
                         </div>
                       </div>
                     </div>

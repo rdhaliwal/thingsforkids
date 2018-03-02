@@ -1,0 +1,56 @@
+<header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax" data-bg-image=<%= asset_url("single-list.jpg") %> data-bg-image-mobile=<%= asset_url("single-list.jpg") %>>
+  <div class="ct-mediaSection-inner">
+    <div class="container">
+      <div class="ct-heading--main text-center">
+        <h3 class="text-uppercase ct-u-text--white">Pricing</h3>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="ct-u-paddingBoth60 text-center">
+  <div class="container">
+    <div class="ct-heading text-center ct-u-marginBottom60">
+      <h3 class="text-uppercase">Packages</h3>
+    </div>
+
+    <div class="row col-md-offset-3">
+      <div class="col-sm-6 col-md-6 col-lg-4">
+        <div class="ct-priceBox text-center">
+          <div class="ct-priceSection ct-fw-600 ct-u-text--white">
+            <h4 class="text-uppercase">Free</h4>
+            <div class="ct-pricebox ct-u-border--solid">
+              <span class="ct-price">$ 0.00</span>
+              <span>yearly</span>
+            </div>
+          </div>
+
+          <div class="ct-contentSection">
+            <span>Includes Address</span>
+            <span>Web address</span>
+            <span>Contact form</span>
+            <%= link_to "Register Now", new_my_listing_path(type: :free),  class: "btn btn-warning text-capitalize" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 col-lg-4">
+        <div class="ct-priceBox text-center">
+          <div class="ct-priceSection ct-fw-600 ct-u-text--white">
+            <h4 class="text-uppercase">Premium</h4>
+            <div class="ct-pricebox ct-u-border--solid">
+              <span class="ct-price">$ 59.00</span>
+              <span>yearly</span>
+            </div>
+          </div>
+
+          <div class="ct-contentSection">
+            <span>8 Images</span>
+            <span>Contact Form</span>
+            <span>agent details</span>
+            <%= link_to "Register Now", new_my_listing_path(type: :premium),  class: "btn btn-warning text-capitalize" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

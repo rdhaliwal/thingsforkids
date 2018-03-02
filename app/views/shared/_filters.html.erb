@@ -6,10 +6,10 @@
           <div class="ct-u-displayTableCell">
             <div class="col-md-8 text-center">
               <div class="ct-u-displayTableCell">
-                <input type="text" name= "age_range" id="age_range" class="slider" value="" data-slider-handle="square" data-slider-min="5" data-slider-max="10" data-slider-step="1" data-slider-value="[<%= @min_age %>, <%= @max_age %>]"/>
+                <input type="text" name= "age_range" id="age_range" class="slider" value="" data-slider-handle="square" data-slider-min="5" data-slider-max="10" data-slider-step="1" data-slider-value="[<%= min_age_range(params[:q]) %>, <%= max_age_range(params[:q]) %>]"/>
                 <label class="text-center center-block">Age range</label>
-                <%= f.hidden_field :min_age_gteq, value: @min_age, class: "min-age" %>
-                <%= f.hidden_field :max_age_lteq, value: @max_age, class: "max-age" %>
+                <%= f.hidden_field :min_age_gteq, value: min_age_range(params[:q]), class: "min-age" %>
+                <%= f.hidden_field :max_age_lteq, value: max_age_range(params[:q]), class: "max-age" %>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
         <div class="row">
           <div class="checkbox">
             <label>
-              <%= check_box_tag "days_available[]", day, nil, { class: "activity-check", include_hidden: false, multiple: true } %>
+              <%= check_box_tag "days_available[]", day, days_filter_checked?(day, params[:days_available]), { class: "activity-check", include_hidden: false, multiple: true } %>
               <%= day %>
             </label>
           </div>

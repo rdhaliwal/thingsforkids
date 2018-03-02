@@ -1,5 +1,5 @@
 ActiveAdmin.register Listing do
-  permit_params :activity_type, :min_age, :max_age, :business_name, :description, :logo,
+  permit_params :activity_type, :min_age, :max_age, :business_name, :description, :logo, :user_id, :short_description,
                 :facbook_url, :instagram_url, :manager_name, :manager_job_title, :phone, :email, :website, :price,
                 :postcode, :please_bring, :indoors, :outdoors, :parties, :disability_access, :parking, :free_trial,
                 :undercover, :bbq, :toilets, :highchairs, :baby_change_room, :opens_at, :closes_at, :address, :city, :state,
@@ -11,6 +11,7 @@ ActiveAdmin.register Listing do
     f.inputs :max_age
     f.inputs :activity_type
     f.inputs :description
+    f.inputs :short_description
     f.inputs do
       f.input :days_available, as: :check_boxes, collection: Listing::WEEK_DAYS
     end
@@ -40,6 +41,9 @@ ActiveAdmin.register Listing do
     f.inputs :highchairs
     f.inputs :baby_change_room
     f.inputs do
+      f.input :user, collection: User.pluck(:email, :id)
+    end
+    f.inputs do
       f.input :opens_at, as: :time_picker
     end
     f.inputs do
@@ -47,7 +51,9 @@ ActiveAdmin.register Listing do
     end
     f.inputs :address
     f.inputs :city
-    f.inputs :state
+    f.inputs do
+      f.input :state, collection: states
+    end
 
     f.inputs "Add images " do
       (8 - f.object.images.size).times do

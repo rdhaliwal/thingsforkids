@@ -3,8 +3,18 @@ class Listing < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
+  validate :description_length
+  validates :email, :short_description, :description, :business_name, :manager_name, :manager_job_title, :website,
+            :activity_type, :phone, :logo, :address, :city, :state, :postcode, :price, :days_available, presence: :true
+
+
   scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
+
+  geocoded_by :full_address
+  after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
+
+  before_save :sanitize_array_input
 
   enum activity_type: {
     'POI' => 1,
@@ -20,14 +30,9 @@ class Listing < ApplicationRecord
     premium:  2,
   }
 
-  before_save :sanitize_array_input
-
   paginates_per 6
 
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
-
-  geocoded_by :full_address
-  after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
 
   def full_address
     "#{address}, #{city}, #{state} #{postcode}"
@@ -39,6 +44,12 @@ class Listing < ApplicationRecord
 
   def age_range
     "#{min_age} - #{max_age}"
+  end
+
+  def description_length
+    number_of_words = self.description.split(' ').length
+    return errors.add(:description, ": Description must be under 50 words") if number_of_words > 50 && self.free?
+    errors.add(:description, "Description must be under 400 words") if number_of_words > 400 && self.premium?
   end
 
   private

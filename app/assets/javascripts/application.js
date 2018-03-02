@@ -21,5 +21,6 @@
 //= require jquery.stellar.min
 //= require gmap3.min
 //= require owl.carousel.min
+//= require jquery.payment
 //= require main
 //= require_tree .

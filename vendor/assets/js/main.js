@@ -357,6 +357,12 @@ function makekenburns($element) {
             });
         }
 
+        if ($('#new-card-form').length > 0) {
+            $('[data-numeric]').payment('restrictNumeric');
+            $('#card_number').payment('formatCardNumber');
+            $('#card_expiry').payment('formatCardExpiry');
+            $('#card_code').payment('formatCardCVC');
+        }
 
         // Range Slider // ----------------------------------------------------------------
         var $sliderAmount = $('.ct-sliderAmount'); // TODO

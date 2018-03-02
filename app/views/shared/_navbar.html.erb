@@ -45,7 +45,7 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav ct-navbar--fadeInUp">
           <li class="dropdown active"><%= link_to "Home", root_path %></li>
-          <li class="dropdown"><%= link_to "Add a listing", root_path %></li>
+          <li class="dropdown"><%= link_to "Add a listing", new_my_listing_path %></li>
           <li class="dropdown"><%= link_to "About us", "#" %></li>
           <li class="dropdown"><%= link_to "Contact Us", "#" %></li>
           <% if user_signed_in? %>
@@ -53,6 +53,7 @@
               <a>Account<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to "#{current_user.email}", edit_user_path(current_user) %></li>
+                <li><%= link_to "My Listings", my_listings_path %></li>
                 <li><%= link_to "Change Password", edit_user_path(current_user) %></li>
                 <li><%= link_to "Log Out",  destroy_user_session_path, method: :delete %></li>
               </ul>

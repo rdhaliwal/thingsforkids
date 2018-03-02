@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Payment Information</h3>
+  </div>
+
+  <div class="card-block">
+    <div id="new-card-form">
+      <%= image_tag 'credit-card-logos.png', style: 'width: 200px'     %>
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <%= label_tag :card_number %>
+          <%= text_field_tag :card_number, nil, placeholder: '•••• •••• •••• ••••', class: 'form-control input-lg ct-input--border ct-u-marginBottom40', required: true %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-7 form-group">
+          <%= label_tag :card_expiry, 'Card Expiration', class: 'clearfix' %>
+          <%= text_field_tag :card_expiry, nil, placeholder: '•• / ••', class: 'form-control input-lg ct-input--border ct-u-marginBottom40', required: true, type: 'tel', autocomplete: 'cc-exp' %>
+        </div>
+
+        <div class="col-sm-5 form-group">
+          <%= label_tag :card_code, 'CVV Code' %>
+          <%= text_field_tag :card_code, nil, placeholder: '•••', class: 'form-control input-lg ct-input--border ct-u-marginBottom40', required: true, type: 'tel', autocomplete: 'cc-csc' %>
+        </div>
+      </div>
+
+      <%= hidden_field_tag :token %>
+
+      <div id="stripe_error">
+        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+      </div>
+
+      <div class='payment-errors'></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>Amount to be Charged:  $59</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript do %>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+    Stripe.setPublishableKey("<%= ENV['PUBLISHABLE_KEY'] %>");
+    Financials.init_card_fields();
+  </script>
+<% end %>
