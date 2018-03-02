@@ -6,7 +6,7 @@
   <% end %>
 <% end %>
 
-Map.initmap(<%= "#{@listings.ids}" if @listings.present? %>);
+Map.initListingMap(<%= "#{@listings.ids}" if @listings.present? %>);
 
 <% if @listings.next_page %>
   $('.pagination').replaceWith('<%= j paginate @listings %>');

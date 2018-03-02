@@ -10,10 +10,9 @@ class ListingsController < ApplicationController
     @listings = @q.result(distinct: true)
 
     if session[:postcode].present?
-      # Lat, Lng should also be stored in session to save a lookup to google apis on each request.
-      lat, lng = ConvertPostcode.call(session[:postcode])
-      if lat.present? && lng.present?
-        @listings = @listings.match_postcode(lat, lng)
+      session[:lat], session[:lng] = ConvertPostcode.call(session[:postcode]) if session[:lat].blank?
+      if session[:lat].present? && session[:lng].present?
+        @listings = @listings.match_postcode(session[:lat], session[:lng])
       end
     end
 
@@ -26,6 +25,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @message = Message.new
   end
 
   def addresses

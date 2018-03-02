@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   resources :my_listings, only: [:index, :new, :create] do
     get 'pricing', on: :collection
   end
+
+  resources :messages, only: [:create]
+  get 'contact-us', to: "home#contact"
 end

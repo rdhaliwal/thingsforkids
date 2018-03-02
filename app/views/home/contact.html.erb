@@ -1,0 +1,69 @@
+<header>
+  <%= render 'shared/errors', resource: @message %>
+  <div id="map" class="map-style"></div>
+  <%= form_for @message, url: messages_path, html: { role: "form", class: "contactForm validateIt ct-formContact--map ct-formSearch--right ct-form--darkStyle" } do |f| %>
+    <div class="form-group">
+      <div class="ct-form--label--type2">
+        <div class="ct-u-displayTableVertical">
+          <div class="ct-u-displayTableCell">
+            <div class="ct-input-group-btn">
+              <a class="btn btn-primary">
+                <i class="fa fa-envelope-o"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="ct-u-displayTableCell text-center">
+            <span class="text-uppercase">Send us a message</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-form--item ct-u-marginBottom20">
+        <%= f.label "Your Name" %>
+        <%= f.text_field :sender_name, id: "contact_name", required: true,  class: "form-control input-lg" %>
+      </div>
+
+      <div class="ct-form--item ct-u-marginBottom20">
+        <%= f.label "Email" %>
+        <%= f.email_field :sender_email, id: "contact_email", required: true, class: "form-control input-lg" %>
+      </div>
+
+      <div class="ct-form--item ct-u-marginBottom20">
+        <%= f.label "Title" %>
+        <%= f.text_field :title, id: "title", required: true, class: "form-control input-lg" %>
+      </div>
+
+      <div class="ct-form--item ct-u-marginBottom20">
+        <%= f.label "Message" %>
+        <%= f.text_area :message, id: "contact_message", placeholder: "How can we help you?", class: "form-control input-lg", rows: "4", required: true %>
+      </div>
+
+      <div class="ct-form--item">
+        <%= f.submit "Send Message", class: "btn btn-warning center-block" %>
+      </div>
+    </div>
+  <% end %>
+</header>
+<section class="ct-mediaSection ct-u-paddingTop60 ct-u-paddingBottom90 ct-u-text--white" data-stellar-background-ratio="0.2"  data-height="350" data-type="parallax" data-bg-image=<%= asset_url("content/iconBox-parallax.jpg") %> data-bg-image-mobile=<%= asset_url("content/iconBox-parallax.jpg") %>>
+    <div class="ct-mediaSection-inner">
+      <div class="container">
+        <div class="ct-heading ct-u-marginBottom60 text-center">
+          <h3 class="text-uppercase">latest tweets</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="twitterContainer text-center">
+              <i class="fa fa-twitter ct-u-marginBottom50"></i>
+              <div class="ct-js-twitter ct-twitter ct-twitter--dark"></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /container -->
+    </div>
+</section>
+
+<% content_for :js_init do %>
+  Map.initCompanyMap("<%= company_address %>");
+<% end %>

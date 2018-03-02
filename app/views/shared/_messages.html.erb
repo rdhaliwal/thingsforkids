@@ -1,0 +1,12 @@
+<% if notice || alert %>
+  <div id="alert-wrapper">
+    <div class="alert <% if notice %>alert-success<% end %> <% if alert %>alert-danger<% end %>" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span></button>
+      </button>
+      <%= alert if alert %>
+      <%= notice.html_safe if notice %>
+    </div>
+  </div>
+<% end %>

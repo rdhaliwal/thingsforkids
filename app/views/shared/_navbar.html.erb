@@ -47,7 +47,7 @@
           <li class="dropdown active"><%= link_to "Home", root_path %></li>
           <li class="dropdown"><%= link_to "Add a listing", new_my_listing_path %></li>
           <li class="dropdown"><%= link_to "About us", "#" %></li>
-          <li class="dropdown"><%= link_to "Contact Us", "#" %></li>
+          <li class="dropdown"><%= link_to "Contact Us", contact_us_path %></li>
           <% if user_signed_in? %>
             <li class="dropdown">
               <a>Account<span class="caret"></span></a>

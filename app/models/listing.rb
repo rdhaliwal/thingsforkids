@@ -16,24 +16,6 @@ class Listing < ApplicationRecord
 
   before_save :sanitize_array_input
 
-  enum activity_type: {
-    'POI' => 1,
-    'Classes' => 2,
-    'Play Centres' => 3,
-    'Childcare Centres' => 4,
-    'Kid Friendly Cafes' => 5,
-    'Parks & Playgrounds' => 6,
-  }
-
-  enum listing_type: {
-    free:     1,
-    premium:  2,
-  }
-
-  paginates_per 6
-
-  WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
-
   def full_address
     "#{address}, #{city}, #{state} #{postcode}"
   end

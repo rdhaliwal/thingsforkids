@@ -1,8 +1,34 @@
 (->
   window.Map or (window.Map = {})
 
-  Map.initmap = (listings) ->
+  Map.initListingMap = (listings) ->
     map = undefined
+    bounds = new google.maps.LatLngBounds()
+    geocoder = new google.maps.Geocoder()
+    map = set_properties(map)
+
+    $.ajax
+      type: 'GET'
+      url: "/listings/addresses?listings[]=#{listings}",
+      dataType: 'json'
+      success: (listings) ->
+        for listing_address in listings.listings
+          add_marker(map, bounds, geocoder, listing_address)
+
+        boundsListener = google.maps.event.addListener(map, 'bounds_changed', (event) ->
+          @setZoom 11
+          google.maps.event.removeListener boundsListener
+          return
+        )
+
+  Map.initCompanyMap = (address) ->
+    map = undefined
+    bounds = new google.maps.LatLngBounds()
+    geocoder = new google.maps.Geocoder()
+    map = set_properties(map)
+    add_marker(map, bounds, geocoder, address)
+
+  set_properties = (map) ->
     mapOptions = {
                 zoom: 11,
                 zoomControl: true,
@@ -26,32 +52,20 @@
                     ]
                 }]
             }
-    bounds = new google.maps.LatLngBounds()
-    geocoder = new google.maps.Geocoder()
-
     map = new (google.maps.Map)(document.getElementById('map'), mapOptions)
     map.setTilt(45)
+    return map
 
-    $.ajax
-      type: 'GET'
-      url: "/listings/addresses?listings[]=#{listings}",
-      dataType: 'json'
-      success: (listings) ->
-        for listing_address in listings.listings
-          geocoder.geocode { 'address': listing_address }, (results, status) ->
-            if status == 'OK'
-              marker = new (google.maps.Marker)(
-                map: map
-                position: results[0].geometry.location
-                title: listing_address)
-              bounds.extend(marker.position)
-              map.setCenter marker.getPosition()
-            else
-              alert "Address not found."
+  add_marker =  (map, bounds, geocoder, address) ->
+    geocoder.geocode { 'address': address }, (results, status) ->
+      if status == 'OK'
+        marker = new (google.maps.Marker)(
+          map: map
+          position: results[0].geometry.location
+          title: address)
+        bounds.extend(marker.position)
+        map.setCenter marker.getPosition()
+      else
+        alert "Address not found."
 
-        boundsListener = google.maps.event.addListener(map, 'bounds_changed', (event) ->
-          @setZoom 11
-          google.maps.event.removeListener boundsListener
-          return
-        )
 ).call this

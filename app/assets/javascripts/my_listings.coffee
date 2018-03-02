@@ -66,5 +66,4 @@
         reader.onload = (e) ->
           $("#image_tag-#{image_number}").attr 'src', e.target.result
         reader.readAsDataURL @files[0]
-
 ).call this

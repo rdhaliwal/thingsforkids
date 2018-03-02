@@ -23,6 +23,7 @@
 </header>
 <section class="ct-u-paddingBottom60" id="single-listing">
   <div class="container">
+    <%= render "shared/errors", resource: @message %>
     <div class="ct-productMeta--single text-uppercase">
       <div class="row">
         <div class="col-md-8 col-lg-9">
@@ -293,6 +294,23 @@
                             </li>
                           </ul>
                         </div>
+
+                        <div class="ct-personContact">
+                          <% if @listing.premium? %>
+                            <%= form_for @message, url: messages_path, html: { role: "form", class: "contactForm validateIt" } do |f| %>
+                              <%= hidden_field_tag :listing_id, @listing.id %>
+                              <div class="form-group">
+                                <div class="ct-form--item">
+                                  <%= f.text_field :sender_name, id: "contact_name", required: true, class: "form-control input-lg ct-u-marginBottom10", placeholder: "Name" %>
+                                  <%= f.email_field :sender_email, id: "contact_email", required: true, class: "form-control input-lg ct-u-marginBottom10", placeholder: "Email" %>
+                                  <%= f.text_field :title, id: "contact_phone", required: true, class: "form-control input-lg ct-u-marginBottom10", placeholder: "Title" %>
+                                  <%= f.text_area :message, id: "contact_message", placeholder: "Message", class: "form-control input-lg", required: true %>
+                                </div>
+                                <%= f.submit "Send Message", class: "btn btn-warning text-capitalize center-block", id: "send-message-btn" %>
+                              </div>
+                            <% end %>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -307,5 +325,5 @@
 </section>
 
 <% content_for :js_init do %>
-  Map.initmap(<%= "#{@listing.id}" %>);
+  Map.initListingMap(<%= "#{@listing.id}" %>);
 <% end %>
