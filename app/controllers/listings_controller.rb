@@ -40,7 +40,7 @@ class ListingsController < ApplicationController
       if params[:age_range].present?
         @min_age, @max_age = params[:age_range].split(',')
       else
-        @min_age, @max_age = 5, 10
+        @min_age, @max_age = 0, 10
       end
     end
 
