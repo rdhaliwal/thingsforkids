@@ -1,6 +1,14 @@
 ActiveAdmin.register User do
   permit_params :first_name, :last_name, :email
 
+  index do
+    selectable_column
+    id_column
+    column :email
+
+    actions
+  end
+
   collection_action :new_invitation do
     @user = User.new
   end
@@ -8,10 +16,9 @@ ActiveAdmin.register User do
   collection_action :send_invitation, method: :post do
     result = SendUserInvite.new(permitted_params[:user], current_admin_user).call
     if result
-      notice = "User has been successfully invited."
+      redirect_to admin_listings_path, notice: "Invitation sent!."
     else
-      notice = "User already registered on palteform."
+      redirect_to admin_listings_path, alert: "User already exists!"
     end
-    redirect_to admin_listings_path, notice: notice
   end
 end
