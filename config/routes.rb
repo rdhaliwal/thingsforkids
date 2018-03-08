@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { invitations: "users/invitations" }
 
-  root "listings#index"
+  root 'listings#index'
 
   resources :listings, only: [:index, :show] do
     get 'addresses', on: :collection
@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :messages, only: [:create]
-  get 'contact-us', to: "home#contact"
+  get 'contact-us', to: 'pages#contact'
+  get 'about-us', to: 'pages#about'
 end
