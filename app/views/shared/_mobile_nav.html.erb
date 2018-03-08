@@ -2,7 +2,7 @@
   <nav class="ct-menuMobile">
     <ul class="ct-menuMobile-navbar">
       <li class="dropdown active"> <%= link_to "Home", root_path %></li>
-      <li class="dropdown"><%= link_to "Add a listing" %></li>
+      <li class="dropdown"><%= link_to "Add a listing", pricing_my_listings_path %></li>
       <li class="dropdown active"><%= link_to "About us" %></li>
       <li class="dropdown"><%= link_to "Contact us", contact_us_path %></li>
       <% if user_signed_in? %>

@@ -17,7 +17,7 @@
 //= require modernizr.custom
 //= require dependencies
 //= require select2.min
-//= require bootstrap-slider
+//= require jquery-ui.min.js
 //= require jquery.stellar.min
 //= require gmap3.min
 //= require owl.carousel.min

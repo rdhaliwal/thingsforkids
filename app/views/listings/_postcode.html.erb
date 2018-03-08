@@ -5,7 +5,8 @@
         <%= form_tag(root_path, method: :get, remote: true, class: "contactForm validateIt ct-formContact--map ct-form--darkStyle form-height" ) do %>
           <div class="form-group">
             <div class="ct-form--item ct-u-marginBottom20">
-              <%= text_field_tag "postcode", nil, class: "form-control input-lg", id: "postcode-text", required: true, placeholder: "Enter your postcode here" %>
+              <%= label_tag "Please enter your postcode", nil, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+              <%= text_field_tag "postcode", nil, class: "form-control input-lg ct-input--border", id: "postcode-text", required: true %>
             </div>
 
             <div class="col-md-4 ct-form--item pull-right">

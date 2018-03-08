@@ -6,10 +6,11 @@
           <div class="ct-u-displayTableCell">
             <div class="col-md-8 text-center">
               <div class="ct-u-displayTableCell">
-                <input type="text" name= "age_range" id="age_range" class="slider" value="" data-slider-handle="square" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="[<%= min_age_range(params[:q]) %>, <%= max_age_range(params[:q]) %>]"/>
+                <label id="range" style="border:0; color:#f6931f; font-weight:bold;"><%= range(params[:age]) %></label>
+                <div id="age_range" class="slider-range" data-min="<%= min_age_range(params[:age]) %>" data-max="<%= max_age_range(params[:age]) %>"></div>
                 <label class="text-center center-block">Age range</label>
-                <%= f.hidden_field :min_age_gteq, value: min_age_range(params[:q]), class: "min-age" %>
-                <%= f.hidden_field :max_age_lteq, value: max_age_range(params[:q]), class: "max-age" %>
+                <%= hidden_field_tag "age[min_age]", min_age_range(params[:age]), { class: "min-age" } %>
+                <%= hidden_field_tag "age[max_age]", max_age_range(params[:age]), { class: "max-age" } %>
               </div>
             </div>
           </div>

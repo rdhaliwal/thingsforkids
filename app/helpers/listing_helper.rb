@@ -14,12 +14,16 @@ module ListingHelper
   end
 
   def min_age_range(params)
-    return 5 unless params.present?
-    params[:min_age_gteq] || 5
+    return 0 unless params.present?
+    params[:min_age] || 0
   end
 
   def max_age_range(params)
     return 10 unless params.present?
-    params[:max_age_lteq] || 10
+    params[:max_age] || 10
+  end
+
+  def range(params)
+    "#{min_age_range(params)} - #{max_age_range(params)}"
   end
 end

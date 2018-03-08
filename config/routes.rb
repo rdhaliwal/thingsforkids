@@ -11,8 +11,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:edit, :update]
 
-  resources :my_listings, only: [:index, :new, :create] do
+  resources :my_listings, only: [:index] do
     get 'pricing', on: :collection
+    resources :build_listings, controller: 'my_listings/build_listings'
   end
 
   resources :messages, only: [:create]

@@ -1,0 +1,41 @@
+<%= render 'form_header' %>
+<section class="ct-u-paddingTop50 ct-u-paddingBottom100">
+  <div class="container">
+    <%= form_for @listing, url: wizard_path, method: :put, html: { role: "form", class: "ct-formSubmission", id: listing_form_id(params[:type]) } do |f| %>
+
+      <%= render "shared/errors", resource: @listing %>
+
+      <%= hidden_field_tag :type, @listing.listing_type %>
+      <%= f.hidden_field :id, value: @listing.id %>
+
+      <div id="price-from">
+        <div class="ct-headerText--normal text-uppercase ct-u-marginBottom40">
+          <h2>Step 4 <span class="ct-text--highlightGray">Finalize</span>
+          </h2>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group ">
+              <h4 class="text-uppercase ct-fw-600 ct-u-marginBottom20">Almost Done</h4>
+              <span class="span ct-u-marginBottom20">We are almost done. If you want to change anything before publishing this will be the best moment to do it. You can also preview how will your property look in our service:</span>
+
+              <div class="col-md-6">
+                <%= render 'shared/payment_fields' %>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ct-container--Big pull-right">
+                  <div class="col-md-12 pull-right">
+                    <%= f.submit "Submit My Property", class: "btn btn-success pull-right" %>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

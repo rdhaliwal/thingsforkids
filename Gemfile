@@ -23,6 +23,7 @@ gem 'httparty'
 gem 'aws-sdk-s3', '~> 1'
 gem 'stripe'
 gem 'exception_notification'
+gem 'wicked'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

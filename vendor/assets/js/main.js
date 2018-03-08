@@ -344,18 +344,20 @@ function makekenburns($element) {
             $('.ct-navigationGmaps').addClass('hidden');
         }
 
-        //Bootstrap slider init
-        if($('.slider').length > 0){
-            $('.slider').slider().on('slideStop', function(ev){
-                var values = $(this).val().split(',');
-                if (values != ""){
-                  $('.min-age').val(values[0]);
-                  $('.max-age').val(values[1]);
-                  $('.slider').attr('data-slider-value', '[${values[0]}, ${values[1]}]');
-                  $(this).parents('.form').submit();
-                }
-            });
-        }
+        var min_val = $('.slider-range').data('min');
+        var max_val = $('.slider-range').data('max');
+        $( ".slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 10,
+            slide: function( event, ui ) {
+              $( ".min-age" ).val( ui.values[ 0 ] );
+              $( ".max-age" ).val( ui.values[ 1 ] );
+              $(this).parents('.form').submit();
+            }
+          });
+
+        $( ".slider-range" ).slider( "values", [min_val, max_val] );
 
         if ($('#new-card-form').length > 0) {
             $('[data-numeric]').payment('restrictNumeric');

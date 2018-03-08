@@ -3,14 +3,15 @@ class Listing < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
-  validate :description_length
+  validate  :description_length, if: :active_or_basic_info?, on: :update
   validates :email, :short_description, :description, :business_name, :manager_name, :manager_job_title, :website,
-            :activity_type, :phone, :logo, :address, :city, :state, :postcode, :price, :days_available, presence: :true
+            :activity_type, :phone, :logo, :address, :city, :state, :postcode, presence: :true,if: :active_or_basic_info?, on: :update
+  validates :price, :days_available, presence: :true, if: :active_or_amenities?, on: :update
 
 
   scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
-
+  scope :match_age, -> (min_age, max_age) { where('min_age <= ? AND max_age >= ?', max_age, min_age) }
   geocoded_by :full_address
   after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
 
@@ -56,5 +57,17 @@ class Listing < ApplicationRecord
 
   def sanitize_array_input
     self.days_available = days_available.reject { |d| d.blank? }
+  end
+
+  def active?
+    status == 'active'
+  end
+
+  def active_or_basic_info?
+    status.include?('basic') || active?
+  end
+
+  def active_or_amenities?
+    status.include?('amenities') || active?
   end
 end

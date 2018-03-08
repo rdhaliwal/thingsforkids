@@ -1,11 +1,10 @@
 class ListingsController < ApplicationController
-  before_action :set_slider_values
   before_action :set_listing, only: [:show]
 
   def index
     session[:postcode] = session[:postcode] || params[:postcode]
-
     listings  = params[:days_available].present? ? Listing.match_days(params[:days_available]) : Listing
+    listings  = listings.match_age(params[:age][:min_age], params[:age][:max_age]) if params[:age].present?
     @q        = listings.ransack(params[:q])
     @listings = @q.result(distinct: true)
 
@@ -36,14 +35,6 @@ class ListingsController < ApplicationController
   end
 
   private
-    def set_slider_values
-      if params[:age_range].present?
-        @min_age, @max_age = params[:age_range].split(',')
-      else
-        @min_age, @max_age = 0, 10
-      end
-    end
-
     def set_listing
       @listing = Listing.find(params[:id])
     end

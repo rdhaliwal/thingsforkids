@@ -28,7 +28,7 @@
             <span>Includes Address</span>
             <span>Web address</span>
             <span>Contact form</span>
-            <%= link_to "Register Now", new_my_listing_path(type: :free),  class: "btn btn-warning text-capitalize" %>
+            <%= link_to "Register Now", my_listing_build_listing_path(@listing.id, :basic_info, type: :free),  class: "btn btn-warning text-capitalize" %>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
             <span>8 Images</span>
             <span>Contact Form</span>
             <span>agent details</span>
-            <%= link_to "Register Now", new_my_listing_path(type: :premium),  class: "btn btn-warning text-capitalize" %>
+            <%= link_to "Register Now", my_listing_build_listing_path(@listing.id, :basic_info, type: :premium),  class: "btn btn-warning text-capitalize" %>
           </div>
         </div>
       </div>
