@@ -1,0 +1,49 @@
+<header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="630" data-type="parallax" data-bg-image=<%= asset_url("content/registration-parallax.jpg") %> data-bg-image-mobile=<%= asset_url("content/registration-parallax.jpg") %>>
+  <div class="ct-mediaSection-inner">
+    <div class="container mt-40">
+      <div class="error-message">
+        <%= devise_error_messages! %>
+      </div>
+      <h2></h2>
+
+      <div class="col-md-8">
+        <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, class: "ct-formRegister pull-right" } do |f| %>
+          <div class="form-group">
+            <div class="ct-form--label--type2">
+              <div class="ct-u-displayTableVertical">
+                <div class="ct-u-displayTableCell">
+                  <div class="ct-input-group-btn">
+                    <button class="btn btn-primary">
+                      <i class="fa fa-user"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="ct-u-displayTableCell text-center">
+                  <span class="text-uppercase"><%= t 'devise.invitations.edit.header' %></span>
+                </div>
+              </div>
+            </div>
+
+            <%= f.hidden_field :invitation_token, readonly: true %>
+            <% if f.object.class.require_password_on_accepting %>
+              <div class="ct-form--item ct-u-marginBottom20">
+                <p><%= f.label :password %><br />
+                <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "form-control input-lg" %></p>
+              </div>
+
+              <div class="ct-form--item ct-u-marginBottom20">
+                <%= f.label :password_confirmation, "Confirm new password" %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control input-lg"%>
+              </div>
+            <% end %>
+
+            <div class="ct-form--item">
+              <%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-warning center-block" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,14 @@
+<p> Dear <%= @user.email %>,</p>
+<br/>
+<p><%= @inviter.email %> invited you to to view listings on Thingsforkids.
+  you can accept it through link below.
+</p>
+<p><%= link_to "Accept Invite", accept_user_invitation_url(invitation_token: @token), class: "btn" %></p>
+<br/>
+<p>
+  If you don't want to accept the invitation, please ignore this email.<br/>
+  Your account won't be created until you access the link above and set your password.
+</p>
+<br/>
+
+<p>Thank you! </p>

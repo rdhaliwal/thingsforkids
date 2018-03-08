@@ -107,4 +107,8 @@ ActiveAdmin.register Listing do
       redirect_to edit_admin_listing_path(resource), notice: "Image not found."
     end
   end
+
+  action_item :new_invitation, only: [:show] do
+    link_to 'Invite User', new_invitation_admin_users_path
+  end
 end
