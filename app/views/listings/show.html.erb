@@ -11,8 +11,14 @@
         </div>
 
         <div class="ct-u-displayTableCell text-right">
-          <a href="search-grid.html" class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white"><i class="fa fa-heart-o"></i></a>
-          <a href="javascript:window.print()" class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white"><i class="fa fa-print"></i></a>
+          <% if user_signed_in? && @listing.owner?(current_user) %>
+            <%= link_to edit_my_listing_path(@listing), class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to my_listing_path(@listing), method: :delete, class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
+              <i class="fa fa-trash-o" ></i>
+            <% end %>
+          <% end %>
           <div class="ct-buttonBox">
             <%= link_to "Back to Listings", my_listings_path,  class: "btn btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" %>
           </div>
@@ -54,7 +60,7 @@
               <div class="ct-owl-controls--type2" data-single="true" data-pagination="false" data-navigation="false" data-snap-ignore="true" id="sync1">
                 <% @listing.images.each do |image| %>
                   <div class="item">
-                    <%= image_tag image, alt: "" %>
+                    <%= image_tag image.variant(resize: "850x600"), alt: "" %>
                   </div>
                 <% end %>
               </div>

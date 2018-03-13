@@ -26,4 +26,12 @@ module ListingHelper
   def range(params)
     "#{min_age_range(params)} - #{max_age_range(params)}"
   end
+
+  def add_class
+    return 'd-none' if controller_name == "my_listings" && action_name = "edit"
+  end
+
+  def edit_action?
+    controller_name == "my_listings" && ['edit', 'update'].include?(action_name)
+  end
 end

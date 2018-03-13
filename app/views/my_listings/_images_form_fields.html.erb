@@ -1,0 +1,57 @@
+<div id="images_form_fields" class=<%= add_class %>>
+  <div class="col-md-8 col-lg-6">
+    <div class="form-group ">
+      <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Upload featured images</label>
+      <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
+        <% 8.times do |img| %>
+          <li>
+            <div class="col-sm-6 col-md-8">
+              <%= f.file_field :images, { name: "listing[images][]", id: "img-#{img}", class: "images ct-media--content" }  %>
+            </div>
+
+            <div class="ct-media--left">
+              <%= image_tag "content/gallery-thumbnail-1.jpg", size: "92x71", alt: "", id: "image_tag-#{img}" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-6">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :facbook_url, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+        <%= f.text_field :facbook_url, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :instagram_url, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+        <%= f.text_field :instagram_url, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
+      </div>
+    </div>
+
+    <div class="col-md-12 ct-container--Big">
+      <% if edit_action? %>
+        <div class="col-md-6 pull-left">
+          <%= link_to "cancel", edit_my_listing_path(@listing), class: "btn btn-link pull-left" %>
+        </div>
+
+        <div class="col-md-6 pull-right">
+          <%= f.submit "Update", class: "btn btn-warning pull-right" %>
+        </div>
+      <% else %>
+        <div class="col-md-6 pull-left">
+          <%= link_to "Go Back", previous_wizard_path(type: @listing.listing_type), class: "btn btn-link pull-left" %>
+        </div>
+
+        <div class="col-md-6 pull-right">
+          <%= f.submit "Continue", class: "btn btn-warning pull-right", id: "continue-step4" %>
+        </div>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

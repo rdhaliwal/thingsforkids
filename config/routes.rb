@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { invitations: "users/invitations" }
+  devise_for :users, controllers: { invitations: "users/invitations",
+                                    registrations: "users/registrations"
+                                  }
 
   root 'listings#index'
 
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:edit, :update]
 
-  resources :my_listings, only: [:index] do
+  resources :my_listings, only: [:index, :edit, :update, :destroy] do
     get 'pricing', on: :collection
     resources :build_listings, controller: 'my_listings/build_listings'
   end

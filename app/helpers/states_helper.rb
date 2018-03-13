@@ -4,7 +4,7 @@ module StatesHelper
       ['Tasmania', 'TAS'],
       ['Western Australia', 'WA'],
       ['South Australia', 'SA'],
-      ['Western Australis', 'NT'],
+      ['Northern Territory', 'NT'],
       ['New South Wales', 'NSW'],
       ['Queensland', 'QLD'] ]
   end

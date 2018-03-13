@@ -3,7 +3,6 @@
   <div class="container">
     <%= form_for @listing, url: wizard_path, method: :put, html: { role: "form", class: "ct-formSubmission", id: listing_form_id(params[:type]) } do |f| %>
 
-      <%= render "shared/errors", resource: @listing %>
       <%= hidden_field_tag :type, params[:type] %>
 
       <div id="info-form">
@@ -14,103 +13,7 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6">
-            <div class="col-md-12">
-              <div class="form-group ">
-                <%= f.hidden_field :listing_type, value: params[:type] %>
-                <%= f.label :business_name, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :business_name, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-                <%= f.label :manager_name, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :manager_name, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-
-                <%= f.label :manager_job_title, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :manager_job_title, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-                <%= f.label :description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_area :description,  class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-
-                <%= f.label :short_description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_area :short_description, size: "30x10", class: "form-control input-lg ct-input--border ct-u-marginBottom40 short-description" %>
-
-                <%= f.label :website, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :website, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label  :activity_type, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.select :activity_type, Listing.activity_types.keys, { include_blank: true }, class: "ct-js-select ct-select2--light ct-select-lg ct-u-marginBottom40 chosen-select" %>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :email, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.email_field :email, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :phone, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.phone_field :phone, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Add logo</label>
-                <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
-                  <li>
-                    <div class="col-sm-6 col-md-6">
-                      <%= f.file_field :logo, { id: "file-logo", class: "images ct-media--content" }  %>
-                    </div>
-
-                    <div class="ct-media--left">
-                      <%= image_tag "content/gallery-thumbnail-1.jpg", size: "92x71", alt: "", id: "image_tag-logo" %>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :address, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :address, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <%= f.label :city, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :city, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <%= f.label :state, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.select :state , states, { include_blank: true }, { class: "ct-js-select ct-select2--light ct-select-lg ct-u-marginBottom20 chosen-select" } %>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <%= f.label :postcode, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.number_field :postcode,  class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-
-            <div class="col-md-12 ct-container--Big text-right">
-              <div class="col-md-6 pull-right">
-                <%= f.submit "Continue", class: "btn btn-warning", id: "continue-step2" %>
-              </div>
-            </div>
-          </div>
+          <%= render 'my_listings/basic_info_fields', f: f %>
         </div>
       </div>
     <% end %>

@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params.merge({user: @user}))
     if @message.save
       receiver = @user.present? ? @user.id : nil
-      MessagesMailer.message_notification(@message.id, receiver).deliver!
+      MessagesMailer.message_notification(@message.id, receiver).deliver_later
       redirect_to create_redirect_path, notice: "Your message was sent successfully."
     else
       render create_render_path

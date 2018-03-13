@@ -1,0 +1,53 @@
+<%= render "my_listings/build_listings/form_header" %>
+<section class="ct-u-paddingTop50 ct-u-paddingBottom100">
+  <div class="container">
+    <div class="ct-headerText--normal text-uppercase ct-u-marginBottom40">
+      <h2><span class="ct-text--highlightGray">Edit your listing</span></h2>
+    </div>
+
+    <div class="row" id="edit-options">
+      <div class="col-md-12 col-lg-3">
+        <div class="form-group">
+          <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom40">
+            <li>
+              <%= link_to "", id: "edit_basic_info" do %>
+                <i class="fa fa-edit"></i> Basic Info
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to "", id: "edit_amenities" do %>
+                <i class="fa fa-edit"></i> Amenities
+              <% end %>
+            </li>
+            <% if @listing.premium? %>
+              <li>
+                <%= link_to "", id: "edit_images" do %>
+                  <i class="fa fa-edit"></i> Images
+                <% end %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to listing_path(@listing), id: "edit_amenities" do %>
+                <i class="fa fa-arrow-left"></i> Go Back
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-9">
+        <%= form_for @listing, url: my_listing_path, html: { role: "form", class: "ct-formSubmission" } do |f| %>
+          <%= render 'my_listings/basic_info_fields', f: f  %>
+          <%= render 'my_listings/amenities_fields', f: f   %>
+          <% if @listing.premium? %>
+            <%= render 'my_listings/images_form_fields', f: f %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+</div>
+
+<% content_for :js_init do %>
+  MyListings.init();
+<% end %>

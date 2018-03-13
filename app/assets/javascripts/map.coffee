@@ -65,7 +65,4 @@
           title: address)
         bounds.extend(marker.position)
         map.setCenter marker.getPosition()
-      else
-        alert "Address not found."
-
 ).call this

@@ -1,4 +1,5 @@
-class MyListings::BuildListingsController < Wicked::WizardController
+class MyListings::BuildListingsController < ApplicationController
+  include Wicked::Wizard
   before_action :set_listing, only: [:show, :update]
   prepend_before_action :set_steps, only: [:show, :update]
   before_action :setup_wizard, only: [:show, :update]

@@ -8,12 +8,12 @@ class Listing < ApplicationRecord
             :activity_type, :phone, :logo, :address, :city, :state, :postcode, presence: :true,if: :active_or_basic_info?, on: :update
   validates :price, :days_available, presence: :true, if: :active_or_amenities?, on: :update
 
-
   scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
   scope :match_age, -> (min_age, max_age) { where('min_age <= ? AND max_age >= ?', max_age, min_age) }
   geocoded_by :full_address
   after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
+  after_validation :validate_address, if: :active_or_basic_info?, on: :update
 
   before_save :sanitize_array_input
 
@@ -53,6 +53,10 @@ class Listing < ApplicationRecord
     errors.add(:description, "Description must be under 400 words") if number_of_words > 400 && self.premium?
   end
 
+  def owner? current_user
+    user == current_user
+  end
+
   private
 
   def sanitize_array_input
@@ -69,5 +73,11 @@ class Listing < ApplicationRecord
 
   def active_or_amenities?
     status.include?('amenities') || active?
+  end
+
+  def validate_address
+    if latitude.blank? || longitude.blank?
+      self.errors.add(:address, "is not valid")
+    end
   end
 end

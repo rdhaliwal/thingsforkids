@@ -3,8 +3,6 @@
   <div class="container">
     <%= form_for @listing, url: wizard_path, method: :put, html: { role: "form", class: "ct-formSubmission", id: listing_form_id(params[:type]) } do |f| %>
 
-      <%= render "shared/errors", resource: @listing %>
-
       <%= hidden_field_tag :type, @listing.listing_type %>
 
       <div id="images-form">
@@ -13,47 +11,7 @@
           </h2>
         </div>
         <div class="row">
-          <div class="col-md-8 col-lg-6">
-            <div class="form-group ">
-              <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Upload featured images</label>
-              <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
-                <% 8.times do |img| %>
-                  <li>
-                    <div class="col-sm-6 col-md-8">
-                      <%= f.file_field :images, { name: "listing[images][]", id: "img-#{img}", class: "images ct-media--content" }  %>
-                    </div>
-
-                    <div class="ct-media--left">
-                      <%= image_tag "content/gallery-thumbnail-1.jpg", size: "92x71", alt: "", id: "image_tag-#{img}" %>
-                    </div>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-lg-6">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :facbook_url, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :facbook_url, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :instagram_url, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-                <%= f.text_field :instagram_url, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>
-              </div>
-            </div>
-
-            <div class="col-md-12 ct-container--Big">
-              <div class="col-md-6 pull-right">
-                <%= f.submit "Continue", class: "btn btn-warning pull-right", id: "continue-step4" %>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-          </div>
+          <%= render 'my_listings/images_form_fields', f: f %>
         </div>
       </div>
     <% end %>
