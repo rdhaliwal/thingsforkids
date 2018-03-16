@@ -8,7 +8,10 @@
         </div>
       </div>
       <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Property summary</label><br>
-      <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Amenites <span>Please check what applies</span></label>
+      <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">
+        Amenities <span>Please check what applies</span>
+      </label>
+
       <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
         <div class="ct-u-displayTableCell">
           <div class="ct-checbox--custom">
@@ -92,7 +95,7 @@
         <div class="ct-u-displayTableCell">
           <% Listing::WEEK_DAYS.each do |day| %>
             <div class="ct-checbox--custom">
-              <%= check_box_tag "listing[days_available][]", day, nil, { id: "#{day}" } %>
+              <%= check_box_tag "listing[days_available][]", day, @listing.days_available.include?(day), { id: "#{day}" } %>
               <label for="<%= day %>"></label>
               <span> <%= day %></span>
             </div>

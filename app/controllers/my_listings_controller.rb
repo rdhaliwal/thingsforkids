@@ -6,10 +6,6 @@ class MyListingsController < ApplicationController
     @listings = current_user.listings.page(params[:page])
   end
 
-  def pricing
-    @listing = current_user.listings.create
-  end
-
   def edit
     params[:type] = @listing.listing_type
   end
@@ -25,7 +21,7 @@ class MyListingsController < ApplicationController
   def destroy
     if @listing.premium?
       subscription_id = @listing.subscription_id
-      RemoveSubscription.call(subscription_id)
+      RemoveSubscription.call(subscription_id) if subscription_id.present?
     end
 
     if @listing.destroy

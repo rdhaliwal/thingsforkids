@@ -7,18 +7,18 @@ Rails.application.routes.draw do
 
   root 'listings#index'
 
-  resources :listings, only: [:index, :show] do
+  resources :listings, only: [:index, :show, :create] do
     get 'addresses', on: :collection
   end
 
   resources :users, only: [:edit, :update]
 
   resources :my_listings, only: [:index, :edit, :update, :destroy] do
-    get 'pricing', on: :collection
     resources :build_listings, controller: 'my_listings/build_listings'
   end
 
   resources :messages, only: [:create]
   get 'contact-us', to: 'pages#contact'
   get 'about-us', to: 'pages#about'
+  get 'pricing', to: 'pages#pricing'
 end

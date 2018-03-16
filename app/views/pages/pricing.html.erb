@@ -28,7 +28,7 @@
             <span>Includes Address</span>
             <span>Web address</span>
             <span>Contact form</span>
-            <%= link_to "Register Now", my_listing_build_listing_path(@listing.id, :basic_info, type: :free),  class: "btn btn-warning text-capitalize" %>
+            <%= link_to "Register Now", listings_path(listing_type: 'free'),  class: "btn btn-warning text-capitalize", method: :post %>
           </div>
         </div>
       </div>
@@ -46,8 +46,11 @@
           <div class="ct-contentSection">
             <span>8 Images</span>
             <span>Contact Form</span>
-            <span>agent details</span>
-            <%= link_to "Register Now", my_listing_build_listing_path(@listing.id, :basic_info, type: :premium),  class: "btn btn-warning text-capitalize" %>
+            <span>Summary</span>
+            <span>Social media links</span>
+            <span>400 word description</span>
+            <span>Plus more...</span>
+            <%= link_to "Register Now", listings_path(listing_type: 'premium'), class: "btn btn-warning text-capitalize", method: :post %>
           </div>
         </div>
       </div>

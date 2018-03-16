@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show]
+  before_action :authenticate_user!, only: [:create]
 
   def index
     session[:postcode] = session[:postcode] || params[:postcode]
@@ -25,6 +26,11 @@ class ListingsController < ApplicationController
 
   def show
     @message = Message.new
+  end
+
+  def create
+    listing = current_user.listings.create(listing_type: params[:listing_type], status: 'basic')
+    redirect_to my_listing_build_listing_path(listing.id, :basic_info, type: listing.listing_type)
   end
 
   def addresses
