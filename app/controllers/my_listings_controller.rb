@@ -16,7 +16,7 @@ class MyListingsController < ApplicationController
 
   def update
     if @listing.update(listing_params)
-      redirect_to @listing, notice: "Changes saved."
+      redirect_to @listing, notice: "Changes were successfully saved."
     else
       render :edit
     end
@@ -27,18 +27,13 @@ class MyListingsController < ApplicationController
       subscription_id = @listing.subscription_id
       RemoveSubscription.call(subscription_id)
     end
-    if  @listing.delete
-      redirect_to my_listings_path, notice: "Listing is removed."
-    else
-      redirect_to my_listings_path, alert: "Something went wrong."
+
+    if @listing.destroy
+      redirect_to my_listings_path, notice: "Listing was successfully removed."
     end
   end
 
   private
-    def choose_package
-      redirect_to pricing_my_listings_path if params[:type].blank?
-    end
-
     def set_listing
       @listing = current_user.listings.find(params[:id])
     end
