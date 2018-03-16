@@ -156,7 +156,7 @@
                     </div>
                   </div>
                 </div>
-              <% else %>
+              <% elsif current_user == @listing.user %>
                 <div class="alert alert-info ct-u-marginBottom60">
                   Is this your business? <br><br>
                   <u><%= link_to "Upgrade to premium listing now!", "" %></u>
