@@ -17,7 +17,6 @@
           for listing in data.listings
             add_marker(map, bounds, geocoder, listing.address, markers, listing.id)
           google.maps.Map.prototype.markers = markers
-
         boundsListener = google.maps.event.addListener(map, 'bounds_changed', (event) ->
           @setZoom 11
           google.maps.event.removeListener boundsListener

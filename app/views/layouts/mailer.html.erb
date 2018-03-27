@@ -15,7 +15,7 @@
           <td>&nbsp;</td>
           <td class="container">
             <div class="content">
-              <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+              <span class="preheader"></span>
               <table class="main">
                 <tbody>
                   <tr>
@@ -37,12 +37,12 @@
                   <tbody>
                     <tr>
                       <td class="content-block">
-                        <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
+                        <span class="apple-link"><%= company_address %></span>
                       </td>
                     </tr>
                     <tr>
                       <td class="content-block powered-by">
-                        Powered by
+                        Powered by <%= link_to "ThingsForKids", root_url %>
                       </td>
                     </tr>
                   </tbody>
