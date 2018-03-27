@@ -15,7 +15,7 @@
       success: (data) ->
         if data.listings
           for listing in data.listings
-            add_marker(map, bounds, geocoder, listing.address, markers, listing.id)
+            add_marker(map, bounds, geocoder, listing.address, markers, listing.id, listing.activity_type)
           google.maps.Map.prototype.markers = markers
         boundsListener = google.maps.event.addListener(map, 'bounds_changed', (event) ->
           @setZoom 11
@@ -35,7 +35,7 @@
               $.post("/listings/draw?listings[]=#{data.ids}").done(->
                 clear_markers(markers)
                 for listing in data.listings
-                  add_marker(map, bounds, geocoder, listing.address, markers, listing.id)
+                  add_marker(map, bounds, geocoder, listing.address, markers, listing.id, listing.activity_type)
                 google.maps.Map.prototype.markers = markers
                 return
               )
@@ -76,14 +76,18 @@
     map.setTilt(45)
     return map
 
-  add_marker =  (map, bounds, geocoder, address, markers, id) ->
+  add_marker =  (map, bounds, geocoder, address, markers, id, activity_type) ->
+    icon = set_marker_icon_type(activity_type)
+    debugger
     geocoder.geocode { 'address': address }, (results, status) ->
       if status == 'OK'
         marker = new (google.maps.Marker)(
           map: map
           position: results[0].geometry.location
           id: id
-          title: address)
+          title: address
+          icon: icon
+        )
 
         bounds.extend(marker.position)
         markers.push marker
@@ -102,13 +106,75 @@
         for marker in markers
           if marker.id == parseInt this.href.split('/')[4]
             marker.setAnimation 1
-            marker.setIcon($('#map').data('icon'))
 
     $('#listings').on 'mouseleave', '.list-container', ->
         markers = google.maps.Map.prototype.markers
         for marker in markers
           if marker.id == parseInt this.href.split('/')[4]
             marker.setAnimation(null)
-            marker.setIcon()
 
+  set_marker_icon_type = (activity_type) ->
+    if activity_type == "POI"
+      icon_type = {
+                    path: fontawesome.markers.THUMB_TACK
+                    scale: 0.5
+                    strokeWeight: 0.2
+                    strokeColor: 'black'
+                    strokeOpacity: 1
+                    fillColor: '#800080'
+                    fillOpacity: 1
+                  }
+    else if activity_type == "Classes"
+      icon_type = {
+                    path: fontawesome.markers.GRADUATION_CAP
+                    scale: 0.5
+                    strokeWeight: 0.2
+                    strokeColor: 'black'
+                    strokeOpacity: 1
+                    fillColor: '#F83106'
+                    fillOpacity: 1
+                  }
+    else if activity_type == "Play Centres"
+      icon_type = {
+                    path: fontawesome.markers.ROCKET
+                    scale: 0.5
+                    strokeWeight: 0.2
+                    strokeColor: 'black'
+                    strokeOpacity: 1
+                    fillColor: '#CB2501'
+                    fillOpacity: 1
+                  }
+    else if activity_type == "Childcare Centres"
+      icon_type = {
+                    path: fontawesome.markers.HOME
+                    scale: 0.5
+                    strokeWeight: 0.2
+                    strokeColor: 'black'
+                    strokeOpacity: 1
+                    fillColor: '#196F3D'
+                    fillOpacity: 1
+                  }
+    else if activity_type == "Kid Friendly Cafes"
+      icon_type = {
+                    path: fontawesome.markers.COFFEE
+                    scale: 0.5
+                    strokeWeight: 0.2
+                    strokeColor: 'black'
+                    strokeOpacity: 1
+                    fillColor: '#17202A'
+                    fillOpacity: 1
+                  }
+
+    else if activity_type == "Parks & Playgrounds"
+      icon_type = {
+                    path: fontawesome.markers.TREE
+                    scale: 0.5
+                    strokeWeight: 0.2
+                    strokeColor: 'black'
+                    strokeOpacity: 1
+                    fillColor: '#008000'
+                    fillOpacity: 1
+                  }
+
+    return icon_type
 ).call this
