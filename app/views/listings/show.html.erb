@@ -1,26 +1,30 @@
-<header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax" data-bg-image=<%= asset_url("single-list.jpg") %> data-bg-image-mobile=<%= asset_url("single-list.jpg") %> >
-  <div class="ct-mediaSection-inner">
+<header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax" data-bg-image=<%= asset_url("melbourne_image.png") %> data-bg-image-mobile=<%= asset_url("melbourne_image.png") %> >
+  <div class="ct-mediaSection-inner <%= header_color(get_activity_type_value(@listing.activity_type))%>">
     <div class="container">
-      <div class="ct-u-displayTableVertical">
-        <div class="ct-textBox ct-u-text--white ct-u-displayTableCell text-left">
-          <h2 class="text-uppercase"><%= @listing.address %></h2>
-          <h4 class="text-uppercase"><%= @listing.location %></h4>
-          <span class="ct-productID ct-fw-600">
-            Property ID: <%= @listing.id %>
-          </span>
+      <div class="ct-u-displayTableVertical" id="listing-header">
+        <div class="col-md-8">
+          <div class="ct-textBox ct-u-text--white ct-u-displayTableCell text-left">
+            <h2 class="text-uppercase listing-address"><%= @listing.address %></h2>
+            <h4 class="text-uppercase"><%= @listing.location %></h4>
+            <lable class="ct-u-marginBottom10 text-uppercase"> <i class="<%= icon_class get_activity_type_value(@listing.activity_type) %>"></i>
+              <%= @listing.activity_type %></lable>
+              <br>
+          </div>
         </div>
 
-        <div class="ct-u-displayTableCell text-right">
-          <% if user_signed_in? && @listing.owner?(current_user) %>
-            <%= link_to edit_my_listing_path(@listing), class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
-              <i class="fa fa-edit"></i>
+        <div class="col-md-4 ct-u-marginTop30">
+          <div class="ct-u-displayTableCell text-right">
+            <% if user_signed_in? && @listing.owner?(current_user) %>
+              <%= link_to edit_my_listing_path(@listing), class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+              <%= link_to my_listing_path(@listing), method: :delete, class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
+                <i class="fa fa-trash-o" ></i>
+              <% end %>
             <% end %>
-            <%= link_to my_listing_path(@listing), method: :delete, class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
-              <i class="fa fa-trash-o" ></i>
-            <% end %>
-          <% end %>
-          <div class="ct-buttonBox">
-            <%= link_to "Back to Listings", my_listings_path,  class: "btn btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" %>
+            <div class="ct-buttonBox">
+              <%= link_to "Back to Listings", my_listings_path,  class: "btn btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" %>
+            </div>
           </div>
         </div>
       </div>
@@ -241,7 +245,7 @@
                 <h3 class="text-uppercase">Map</h3>
               </div>
 
-              <div id="map" class="map-style">
+              <div id="map" class="map-style" data-icon=<%= asset_url('map_icon.png') %>>
               </div>
             </div>
           </div>

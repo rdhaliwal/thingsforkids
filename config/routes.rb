@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create]
   get 'contact-us', to: 'pages#contact'
+  post 'subscribe', to: 'pages#mailchimp_subscription'
   get 'about-us', to: 'pages#about'
 end

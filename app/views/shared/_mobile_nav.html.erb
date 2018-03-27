@@ -1,10 +1,10 @@
 <div id="mobile-nav">
   <nav class="ct-menuMobile">
     <ul class="ct-menuMobile-navbar">
-      <li class="dropdown active"> <%= link_to "Home", root_path %></li>
-      <li class="dropdown"><%= link_to "Add a listing", pricing_my_listings_path %></li>
-      <li class="dropdown active"><%= link_to "About us", about_us_path %></li>
-      <li class="dropdown"><%= link_to "Contact us", contact_us_path %></li>
+      <li class="dropdown <%= active_class root_path %>"><%= link_to "Home", root_path %></li>
+      <li class="dropdown <%= active_class pricing_my_listings_path %>"><%= link_to "Add a listing", pricing_my_listings_path %></li>
+      <li class="dropdown <%= active_class about_us_path %>"><%= link_to "About us", about_us_path %></li>
+      <li class="dropdown <%= active_class contact_us_path %>"><%= link_to "Contact Us", contact_us_path %></li>
       <% if user_signed_in? %>
         <li class="dropdown">
           <a>Account<span class="caret"></span></a>
@@ -16,13 +16,13 @@
           </ul>
         </li>
       <% else %>
-        <li class="dropdown">
+        <li class="dropdown <%= active_class new_user_session_path %>">
           <%= link_to new_user_session_path do %>
             <i class="fa fa-user"></i> Login
           <% end %>
         </li>
 
-        <li class="dropdown">
+        <li class="dropdown <%= active_class new_user_registration_path %>">
           <%= link_to new_user_registration_path do %>
             <i class="fa fa-plus-square"></i> Register
           <% end %>

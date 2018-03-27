@@ -3,7 +3,7 @@
 <p><%= @inviter.email %> invited you to to view listings on Thingsforkids.
   you can accept it through link below.
 </p>
-<p><%= link_to "Accept Invite", accept_user_invitation_url(invitation_token: @token), class: "btn" %></p>
+<p><%= link_to "Accept Invite", accept_user_invitation_url(invitation_token: @token), class: "btn btn-primary" %></p>
 <br/>
 <p>
   If you don't want to accept the invitation, please ignore this email.<br/>
