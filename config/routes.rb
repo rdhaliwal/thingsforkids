@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :listings, only: [:index, :show] do
     get 'addresses', on: :collection
+    post 'draw', on: :collection
   end
 
   resources :users, only: [:edit, :update]

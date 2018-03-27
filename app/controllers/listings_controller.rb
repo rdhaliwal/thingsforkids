@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show]
+  before_action :set_listings, only: [:addresses]
 
   def index
     session[:postcode] = session[:postcode] || params[:postcode]
@@ -28,14 +29,26 @@ class ListingsController < ApplicationController
   end
 
   def addresses
-    listings = Listing.where(id: params[:listings].first.split(',')).collect(&:full_address) if params[:listings].present?
     respond_to do |format|
-      format.json { render json: { listings: listings }}
+      format.json
+    end
+  end
+
+  def draw
+    @listings = Listing.where(id: params[:listings].first.split(','))
+
+    respond_to do |format|
+      format.js
     end
   end
 
   private
     def set_listing
       @listing = Listing.find(params[:id])
+    end
+
+    def set_listings
+      return @listings = Listing.near([params[:lat], params[:lng]], 10) if params[:lat] && params[:lng]
+      @listings = Listing.where(id: params[:listings].first.split(','))
     end
 end
