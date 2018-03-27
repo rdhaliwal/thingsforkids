@@ -9,16 +9,16 @@ ActiveAdmin.register User do
     actions
   end
 
-  collection_action :new_invitation do
-    @user = User.new
+  member_action :send_invitation do
+    result = SendUserInvite.new(resource.email, current_admin_user).call
+    if result
+      redirect_to admin_users_path, notice: "Invitation sent!."
+    else
+      redirect_to admin_users_path, alert: "User already exists!"
+    end
   end
 
-  collection_action :send_invitation, method: :post do
-    result = SendUserInvite.new(permitted_params[:user], current_admin_user).call
-    if result
-      redirect_to admin_listings_path, notice: "Invitation sent!."
-    else
-      redirect_to admin_listings_path, alert: "User already exists!"
-    end
+  action_item :new_invitation, only: [:show] do
+    link_to 'Invite User', send_invitation_admin_user_path
   end
 end

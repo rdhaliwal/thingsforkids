@@ -1,9 +1,17 @@
 ActiveAdmin.register Listing do
+  before_action :set_created_by, only: [:create]
+
   permit_params :activity_type, :min_age, :max_age, :business_name, :description, :logo, :user_id, :short_description,
                 :facbook_url, :instagram_url, :manager_name, :manager_job_title, :phone, :email, :website, :price,
                 :postcode, :please_bring, :indoors, :outdoors, :parties, :disability_access, :parking, :free_trial,
                 :undercover, :bbq, :toilets, :highchairs, :baby_change_room, :opens_at, :closes_at, :address, :city, :state,
-                days_available: [], images: []
+                :status, :created_by_admin, days_available: [], images: []
+
+  controller do
+    def set_created_by
+      params[:listing][:created_by_admin] = true
+    end
+  end
 
   form do |f|
     f.inputs :business_name
@@ -54,6 +62,7 @@ ActiveAdmin.register Listing do
     f.inputs do
       f.input :state, collection: states
     end
+    f.inputs :status
 
     f.inputs "Add images " do
       (8 - f.object.images.size).times do
