@@ -142,10 +142,9 @@ function makekenburns($element) {
         }
     });
 
-    $(document).ready(function () {
+    $(document).on('turbolinks:load', function () {
 
         // Add Color // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
         $(".ct-js-color").each(function(){
             $(this).css("color", '#' + $(this).attr("data-color"))
         })
@@ -353,7 +352,9 @@ function makekenburns($element) {
             slide: function( event, ui ) {
               $( ".min-age" ).val( ui.values[ 0 ] );
               $( ".max-age" ).val( ui.values[ 1 ] );
-              $(this).parents('.form').submit();
+              $("#loader").show();
+              var form = document.querySelector('.form');
+              Rails.fire(form, 'submit');
             }
           });
 

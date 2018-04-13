@@ -59,4 +59,10 @@ module ListingHelper
   def render_image image
     image.variant(combine_options: { resize: '870x442^', gravity: 'Center', extent: '870x442', quality: 95 })
   end
+
+  def render_url webiste_url
+    return if webiste_url.blank?
+    return webiste_url if webiste_url.include?('http') || webiste_url.include?('https')
+    "http://#{webiste_url}"
+  end
 end
