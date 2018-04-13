@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2018_03_22_045748) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +64,15 @@ ActiveRecord::Schema.define(version: 2018_03_22_045748) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.string "stripe_invoice_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_invoices_on_listing_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -157,6 +165,7 @@ ActiveRecord::Schema.define(version: 2018_03_22_045748) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "invoices", "listings", on_delete: :cascade
   add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
 end

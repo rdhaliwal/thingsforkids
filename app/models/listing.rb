@@ -3,6 +3,8 @@ class Listing < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
+  has_one :invoice
+
   validates :status, presence: true, if: :created_by_admin?
   validates :email, :short_description, :description, :business_name, :manager_name, :manager_job_title, :website,
             :activity_type, :phone, :logo, :address, :city, :state, :postcode, :min_age, :max_age, presence: :true, if: [:active_or_basic_info?, :validate?]
@@ -19,6 +21,8 @@ class Listing < ApplicationRecord
   after_validation :validate_address, if: [:active_or_basic_info?, :validate?]
 
   before_save :sanitize_array_input
+
+  delegate :email, to: :user, prefix: true
 
   enum activity_type: {
     'POI' => 1,

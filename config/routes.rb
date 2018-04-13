@@ -19,8 +19,11 @@ Rails.application.routes.draw do
   end
 
   resources :messages, only: [:create]
+
   get 'contact-us', to: 'pages#contact'
   post 'subscribe', to: 'pages#mailchimp_subscription'
   get 'about-us', to: 'pages#about'
   get 'pricing', to: 'pages#pricing'
+
+  mount StripeEvent::Engine, at: '/stripe-events'
 end

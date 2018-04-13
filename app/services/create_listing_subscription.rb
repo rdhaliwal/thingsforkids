@@ -22,7 +22,6 @@ class CreateListingSubscription
       customer.save
       subscription = customer.subscriptions.create(plan: 'listing_annual')
       listing.update_attribute(:subscription_id, subscription.id)
-      listing.update_attribute(:has_paid, true)
     end
   end
 end
