@@ -22,5 +22,6 @@
 //= require gmap3.min
 //= require owl.carousel.min
 //= require jquery.payment
+//= require fontawesome-markers.min
 //= require main
 //= require_tree .

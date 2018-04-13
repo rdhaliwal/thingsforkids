@@ -44,8 +44,8 @@
                           <span><%= listing.price %></span>
                         </div>
 
-                        <div class="ct-product--description" id="scrollable-content">
-                          <%= listing.short_description %>
+                        <div class="ct-product--description">
+                          <%= truncate_short_description listing.short_description %>
                         </div>
                       </div>
                     </div>
