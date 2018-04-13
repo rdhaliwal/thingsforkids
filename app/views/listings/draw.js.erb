@@ -1,0 +1,5 @@
+<% if @listings.present? %>
+  $('#listings').html("<%= j render @listings %>");
+<% else %>
+  $('#listings').html("No results");
+<% end %>

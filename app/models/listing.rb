@@ -3,17 +3,19 @@ class Listing < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
-  validate  :description_length, if: :active_or_basic_info?, on: :update
+  validates :status, presence: true, if: :created_by_admin?
   validates :email, :short_description, :description, :business_name, :manager_name, :manager_job_title, :website,
-            :activity_type, :phone, :logo, :address, :city, :state, :postcode, presence: :true,if: :active_or_basic_info?, on: :update
-  validates :price, :days_available, presence: :true, if: :active_or_amenities?, on: :update
+            :activity_type, :phone, :logo, :address, :city, :state, :postcode, presence: :true, if: [:active_or_basic_info?, :validate?]
+  validates :price, :days_available, presence: :true, if: [:active_or_amenities?, :validate?]
+
+  validate  :description_length, if: [:active_or_basic_info?, :validate?]
 
   scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
   scope :match_age, -> (min_age, max_age) { where('min_age <= ? AND max_age >= ?', max_age, min_age) }
   geocoded_by :full_address
   after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
-  after_validation :validate_address, if: :active_or_basic_info?, on: :update
+  after_validation :validate_address, if: [:active_or_basic_info?, :validate?]
 
   before_save :sanitize_array_input
 
@@ -24,6 +26,14 @@ class Listing < ApplicationRecord
     'Childcare Centres' => 4,
     'Kid Friendly Cafes' => 5,
     'Parks & Playgrounds' => 6,
+  }
+
+  enum status: {
+    active:    1,
+    basic:     2,
+    amenities: 3,
+    images:    4,
+    price:     5
   }
 
   enum listing_type: {
@@ -68,11 +78,19 @@ class Listing < ApplicationRecord
   end
 
   def active_or_basic_info?
+    return unless status
     status.include?('basic') || active?
   end
 
   def active_or_amenities?
+    return unless status
     status.include?('amenities') || active?
+  end
+
+  def validate?
+    return true unless self.new_record?
+    return true if self.created_by_admin?
+    false
   end
 
   def validate_address

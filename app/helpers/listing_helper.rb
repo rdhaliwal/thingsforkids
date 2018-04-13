@@ -34,4 +34,17 @@ module ListingHelper
   def edit_action?
     controller_name == "my_listings" && ['edit', 'update'].include?(action_name)
   end
+
+  def get_activity_type_value activity_type
+    Listing.activity_types[activity_type]
+  end
+
+  def header_color value
+    return "poi-icon-color" if value == 1
+    return "classes-icon-color" if value == 2
+    return "playcenter-icon-color" if value == 3
+    return "childcare-icon-color" if value == 4
+    return "kidscafes-icon-color" if value == 5
+    "parks-icon-color" if value == 6
+  end
 end

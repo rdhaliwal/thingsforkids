@@ -82,8 +82,10 @@
         <div class="col-sm-6 col-md-6 col-sm-push-6">
           <div class="ct-newsletter text-right">
             <span class="text-uppercase ct-u-text--white ct-fw-600">Join our newsletter</span>
-            <input id="newsletter" placeholder="Your E-mail Address" required type="text" name="field[]" class="form-control input-lg">
-            <button type="submit" class="btn btn-primary btn-transparent--border ct-u-text--motive text-capitalize">Subscribe</button>
+            <%= form_tag(subscribe_path, class: 'join-waitlist-form') do %>
+              <%= email_field_tag(:email, nil, class: 'form-control input-lg', placeholder: 'Your email address', required: true) %>
+              <%= submit_tag "Subscribe", class: "btn btn-primary btn-transparent--border ct-u-text--motive text-capitalize" %>
+            <% end %>
           </div>
         </div>
 

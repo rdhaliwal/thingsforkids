@@ -27,6 +27,8 @@ gem 'wicked'
 gem 'devise_invitable'
 gem 'sidekiq'
 gem "mini_magick"
+gem 'gibbon'
+gem 'premailer-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

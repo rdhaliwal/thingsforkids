@@ -1,35 +1,25 @@
 class SendUserInvite
-  attr_reader :params
+  attr_reader :user_email
   attr_reader :invitee
   attr_reader :inviter
 
-  def initialize(params, inviter)
-    @params = params
+  def initialize(email, inviter)
+    @user_email = email
     @inviter = inviter
   end
 
   def call
-    user = User.find_by(email: params[:email])
+    user = User.find_by(email: user_email)
 
-    if user.present?
-      @invitee = user
-      invite_existing_user
-    else
-      invite_new_user
-    end
+    return false if user.invitation_accepted_at?
+
+    @invitee = user
+    invite_user
   end
 
   private
 
-    def invite_new_user
-      @invitee = User.invite!(params) { |user| user.skip_invitation = true }
-      invitee.update_attribute(:invitation_sent_at, Time.current)
-      invite_email
-      true
-    end
-
-    def invite_existing_user
-      return false if invitee.invitation_accepted_at.present?
+    def invite_user
       invitee.invite! { |sp| sp.skip_invitation = true }
       invitee.update_attribute(:invitation_sent_at, Time.current)
       invite_email

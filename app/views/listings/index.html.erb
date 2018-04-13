@@ -5,10 +5,11 @@
 <section>
   <div class="container" id="filters" style="width: 100%">
     <div class="row">
-      <div class="col-lg-4 col-lg-push-8 map-style" id="map">
+      <div class="col-lg-4 col-lg-push-8 map-style" id="map" data-icon=<%= asset_url('marker-house.png') %>>
         <div class="ct-js-googleMap ct-googleMap ct-googleMap-2col ct-js-googleMap--group" data-location="Richmond" data-icon="assets/images/marker-house.png" data-display-desc="true" data-zoom="14" data-height="1750" >
         </div>
       </div>
+
       <div class="col-lg-3 col-lg-pull-4">
         <div class="ct-u-marginTop80 hidden-md hidden-lg"></div>
         <%= render "shared/filters", css_class: "form ct-formSearch--fullWidth ct-u-marginBottom50 ct-u-paddingTop30" %>

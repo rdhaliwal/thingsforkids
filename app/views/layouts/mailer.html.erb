@@ -1,13 +1,58 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-    </style>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Thingsforkids</title>
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Nunito|Play' %>
+    <%= stylesheet_link_tag 'email' %>
   </head>
-
   <body>
-    <%= yield %>
+  <!-- HEADER -->
+    <table border="0" cellspacing="0" cellspacing="0" class="body">
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <td class="container">
+            <div class="content">
+              <span class="preheader"></span>
+              <table class="main">
+                <tbody>
+                  <tr>
+                    <td class="wrapper">
+                      <table border="0" cellspacing="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td><%= yield %></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="footer">
+                <table border="0" cellspacing="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td class="content-block">
+                        <span class="apple-link"><%= company_address %></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="content-block powered-by">
+                        Powered by <%= link_to "ThingsForKids", root_url %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
