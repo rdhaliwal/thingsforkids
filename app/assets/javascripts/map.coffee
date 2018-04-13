@@ -6,17 +6,16 @@
     bounds = new google.maps.LatLngBounds()
     geocoder = new google.maps.Geocoder()
     map = set_properties(map)
-    markers = []
-    google.maps.Map.prototype.markers = []
+    icon = $('#map').data('icon')
+
     $.ajax
       type: 'GET'
       url: "/listings/addresses?listings[]=#{listings}",
       dataType: 'json'
-      success: (data) ->
-        if data.listings
-          for listing in data.listings
-            add_marker(map, bounds, geocoder, listing.address, markers, listing.id)
-          google.maps.Map.prototype.markers = markers
+      success: (listings) ->
+        for listing_address in listings.listings
+          add_marker(map, bounds, geocoder, listing_address, icon)
+
         boundsListener = google.maps.event.addListener(map, 'bounds_changed', (event) ->
           @setZoom 11
           google.maps.event.removeListener boundsListener
@@ -46,7 +45,8 @@
     bounds = new google.maps.LatLngBounds()
     geocoder = new google.maps.Geocoder()
     map = set_properties(map)
-    add_marker(map, bounds, geocoder, address, [], 1)
+    icon = $('#map').data('url')
+    add_marker(map, bounds, geocoder, address, icon)
 
   set_properties = (map) ->
     mapOptions = {
@@ -76,15 +76,14 @@
     map.setTilt(45)
     return map
 
-  add_marker =  (map, bounds, geocoder, address, markers, id) ->
+  add_marker =  (map, bounds, geocoder, address, icon) ->
     geocoder.geocode { 'address': address }, (results, status) ->
       if status == 'OK'
         marker = new (google.maps.Marker)(
           map: map
           position: results[0].geometry.location
-          id: id
-          title: address)
-
+          title: address
+          icon: icon)
         bounds.extend(marker.position)
         markers.push marker
         if !map.center
