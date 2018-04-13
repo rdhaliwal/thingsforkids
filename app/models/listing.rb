@@ -81,24 +81,17 @@ class Listing < ApplicationRecord
     self.days_available = days_available.reject { |d| d.blank? }
   end
 
-  def active?
-    status == 'active'
-  end
-
   def active_or_basic_info?
     return unless status
-    status.include?('basic') || active?
+    basic? || active?
   end
 
   def active_or_amenities?
-    return unless status
-    status.include?('amenities') || active?
+    amenities? || active?
   end
 
   def validate?
-    return true unless self.new_record?
-    return true if self.created_by_admin?
-    false
+    persisted? || created_by_admin?
   end
 
   def validate_address
