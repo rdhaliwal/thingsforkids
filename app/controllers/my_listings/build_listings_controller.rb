@@ -40,7 +40,7 @@ class MyListings::BuildListingsController < ApplicationController
                                       :state, :postcode, :website, :activity_type, :email, :phone, :logo, :price, :indoors,
                                       :outdoors, :highchairs, :disability_access, :parking, :free_trial, :undercover,
                                       :bbq, :toilets, :baby_change_room, :listing_type, :facbook_url, :instagram_url,
-                                      :status, :parties, :short_description, images: [], days_available: [])
+                                      :status, :parties, :short_description, :min_age, :max_age, :opens_at, :closes_at, images: [], days_available: [])
     end
 
     def set_status

@@ -5,8 +5,8 @@ class Listing < ApplicationRecord
 
   validates :status, presence: true, if: :created_by_admin?
   validates :email, :short_description, :description, :business_name, :manager_name, :manager_job_title, :website,
-            :activity_type, :phone, :logo, :address, :city, :state, :postcode, presence: :true, if: [:active_or_basic_info?, :validate?]
-  validates :price, :days_available, presence: :true, if: [:active_or_amenities?, :validate?]
+            :activity_type, :phone, :logo, :address, :city, :state, :postcode, :min_age, :max_age, presence: :true, if: [:active_or_basic_info?, :validate?]
+  validates :days_available, presence: :true, if: [:active_or_amenities?, :validate?]
 
   validate  :description_length, if: [:active_or_basic_info?, :validate?]
   validate  :short_description_length,  if: [:active_or_basic_info?, :validate?]

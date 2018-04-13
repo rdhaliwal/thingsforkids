@@ -94,16 +94,6 @@
                 <div class="ct-u-displayTableVertical ct-productDetails">
                   <div class="ct-u-displayTableRow">
                     <div class="ct-u-displayTableCell">
-                      <span class="ct-fw-600">Price</span>
-                    </div>
-
-                    <div class="ct-u-displayTableCell text-right">
-                      <span class="ct-price"><%= @listing.price %></span>
-                    </div>
-                  </div>
-
-                  <div class="ct-u-displayTableRow">
-                    <div class="ct-u-displayTableCell">
                       <span class="ct-fw-600">Activity Type</span>
                     </div>
 
@@ -166,7 +156,7 @@
               <% elsif current_user == @listing.user %>
                 <div class="alert alert-info ct-u-marginBottom60">
                   Is this your business? <br><br>
-                  <u><%= link_to "Upgrade to premium listing now!", "" %></u>
+                  <u><%= link_to "Upgrade to premium listing now!", edit_listing_path(@listing) %></u>
                 </div>
               <% end %>
             </div>

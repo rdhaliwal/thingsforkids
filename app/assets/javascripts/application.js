@@ -23,5 +23,7 @@
 //= require owl.carousel.min
 //= require jquery.payment
 //= require fontawesome-markers.min
+//= require moment.min
+//= require bootstrap-datetimepicker
 //= require main
 //= require_tree .

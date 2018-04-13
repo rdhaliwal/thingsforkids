@@ -28,11 +28,15 @@ module ListingHelper
   end
 
   def add_class
-    return 'd-none' if controller_name == "my_listings" && action_name = "edit"
+    return 'd-none' if controller_name == "my_listings" && action_name == "edit"
   end
 
   def edit_action?
     controller_name == "my_listings" && ['edit', 'update'].include?(action_name)
+  end
+
+  def upgrade_action?
+    controller_name == "listings" && (action_name == "edit" || action_name == "update")
   end
 
   def get_activity_type_value activity_type

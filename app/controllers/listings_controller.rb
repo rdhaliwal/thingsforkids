@@ -1,7 +1,9 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show]
   before_action :set_listings, only: [:addresses]
-  before_action :authenticate_user!, only: [:create]
+  before_action :set_user_listing, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :check_premium, only: [:edit]
 
   def index
     session[:postcode] = session[:postcode] || params[:postcode]
@@ -34,6 +36,21 @@ class ListingsController < ApplicationController
     redirect_to my_listing_build_listing_path(listing.id, :basic_info, type: listing.listing_type)
   end
 
+  def edit
+  end
+
+  def update
+    if @listing.update(listing_params)
+      if params[:token].present?
+        result, card = AddCreditCard.call!(current_user, params[:token])
+        CreateListingSubscription.call(current_user, @listing, card)
+      end
+      redirect_to @listing, notice: "Congratulations! You have upgraded the listing to premium."
+    else
+      render :edit
+    end
+  end
+
   def addresses
     respond_to do |format|
       format.json
@@ -49,6 +66,7 @@ class ListingsController < ApplicationController
   end
 
   private
+
     def set_listing
       @listing = Listing.find(params[:id])
     end
@@ -56,5 +74,18 @@ class ListingsController < ApplicationController
     def set_listings
       return @listings = Listing.near([params[:lat], params[:lng]], 10) if params[:lat] && params[:lng]
       @listings = Listing.where(id: params[:listings].first.split(','))
+    end
+
+    def set_user_listing
+      @listing = current_user.listings.find_by(id: params[:id])
+      redirect_to listing_path(params[:id]), alert: "You are not allowed to perform this action." if @listing.blank?
+    end
+
+    def listing_params
+      params.require(:listing).permit(:facbook_url, :instagram_url, :listing_type, :status, images: [])
+    end
+
+    def check_premium
+      redirect_to @listing, alert: "Listing has already been upgraded." if @listing.premium?
     end
 end
