@@ -58,7 +58,7 @@
       success: (data) ->
         if data.listings
           for listing in data.listings
-            add_marker(map, bounds, geocoder, listing.address, markers, listing.id)
+            add_marker(map, bounds, geocoder, listing.address, markers, listing.id, listing.activity_type)
           window.markers = markers
 
     highlight_listing()
