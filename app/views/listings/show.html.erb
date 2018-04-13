@@ -67,7 +67,7 @@
               <div class="ct-owl-controls--type2" data-single="true" data-pagination="false" data-navigation="false" data-snap-ignore="true" id="sync1">
                 <% @listing.images.each do |image| %>
                   <div class="item">
-                    <%= image_tag image.variant(resize: "850x600"), alt: "" %>
+                    <%= image_tag render_image(image), alt: "" %>
                   </div>
                 <% end %>
               </div>
@@ -264,23 +264,25 @@
                     <div class="ct-personBox text-left">
                       <div class="ct-imagePerson">
                         <%= image_tag "content/agents-1.jpg", alt: "" %>
-                        <ul class="ct-panel--socials list-inline list-unstyled">
-                          <li>
-                            <%= link_to @listing.facbook_url do %>
-                              <div class="ct-socials ct-socials--circle">
-                                <i class="fa fa-facebook"></i>
-                              </div>
-                            <% end %>
-                          </li>
+                        <% if @listing.premium? %>
+                          <ul class="ct-panel--socials list-inline list-unstyled">
+                            <li>
+                              <%= link_to @listing.facbook_url, target: :blank do %>
+                                <div class="ct-socials ct-socials--circle">
+                                  <i class="fa fa-facebook"></i>
+                                </div>
+                              <% end %>
+                            </li>
 
-                          <li>
-                            <%= link_to @listing.instagram_url do %>
-                              <div class="ct-socials ct-socials--circle">
-                                <i class="fa fa-instagram"></i>
-                              </div>
-                            <% end %>
-                          </li>
-                        </ul>
+                            <li>
+                              <%= link_to @listing.instagram_url, target: :blank do %>
+                                <div class="ct-socials ct-socials--circle">
+                                  <i class="fa fa-instagram"></i>
+                                </div>
+                              <% end %>
+                            </li>
+                          </ul>
+                        <% end %>
                       </div>
 
                       <div class="ct-personContent">

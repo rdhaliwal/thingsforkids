@@ -9,6 +9,7 @@ class Listing < ApplicationRecord
   validates :price, :days_available, presence: :true, if: [:active_or_amenities?, :validate?]
 
   validate  :description_length, if: [:active_or_basic_info?, :validate?]
+  validate  :short_description_length,  if: [:active_or_basic_info?, :validate?]
 
   scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
@@ -97,5 +98,10 @@ class Listing < ApplicationRecord
     if latitude.blank? || longitude.blank?
       self.errors.add(:address, "is not valid")
     end
+  end
+
+  def short_description_length
+    number_of_words = self.short_description.split(' ').length
+    errors.add(:short_description, "Short description must be under 20 words") if number_of_words > 20
   end
 end

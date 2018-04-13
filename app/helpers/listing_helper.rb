@@ -51,4 +51,8 @@ module ListingHelper
   def truncate_short_description description
     description.truncate(145) if description.present?
   end
+
+  def render_image image
+    image.variant(combine_options: { resize: '870x442^', gravity: 'Center', extent: '870x442', quality: 95 })
+  end
 end

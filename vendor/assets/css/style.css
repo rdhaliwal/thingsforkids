@@ -5436,11 +5436,11 @@ table > thead > tr > th {
   display: inline;
 }
 .ct-formSubmission input {
-  color: rgba(51, 51, 51, 0.4);
+  color: black;
 }
 .ct-formSubmission .select2-container span {
   color: #333;
-  opacity: 0.4;
+  opacity: 1;
 }
 .ct-formSubmission textarea {
   height: 200px;
@@ -5670,7 +5670,7 @@ form input {
   color: #fff;
 }
 .select2-container .select2-choice .select2-chosen {
-  color: #858585 !important;
+  color: black !important;
   font-weight: 400;
   margin: 0;
   width: 100px;
