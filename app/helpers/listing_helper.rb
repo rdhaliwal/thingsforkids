@@ -49,7 +49,7 @@ module ListingHelper
     return "playcenterbanner.png" if listing_type_value == 3
     return "childcarebanner.png" if listing_type_value == 4
     return "cafebanner.png" if listing_type_value == 5
-    "parks_playgroundsbanner.png" if listing_type_value == 6
+    "parks_playgroundsbanner.png" if listing_type_value == 6 || listing_type_value == nil
   end
 
   def truncate_short_description description
