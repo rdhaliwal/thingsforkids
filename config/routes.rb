@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get 'pricing', to: 'pages#pricing'
 
   mount StripeEvent::Engine, at: '/stripe-events'
+  mount Sidekiq::Web => '/sidekiq'
 end
