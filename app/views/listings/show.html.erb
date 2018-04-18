@@ -20,10 +20,12 @@
                 <%= link_to edit_my_listing_path(@listing), class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
                   <i class="fa fa-edit"></i>
                 <% end %>
+
                 <%= link_to my_listing_path(@listing), method: :delete, class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
                   <i class="fa fa-trash-o" ></i>
                 <% end %>
               <% end %>
+
               <div class="ct-buttonBox">
                 <%= link_to "Back to Listings", listings_path,  class: "btn btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" %>
               </div>
