@@ -250,31 +250,7 @@
               <div class="col-sm-6 col-md-12">
                 <div class="widget">
                   <div class="widget-inner">
-                    <h4 class="text-uppercase">Contact</h4>
                     <div class="ct-personBox text-left">
-                      <div class="ct-imagePerson">
-                        <%= image_tag "content/agents-1.jpg", alt: "" %>
-                        <% if @listing.premium? %>
-                          <ul class="ct-panel--socials list-inline list-unstyled">
-                            <li>
-                              <%= link_to @listing.facbook_url, target: :blank do %>
-                                <div class="ct-socials ct-socials--circle">
-                                  <i class="fa fa-facebook"></i>
-                                </div>
-                              <% end %>
-                            </li>
-
-                            <li>
-                              <%= link_to @listing.instagram_url, target: :blank do %>
-                                <div class="ct-socials ct-socials--circle">
-                                  <i class="fa fa-instagram"></i>
-                                </div>
-                              <% end %>
-                            </li>
-                          </ul>
-                        <% end %>
-                      </div>
-
                       <div class="ct-personContent">
                         <div class="ct-personName ct-u-paddingBottom10 ct-u-marginBottom20">
                           <h5 class="ct-fw-600"><%= @listing.manager_name %></h5>
