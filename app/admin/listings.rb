@@ -1,7 +1,7 @@
 ActiveAdmin.register Listing do
   before_action :set_created_by, only: [:create]
 
-  permit_params :activity_type, :min_age, :max_age, :business_name, :description, :logo, :user_id, :short_description,
+  permit_params :activity_type, :listing_type, :min_age, :max_age, :business_name, :description, :logo, :user_id, :short_description,
                 :facbook_url, :instagram_url, :manager_name, :manager_job_title, :phone, :email, :website, :price,
                 :postcode, :please_bring, :indoors, :outdoors, :parties, :disability_access, :parking, :free_trial,
                 :undercover, :bbq, :toilets, :highchairs, :baby_change_room, :opens_at, :closes_at, :address, :city, :state,
@@ -17,6 +17,7 @@ ActiveAdmin.register Listing do
     f.inputs :business_name
     f.inputs :min_age
     f.inputs :max_age
+    f.inputs :listing_type
     f.inputs :activity_type
     f.inputs :description
     f.inputs :short_description

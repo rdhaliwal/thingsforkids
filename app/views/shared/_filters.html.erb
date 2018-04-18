@@ -25,12 +25,12 @@
       </div>
 
       <% Listing.activity_types.each do |key, value| %>
-        <div class="row ml-0">
+        <div class="row ml-0 mt-4">
           <div class="checkbox ct-u-displayTableCell">
             <label>
               <%= f.check_box "activity_type_in", { class: "activity-check", include_hidden: false, multiple: true }, value %>
               <i class="<%= icon_class value %>" aria-hidden="true"></i>
-              <%= key %>
+              <span><%= key %></span>
             </label>
           </div>
         </div>
