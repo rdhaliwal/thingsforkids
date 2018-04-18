@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: root_path, html: { class: css_class, role: "form" } do |f| %>
+<%= search_form_for @q, url: root_path, remote: true, html: { class: css_class, role: "form" } do |f| %>
   <div class="form-group mt-40">
     <div class="ct-u-displayTableVertical ct-u-marginBottom20">
       <div class="row ct-u-marginBottom20">
@@ -11,6 +11,7 @@
                 <label class="text-center center-block">Age range</label>
                 <%= hidden_field_tag "age[min_age]", min_age_range(params[:age]), { class: "min-age" } %>
                 <%= hidden_field_tag "age[max_age]", max_age_range(params[:age]), { class: "max-age" } %>
+                <%= hidden_field_tag "map-center" %>
               </div>
             </div>
           </div>

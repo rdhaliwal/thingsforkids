@@ -1,15 +1,17 @@
-<% if @listings.present? %>
-  <% if params[:page].blank? %>
-    $('#listings').html("<%= j render @listings %>");
-  <% else %>
-    $('#listings').prepend("<%= j render @listings %>");
-  <% end %>
+<% if @listings.present? && params[:page].blank? %>
+  $('#listings').html("<%= j render @listings %>");
+  Map.listings(<%= "#{@listings.ids}" %>, true);
+<% elsif @listings.present? && params[:page].present? %>
+    $('#listings').append("<%= j render @listings %>");
+    Map.listings(<%= "#{@listings.ids}" %>, false);
+<% else %>
+  $('#listings').html("<%= j render 'message' %>");
+  Map.listings(<%= "#{@listings.ids}" %>, true);
 <% end %>
-
-Map.initListingMap(<%= "#{@listings.ids}" if @listings.present? %>);
 
 <% if @listings.next_page %>
   $('.pagination').replaceWith('<%= j paginate @listings %>');
 <% else %>
   $('.pagination').remove();
 <% end %>
+$('#loader').hide();

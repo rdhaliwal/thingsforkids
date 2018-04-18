@@ -3,21 +3,29 @@ class Listing < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
+  has_one :invoice
+
   validates :status, presence: true, if: :created_by_admin?
   validates :email, :short_description, :description, :business_name, :manager_name, :manager_job_title, :website,
-            :activity_type, :phone, :logo, :address, :city, :state, :postcode, presence: :true, if: [:active_or_basic_info?, :validate?]
-  validates :price, :days_available, presence: :true, if: [:active_or_amenities?, :validate?]
+            :activity_type, :phone, :logo, :address, :city, :state, :postcode, :min_age, :max_age, presence: :true, if: [:active_or_basic_info?, :validate?]
+  validates :days_available, presence: :true, if: [:active_or_amenities?, :validate?]
 
   validate  :description_length, if: [:active_or_basic_info?, :validate?]
+  validate  :short_description_length,  if: [:active_or_basic_info?, :validate?]
 
   scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
   scope :match_days, -> (days) { where('days_available && array[?]', days) }
   scope :match_age, -> (min_age, max_age) { where('min_age <= ? AND max_age >= ?', max_age, min_age) }
+  scope :active_listings, -> { where(status: :active) }
+  scope :sort_listings, -> { order(listing_type: :desc)}
+
   geocoded_by :full_address
   after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
   after_validation :validate_address, if: [:active_or_basic_info?, :validate?]
 
   before_save :sanitize_array_input
+
+  delegate :email, to: :user, prefix: true
 
   enum activity_type: {
     'POI' => 1,
@@ -73,29 +81,27 @@ class Listing < ApplicationRecord
     self.days_available = days_available.reject { |d| d.blank? }
   end
 
-  def active?
-    status == 'active'
-  end
-
   def active_or_basic_info?
     return unless status
-    status.include?('basic') || active?
+    basic? || active?
   end
 
   def active_or_amenities?
-    return unless status
-    status.include?('amenities') || active?
+    amenities? || active?
   end
 
   def validate?
-    return true unless self.new_record?
-    return true if self.created_by_admin?
-    false
+    persisted? || created_by_admin?
   end
 
   def validate_address
     if latitude.blank? || longitude.blank?
       self.errors.add(:address, "is not valid")
     end
+  end
+
+  def short_description_length
+    number_of_words = self.short_description.split(' ').length
+    errors.add(:short_description, "Short description must be under 20 words") if number_of_words > 20
   end
 end

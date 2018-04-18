@@ -1,13 +1,18 @@
 <div id="amenities_fields" class=<%= add_class %>>
   <div class="col-md-6 col-lg-6">
     <div class="form-group">
-      <%= f.label :price, "Set price of your property", class: "ct-fw-600 text-uppercase ct-u-marginBottom10"%>
       <div class="row ct-u-marginBottom40">
-        <div class="col-md-9">
-          <%= f.number_field :price, class: "form-control input-lg ct-input--border" %>
+        <div class="col-md-6">
+          <%= f.label :opens_at, class: "ct-fw-600 text-uppercase ct-u-marginBottom10"%>
+          <%= f.text_field :opens_at, class: "form-control input-lg ct-input--border timepicker", placeholder: "Opens at" %>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.label :closes_at, class: "ct-fw-600 text-uppercase ct-u-marginBottom10"%>
+          <%= f.text_field :closes_at, class: "form-control input-lg ct-input--border timepicker", placeholder: "Closes at" %>
         </div>
       </div>
-      <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Property summary</label><br>
+      <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Listing summary</label><br>
       <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Amenites <span>Please check what applies</span></label>
       <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
         <div class="ct-u-displayTableCell">
@@ -86,40 +91,44 @@
   </div>
 
   <div class="col-md-6 col-lg-6">
-    <div class="form-group">
-      <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Available days <span>Please check what applies</span></label>
-      <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
-        <div class="ct-u-displayTableCell">
-          <% Listing::WEEK_DAYS.each do |day| %>
-            <div class="ct-checbox--custom">
-              <%= check_box_tag "listing[days_available][]", day, nil, { id: "#{day}" } %>
-              <label for="<%= day %>"></label>
-              <span> <%= day %></span>
-            </div>
-          <% end %>
+    <div class="row">
+      <div class="form-group">
+        <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Available days <span>Please check what applies</span></label>
+        <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
+          <div class="ct-u-displayTableCell">
+            <% Listing::WEEK_DAYS.each do |day| %>
+              <div class="ct-checbox--custom">
+                <%= check_box_tag "listing[days_available][]", day, @listing.days_available.include?(day), { id: "#{day}" } %>
+                <label for="<%= day %>"></label>
+                <span> <%= day %></span>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="ct-container--Big">
-      <% if edit_action? %>
-        <div class="col-md-6 pull-left">
-          <%= link_to "cancel", edit_my_listing_path(@listing), class: "btn btn-link pull-left" %>
-        </div>
+      <% unless upgrade_action? %>
+        <div class="ct-container--Big">
+          <% if edit_action? %>
+            <div class="col-md-6 pull-left">
+              <%= link_to "cancel", edit_my_listing_path(@listing), class: "btn btn-link pull-left" %>
+            </div>
 
-        <div class="col-md-6 pull-right">
-          <%= f.submit "Update", class: "btn btn-warning pull-right" %>
-        </div>
-      <% else %>
-        <div class="col-md-6 pull-left">
-          <%= link_to "Go Back", previous_wizard_path(type: @listing.listing_type), class: "btn btn-link pull-left" %>
-        </div>
+            <div class="col-md-6 pull-right">
+              <%= f.submit "Update", class: "btn btn-warning pull-right" %>
+            </div>
+          <% else %>
+            <div class="col-md-6 pull-left">
+              <%= link_to "Go Back", previous_wizard_path(type: @listing.listing_type), class: "btn btn-link pull-left" %>
+            </div>
 
-        <div class="col-md-6 pull-right">
-          <%= f.submit "Continue", class: "btn btn-warning pull-right", id: "continue-step3" %>
+            <div class="col-md-6 pull-right">
+              <%= f.submit "Continue", class: "btn btn-warning pull-right", id: "continue-step3" %>
+            </div>
+          <% end %>
+          <div class="clearfix"></div>
         </div>
       <% end %>
-      <div class="clearfix"></div>
     </div>
   </div>
 </div>

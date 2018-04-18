@@ -8,7 +8,11 @@ module ApplicationHelper
   end
 
   def company_address
-    "19062 N 2ND Ave, Phoenix, AZ 85027"
+    "Melbourne, Victoria, 3000"
+  end
+
+  def active_class(path)
+    "active" if current_page?(path)
   end
 
   def active_class(path)

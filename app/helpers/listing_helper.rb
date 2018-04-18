@@ -28,23 +28,41 @@ module ListingHelper
   end
 
   def add_class
-    return 'd-none' if controller_name == "my_listings" && action_name = "edit"
+    return 'd-none' if controller_name == "my_listings" && action_name == "edit"
   end
 
   def edit_action?
     controller_name == "my_listings" && ['edit', 'update'].include?(action_name)
   end
 
+  def upgrade_action?
+    controller_name == "listings" && (action_name == "edit" || action_name == "update")
+  end
+
   def get_activity_type_value activity_type
     Listing.activity_types[activity_type]
   end
 
-  def header_color value
-    return "poi-icon-color" if value == 1
-    return "classes-icon-color" if value == 2
-    return "playcenter-icon-color" if value == 3
-    return "childcare-icon-color" if value == 4
-    return "kidscafes-icon-color" if value == 5
-    "parks-icon-color" if value == 6
+  def set_banner listing_type_value
+    return "POIbanner.png" if listing_type_value == 1
+    return "classesbanner.png" if listing_type_value == 2
+    return "playcenterbanner.png" if listing_type_value == 3
+    return "childcarebanner.png" if listing_type_value == 4
+    return "cafebanner.png" if listing_type_value == 5
+    "parks_playgroundsbanner.png" if listing_type_value == 6 || listing_type_value == nil
+  end
+
+  def truncate_short_description description
+    description.truncate(145) if description.present?
+  end
+
+  def render_image image
+    image.variant(combine_options: { resize: '870x442^', gravity: 'Center', extent: '870x442', quality: 95 })
+  end
+
+  def render_url webiste_url
+    return if webiste_url.blank?
+    return webiste_url if webiste_url.include?('http') || webiste_url.include?('https')
+    "http://#{webiste_url}"
   end
 end

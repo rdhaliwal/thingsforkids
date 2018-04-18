@@ -28,5 +28,6 @@ payment =
       $('#card_expiry').val ''
       $('#paid_listing_form')[0].submit()
     else
+      $('.payment-errors').addClass('alert alert-danger')
       $('.payment-errors').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)

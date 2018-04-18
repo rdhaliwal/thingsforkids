@@ -13,15 +13,20 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery.min
+//= require jquery-ui.min
+//= require main
+//= require jquery.stellar.min
+//= require turbolinks
 //= require bootstrap
 //= require modernizr.custom
 //= require dependencies
 //= require select2.min
-//= require jquery-ui.min.js
-//= require jquery.stellar.min
 //= require gmap3.min
 //= require owl.carousel.min
 //= require jquery.payment
 //= require fontawesome-markers.min
+//= require moment.min
+//= require bootstrap-datetimepicker
 //= require main
 //= require_tree .
+

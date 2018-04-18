@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'listings#index'
 
-  resources :listings, only: [:index, :show] do
+  resources :listings, only: [:index, :show, :edit, :update, :create] do
     get 'addresses', on: :collection
     post 'draw', on: :collection
   end
@@ -15,12 +15,18 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
 
   resources :my_listings, only: [:index, :edit, :update, :destroy] do
-    get 'pricing', on: :collection
     resources :build_listings, controller: 'my_listings/build_listings'
   end
 
   resources :messages, only: [:create]
+
   get 'contact-us', to: 'pages#contact'
   post 'subscribe', to: 'pages#mailchimp_subscription'
   get 'about-us', to: 'pages#about'
+  get 'pricing', to: 'pages#pricing'
+
+  mount StripeEvent::Engine, at: '/stripe-events'
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

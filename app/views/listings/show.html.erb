@@ -1,6 +1,6 @@
 <div id="listing-header">
-  <header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax" data-bg-image=<%= asset_url("melbourne_image.png") %> data-bg-image-mobile=<%= asset_url("melbourne_image.png") %> >
-    <div class="ct-mediaSection-inner <%= header_color(get_activity_type_value(@listing.activity_type))%>">
+  <header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax" data-bg-image=<%= asset_url(set_banner(get_activity_type_value(@listing.activity_type))) %> data-bg-image-mobile=<%= asset_url(set_banner(get_activity_type_value(@listing.activity_type))) %>>
+    <div class="ct-mediaSection-inner">
       <div class="container">
         <div class="ct-u-displayTableVertical">
           <div class="col-md-8">
@@ -67,7 +67,7 @@
               <div class="ct-owl-controls--type2" data-single="true" data-pagination="false" data-navigation="false" data-snap-ignore="true" id="sync1">
                 <% @listing.images.each do |image| %>
                   <div class="item">
-                    <%= image_tag image.variant(resize: "850x600"), alt: "" %>
+                    <%= image_tag render_image(image), alt: "" %>
                   </div>
                 <% end %>
               </div>
@@ -92,16 +92,6 @@
                 </div>
 
                 <div class="ct-u-displayTableVertical ct-productDetails">
-                  <div class="ct-u-displayTableRow">
-                    <div class="ct-u-displayTableCell">
-                      <span class="ct-fw-600">Price</span>
-                    </div>
-
-                    <div class="ct-u-displayTableCell text-right">
-                      <span class="ct-price"><%= @listing.price %></span>
-                    </div>
-                  </div>
-
                   <div class="ct-u-displayTableRow">
                     <div class="ct-u-displayTableCell">
                       <span class="ct-fw-600">Activity Type</span>
@@ -163,10 +153,10 @@
                     </div>
                   </div>
                 </div>
-              <% else %>
+              <% elsif current_user == @listing.user %>
                 <div class="alert alert-info ct-u-marginBottom60">
                   Is this your business? <br><br>
-                  <u><%= link_to "Upgrade to premium listing now!", "" %></u>
+                  <u><%= link_to "Upgrade to premium listing now!", edit_listing_path(@listing) %></u>
                 </div>
               <% end %>
             </div>
@@ -264,23 +254,25 @@
                     <div class="ct-personBox text-left">
                       <div class="ct-imagePerson">
                         <%= image_tag "content/agents-1.jpg", alt: "" %>
-                        <ul class="ct-panel--socials list-inline list-unstyled">
-                          <li>
-                            <%= link_to @listing.facbook_url do %>
-                              <div class="ct-socials ct-socials--circle">
-                                <i class="fa fa-facebook"></i>
-                              </div>
-                            <% end %>
-                          </li>
+                        <% if @listing.premium? %>
+                          <ul class="ct-panel--socials list-inline list-unstyled">
+                            <li>
+                              <%= link_to @listing.facbook_url, target: :blank do %>
+                                <div class="ct-socials ct-socials--circle">
+                                  <i class="fa fa-facebook"></i>
+                                </div>
+                              <% end %>
+                            </li>
 
-                          <li>
-                            <%= link_to @listing.instagram_url do %>
-                              <div class="ct-socials ct-socials--circle">
-                                <i class="fa fa-instagram"></i>
-                              </div>
-                            <% end %>
-                          </li>
-                        </ul>
+                            <li>
+                              <%= link_to @listing.instagram_url, target: :blank do %>
+                                <div class="ct-socials ct-socials--circle">
+                                  <i class="fa fa-instagram"></i>
+                                </div>
+                              <% end %>
+                            </li>
+                          </ul>
+                        <% end %>
                       </div>
 
                       <div class="ct-personContent">
@@ -303,7 +295,7 @@
 
                             <li>
                               <i class="fa fa-globe" aria-hidden="true"></i>
-                              <span><%= link_to @listing.website, "https://#{@listing.website}", target: :blank %></span>
+                              <span><%= link_to "Visit website", render_url(@listing.website), target: :blank %></span>
                             </li>
                           </ul>
                         </div>
@@ -338,5 +330,6 @@
 </section>
 
 <% content_for :js_init do %>
-  Map.initListingMap(<%= "#{@listing.id}" %>);
+  Map.init()
+  Map.listings(<%= "#{@listing.id}" %>, true);
 <% end %>

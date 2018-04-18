@@ -5,7 +5,7 @@
 <section>
   <div class="container" id="filters" style="width: 100%">
     <div class="row">
-      <div class="col-lg-4 col-lg-push-8 map-style" id="map" data-icon=<%= asset_url('marker-house.png') %>>
+      <div class="col-lg-4 col-lg-push-8 map-style" id="map" data-icon=<%= asset_url('map_icon.png') %>>
         <div class="ct-js-googleMap ct-googleMap ct-googleMap-2col ct-js-googleMap--group" data-location="Richmond" data-icon="assets/images/marker-house.png" data-display-desc="true" data-zoom="14" data-height="1750" >
         </div>
       </div>
@@ -16,10 +16,15 @@
       </div>
 
       <div class="col-lg-5 col-lg-pull-4">
+        <div id="loader">
+          <%= image_tag 'loader.gif' %>
+        </div>
         <div class="row">
-          <div id="listings">
+          <div id="listings" class="scrollable-content">
             <% if @listings.present? %>
               <%= render @listings %>
+            <% else %>
+              <%= render 'message' %>
             <% end %>
           </div>
         </div>
@@ -38,6 +43,7 @@
 </div>
 
 <% content_for :js_init do %>
+  $('#loader').hide()
   SearchFilters.fetch_lists();
   SearchFilters.load_lists();
   <% if session[:postcode].present? %>
@@ -45,5 +51,6 @@
   <% else %>
     SearchFilters.disable_content(true);
   <% end %>
-  Map.initListingMap(<%= "#{@listings.ids}" if @listings.present? %>);
+  Map.init()
+  Map.listings(<%= "#{@listings.ids}" %>, true);
 <% end %>

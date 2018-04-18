@@ -33,25 +33,39 @@
       </div>
     </div>
 
-    <div class="col-md-12 ct-container--Big">
-      <% if edit_action? %>
-        <div class="col-md-6 pull-left">
-          <%= link_to "cancel", edit_my_listing_path(@listing), class: "btn btn-link pull-left" %>
-        </div>
+    <% if upgrade_action? %>
+      <div class="col-md-12 ct-u-marginTop50">
+        <%= render 'shared/payment_fields' %>
+      </div>
 
-        <div class="col-md-6 pull-right">
-          <%= f.submit "Update", class: "btn btn-warning pull-right" %>
+      <div class="ct-u-marginTop40">
+        <div class="col-md-12 ct-container--Big ct-u-marginTop50">
+          <div class="">
+            <%= f.submit "Upgrade to premium", class: "btn btn-warning" %>
+          </div>
         </div>
-      <% else %>
-        <div class="col-md-6 pull-left">
-          <%= link_to "Go Back", previous_wizard_path(type: @listing.listing_type), class: "btn btn-link pull-left" %>
-        </div>
+      </div>
+    <% else %>
+      <div class="col-md-12 ct-container--Big">
+        <% if edit_action? %>
+          <div class="col-md-6 pull-left">
+            <%= link_to "cancel", edit_my_listing_path(@listing), class: "btn btn-link pull-left" %>
+          </div>
 
-        <div class="col-md-6 pull-right">
-          <%= f.submit "Continue", class: "btn btn-warning pull-right", id: "continue-step4" %>
-        </div>
-      <% end %>
-      <div class="clearfix"></div>
-    </div>
+          <div class="col-md-6 pull-right">
+            <%= f.submit "Update", class: "btn btn-warning pull-right" %>
+          </div>
+        <% else %>
+          <div class="col-md-6 pull-left">
+            <%= link_to "Go Back", previous_wizard_path(type: @listing.listing_type), class: "btn btn-link pull-left" %>
+          </div>
+
+          <div class="col-md-6 pull-right">
+            <%= f.submit "Continue", class: "btn btn-warning pull-right", id: "continue-step4" %>
+          </div>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+    <% end %>
   </div>
 </div>

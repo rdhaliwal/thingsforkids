@@ -6,17 +6,13 @@ class MyListingsController < ApplicationController
     @listings = current_user.listings.page(params[:page])
   end
 
-  def pricing
-    @listing = current_user.listings.create
-  end
-
   def edit
     params[:type] = @listing.listing_type
   end
 
   def update
     if @listing.update(listing_params)
-      redirect_to @listing, notice: "Changes saved."
+      redirect_to @listing, notice: "Changes were successfully saved."
     else
       render :edit
     end
@@ -25,20 +21,15 @@ class MyListingsController < ApplicationController
   def destroy
     if @listing.premium?
       subscription_id = @listing.subscription_id
-      RemoveSubscription.call(subscription_id)
+      RemoveSubscription.call(subscription_id) if subscription_id.present?
     end
-    if  @listing.delete
-      redirect_to my_listings_path, notice: "Listing is removed."
-    else
-      redirect_to my_listings_path, alert: "Something went wrong."
+
+    if @listing.destroy
+      redirect_to my_listings_path, notice: "Listing was successfully removed."
     end
   end
 
   private
-    def choose_package
-      redirect_to pricing_my_listings_path if params[:type].blank?
-    end
-
     def set_listing
       @listing = current_user.listings.find(params[:id])
     end
@@ -48,6 +39,6 @@ class MyListingsController < ApplicationController
                                       :state, :postcode, :website, :activity_type, :email, :phone, :logo, :price, :indoors,
                                       :outdoors, :highchairs, :disability_access, :parking, :free_trial, :undercover,
                                       :bbq, :toilets, :baby_change_room, :listing_type, :facbook_url, :instagram_url,
-                                      :status, :parties, :short_description, images: [], days_available: [])
+                                      :status, :parties, :short_description, :min_age, :max_age, :opens_at, :closes_at, images: [], days_available: [])
     end
 end

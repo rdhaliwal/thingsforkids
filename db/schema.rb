@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 2018_03_22_045748) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.string "stripe_invoice_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_invoices_on_listing_id"
+  end
+
   create_table "listings", force: :cascade do |t|
     t.string "business_name"
     t.integer "min_age", default: 0
@@ -157,6 +166,7 @@ ActiveRecord::Schema.define(version: 2018_03_22_045748) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "invoices", "listings", on_delete: :cascade
   add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
 end

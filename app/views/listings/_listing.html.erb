@@ -1,5 +1,5 @@
 <div class="col-xs-12 col-sm-4 col-md-6">
-  <div class="ct-itemProducts ct-u-marginBottom30 ct-hover" id="lists">
+  <div class="ct-itemProducts ct-u-marginBottom30 ct-hover product-width" id="lists">
     <%= link_to listing, class: 'list-container' do %>
       <div class="ct-main-content list-height">
         <div class="ct-imageBox">
@@ -18,8 +18,8 @@
             <span><%= listing.price %></span>
           </div>
 
-          <div class="ct-product--description" id="scrollable-content">
-            <%= listing.short_description %>
+          <div class="ct-product--description">
+            <%= truncate_short_description listing.short_description %>
           </div>
         </div>
       </div>

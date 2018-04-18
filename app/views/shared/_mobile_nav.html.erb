@@ -2,9 +2,10 @@
   <nav class="ct-menuMobile">
     <ul class="ct-menuMobile-navbar">
       <li class="dropdown <%= active_class root_path %>"><%= link_to "Home", root_path %></li>
-      <li class="dropdown <%= active_class pricing_my_listings_path %>"><%= link_to "Add a listing", pricing_my_listings_path %></li>
+      <li class="dropdown <%= active_class pricing_path %>"><%= link_to "Pricing", pricing_path %></li>
       <li class="dropdown <%= active_class about_us_path %>"><%= link_to "About us", about_us_path %></li>
       <li class="dropdown <%= active_class contact_us_path %>"><%= link_to "Contact Us", contact_us_path %></li>
+
       <% if user_signed_in? %>
         <li class="dropdown">
           <a>Account<span class="caret"></span></a>
