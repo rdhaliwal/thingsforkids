@@ -9,6 +9,15 @@ ActiveAdmin.register User do
     actions
   end
 
+  form do |f|
+    f.inputs do
+      f.string :first_name
+      f.string :last_name
+      f.input :email
+    end
+    f.actions
+  end
+
   member_action :send_invitation do
     result = SendUserInvite.new(resource.email, current_admin_user).call
     if result
