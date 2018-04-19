@@ -11,8 +11,8 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
-      f.string :first_name
-      f.string :last_name
+      f.input :first_name
+      f.input :last_name
       f.input :email
     end
     f.actions
