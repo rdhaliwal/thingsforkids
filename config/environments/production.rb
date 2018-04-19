@@ -83,7 +83,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  config.action_mailer.default_url_options = { :host => "www.things-for-kids.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: "things-for-kids.herokuapp.com" }
 
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
