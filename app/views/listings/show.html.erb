@@ -5,6 +5,7 @@
         <div class="ct-u-displayTableVertical">
           <div class="col-md-8">
             <div class="ct-textBox ct-u-text--white ct-u-displayTableCell text-left">
+              <h2 class="text-uppercase listing-address"><%= @listing.business_name %></h2>
               <h2 class="text-uppercase listing-address"><%= @listing.address %></h2>
               <h4 class="text-uppercase"><%= @listing.location %></h4>
               <label class="ct-u-marginBottom10 text-uppercase"> <i class="<%= icon_class get_activity_type_value(@listing.activity_type) %>"></i>
@@ -106,7 +107,7 @@
 
                   <div class="ct-u-displayTableRow">
                     <div class="ct-u-displayTableCell">
-                      <span class="ct-fw-600">Age range</span>
+                      <span class="ct-fw-600">Age Range</span>
                     </div>
 
                     <div class="ct-u-displayTableCell text-right">
@@ -150,7 +151,7 @@
 
                     <div class="ct-u-displayTableCell text-right">
                       <% @listing.days_available.each do |day| %>
-                        <span class="ct-price"><%= day %></span>
+                        <span class="ct-price"><%= render_day(day) %></span>
                       <% end %>
                     </div>
                   </div>

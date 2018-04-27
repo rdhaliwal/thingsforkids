@@ -70,4 +70,16 @@ module ListingHelper
     return webiste_url if webiste_url.include?('http') || webiste_url.include?('https')
     "http://#{webiste_url}"
   end
+
+  def render_day(day)
+    {
+      'Monday' => 'Mon',
+      'Tuesday' => 'Tue',
+      'Wednesday' => 'Wed',
+      'Thursday' => 'Thu',
+      'Friday' => 'Fri',
+      'Saturday' => 'Sat',
+      'Sunday' => 'Sun',
+    }[day]
+  end
 end
