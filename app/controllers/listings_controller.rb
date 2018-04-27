@@ -40,13 +40,18 @@ class ListingsController < ApplicationController
   end
 
   def update
-    if @listing.update(listing_params)
-      if params[:token].present?
-        result, card = AddCreditCard.call!(current_user, params[:token])
-        CreateListingSubscription.call(current_user, @listing, card)
+    begin
+      if @listing.update(listing_params)
+        if params[:token].present?
+          result, card = AddCreditCard.call!(current_user, params[:token])
+          CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
+        end
+        redirect_to @listing, notice: "Congratulations! You have upgraded the listing to premium."
+      else
+        render :edit
       end
-      redirect_to @listing, notice: "Congratulations! You have upgraded the listing to premium."
-    else
+    rescue Exception => e
+      flash.now[:alert] = e.message
       render :edit
     end
   end

@@ -20,6 +20,11 @@
 
               <div class="col-md-6">
                 <%= render 'shared/payment_fields' %>
+
+                <div class="ct-u-marginBottom40 mt-40">
+                  <%= label_tag :coupon, 'Have Coupon?' , class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+                  <%= text_field_tag :coupon, nil, class: "form-control input-lg ct-input--border", autocomplete: :off %>
+                </div>
               </div>
 
               <div class="col-md-6">

@@ -9,14 +9,18 @@ class MyListings::BuildListingsController < ApplicationController
   end
 
   def update
-    set_status
-    @listing.update_attributes(listing_params)
-    if params[:token].present? && step == steps.last
-      result, card = AddCreditCard.call!(current_user, params[:token])
-      CreateListingSubscription.call(current_user, @listing, card)
+    begin
+      set_status
+      @listing.update_attributes(listing_params)
+      if params[:token].present? && step == steps.last
+        result, card = AddCreditCard.call!(current_user, params[:token])
+        CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
+      end
+      params[:type] = @listing.listing_type
+      render_wizard(@listing, {}, { type: @listing.listing_type })
+    rescue Exception => e
+      render_wizard(@listing, { alert: e.message }, { type: @listing.listing_type })
     end
-    params[:type] = @listing.listing_type
-    render_wizard(@listing, {}, { type: @listing.listing_type })
   end
 
   private
