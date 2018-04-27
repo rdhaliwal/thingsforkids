@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def block_from_invitation?
+    false
+  end
 end
