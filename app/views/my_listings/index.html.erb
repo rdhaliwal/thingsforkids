@@ -1,14 +1,15 @@
 <section class="ct-u-paddingTop50 ct-u-paddingBottom60" id="my-listings">
   <div class="container">
-
-    <div class="row mt-sm-35">
-      <div class="col-md-3 col-md-push-3">
+    <div class="row mt-sm-35 ct-u-marginBottom20">
+      <div class="col-md-3 pull-right">
         <div class="ct-form--item">
           <%= link_to "Add a Free Listing", listings_path(listing_type: 'free'), class: "btn btn-warning center-block", method: :post %>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-3 col-md-push-3 mt-4">
+    <div class="row mt-sm-35 ct-u-marginBottom20">
+      <div class="col-md-3 pull-right">
         <div class="ct-form--item mt-4">
           <%= link_to "Add a Premium Listing", listings_path(listing_type: 'premium'), class: "btn btn-warning center-block", method: :post %>
         </div>
