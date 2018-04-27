@@ -248,12 +248,17 @@
         </div>
 
         <div class="col-md-4 col-lg-3">
+
           <div class="ct-js-sidebar">
             <div class="row">
               <div class="col-sm-6 col-md-12">
                 <div class="widget">
                   <div class="widget-inner">
                     <div class="ct-personBox text-left">
+                      <div class="ct-imagePerson">
+                        <%= render_logo @listing.logo %>
+                      </div>
+
                       <div class="ct-personContent">
                         <div class="ct-personName ct-u-paddingBottom10 ct-u-marginBottom20">
                           <h5 class="ct-fw-600"><%= @listing.manager_name %></h5>
