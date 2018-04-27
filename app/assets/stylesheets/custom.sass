@@ -1,12 +1,20 @@
 #filters
-  .list-height
-    height: 420px
+  .age-range-label
+    border: 0
+    color: #f6931f
+    font-weight: bold
+    text-align: center
 
   .mt-4
     margin-top: 4px
 
   .filter-heading
     font-size: 19px
+
+  .listings-heading
+    font-size: 19px
+    font-weight: bold
+    float: left
 
   .ml-0
     margin-left: 0px
@@ -63,14 +71,17 @@
 .mt-40
   margin-top: 40px
 
+.mt-18
+  margin-top: 18px
+
 .ml-10
   margin-left: 10px
 
-#listings
-  .list-height
-    min-height: 400px
-    max-height: 500px
 
+.p-0
+  padding: 0
+
+#listings
   .image-style
     height: 200px
 
@@ -100,6 +111,9 @@
   .map-style
     height: 800px
 
+#my-listings
+  min-height: 600px
+
 @media screen and (max-width: 992px)
   .mt-40
     margin-top: 58px
@@ -108,6 +122,9 @@
   color: red
 
 @media screen and (max-width: 768px)
+  .mt-sm-35
+    margin-top: 35px
+
   .ct-mediaSection-inner
     margin-top: 57px
 
@@ -117,6 +134,9 @@
   #my-listings
     .page-title
       margin-top: 30px
+
+    .mt-4
+      margin-top: 4px
 
 #listing-header
   .listing-address
@@ -142,6 +162,11 @@
 
 .product-width
   width: 240px
+
+@media screen and (max-width: 680px)
+  .product-width
+    width: 95%
+    margin: 2%
 
 .ct-headerText--normal
   h2

@@ -1,29 +1,7 @@
 (->
   window.Map or (window.Map = {})
   Map.init = ->
-    mapOptions = {
-                zoom: 11,
-                zoomControl: true,
-                zoomControlOptions: {
-                    style: google.maps.ZoomControlStyle.SMALL,
-                },
-                disableDoubleClickZoom: true,
-                mapTypeControl: false,
-                panControl: false,
-                scaleControl: false,
-                scrollwheel: false,
-                streetViewControl: false,
-                draggable : true,
-                overviewMapControl: false,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: [{
-                    featureType: 'all',
-                    stylers: [
-                        {saturation: -100},
-                        {gamma: 0.50}
-                    ]
-                }]
-            }
+    mapOptions = { zoom: 11, scrollwheel: false }
 
     window.bounds = new google.maps.LatLngBounds()
     window.geocoder = new google.maps.Geocoder()
@@ -32,7 +10,7 @@
     window.markers = []
 
     boundsListener = google.maps.event.addListener window.gmap, 'bounds_changed', ->
-      @setZoom 11
+      @setZoom 13
       google.maps.event.removeListener boundsListener
 
     window.dragListener = google.maps.event.addListener window.gmap, 'dragend', ->
@@ -137,66 +115,16 @@
 
   set_marker_icon_type = (activity_type) ->
     if activity_type == "POI"
-      icon_type = {
-                    path: fontawesome.markers.THUMB_TACK
-                    scale: 0.5
-                    strokeWeight: 0.2
-                    strokeColor: 'black'
-                    strokeOpacity: 1
-                    fillColor: '#800080'
-                    fillOpacity: 1
-                  }
+      return "/assets/POI.png"
     else if activity_type == "Classes"
-      icon_type = {
-                    path: fontawesome.markers.GRADUATION_CAP
-                    scale: 0.5
-                    strokeWeight: 0.2
-                    strokeColor: 'black'
-                    strokeOpacity: 1
-                    fillColor: '#F83106'
-                    fillOpacity: 1
-                  }
+      return "/assets/classes.png"
     else if activity_type == "Play Centres"
-      icon_type = {
-                    path: fontawesome.markers.ROCKET
-                    scale: 0.5
-                    strokeWeight: 0.2
-                    strokeColor: 'black'
-                    strokeOpacity: 1
-                    fillColor: '#CB2501'
-                    fillOpacity: 1
-                  }
+      return "/assets/playcentre.png"
     else if activity_type == "Childcare Centres"
-      icon_type = {
-                    path: fontawesome.markers.HOME
-                    scale: 0.5
-                    strokeWeight: 0.2
-                    strokeColor: 'black'
-                    strokeOpacity: 1
-                    fillColor: '#196F3D'
-                    fillOpacity: 1
-                  }
+      return "/assets/childcare.png"
     else if activity_type == "Kid Friendly Cafes"
-      icon_type = {
-                    path: fontawesome.markers.COFFEE
-                    scale: 0.5
-                    strokeWeight: 0.2
-                    strokeColor: 'black'
-                    strokeOpacity: 1
-                    fillColor: '#17202A'
-                    fillOpacity: 1
-                  }
-
+      return "/assets/cafe.png"
     else if activity_type == "Parks & Playgrounds"
-      icon_type = {
-                    path: fontawesome.markers.TREE
-                    scale: 0.5
-                    strokeWeight: 0.2
-                    strokeColor: 'black'
-                    strokeOpacity: 1
-                    fillColor: '#008000'
-                    fillOpacity: 1
-                  }
+      return "/assets/parkplaygrounds.png"
 
-    return icon_type
 ).call this

@@ -1,12 +1,18 @@
 <%= search_form_for @q, url: root_path, remote: true, html: { class: css_class, role: "form" } do |f| %>
-  <div class="form-group mt-40">
+  <div class="row">
+    <div class="col-md-12 p-0">
+      <%= label_tag "Filter Listings", nil, class: "filter-heading" %>
+    </div>
+  </div>
+
+  <div class="form-group mt-18">
     <div class="ct-u-displayTableVertical ct-u-marginBottom20">
       <div class="row ct-u-marginBottom20">
         <div class="col-md-12">
           <div class="ct-u-displayTableCell">
-            <div class="col-md-8 text-center">
+            <div class="col-md-12 text-center p-0">
               <div class="ct-u-displayTableCell">
-                <label id="range" style="border:0; color:#f6931f; font-weight:bold;"><%= range(params[:age]) %></label>
+                <label id="range" class="age-range-label"><%= range(params[:age]) %></label>
                 <div id="age_range" class="slider-range" data-min="<%= min_age_range(params[:age]) %>" data-max="<%= max_age_range(params[:age]) %>"></div>
                 <label class="text-center center-block">Age range</label>
                 <%= hidden_field_tag "age[min_age]", min_age_range(params[:age]), { class: "min-age" } %>
@@ -19,16 +25,16 @@
       </div>
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
           <%= label_tag "Activity Type", nil, class: "filter-heading" %>
         </div>
       </div>
 
       <% Listing.activity_types.each do |key, value| %>
-        <div class="row ml-0 mt-4">
-          <div class="checkbox ct-u-displayTableCell">
+        <div class="row mt-4">
+          <div class="ct-u-displayTableCell">
+            <%= f.check_box "activity_type_in", { class: "activity-check col-md-1 col-xs-1 col-sm-1", include_hidden: false, multiple: true }, value %>
             <label>
-              <%= f.check_box "activity_type_in", { class: "activity-check", include_hidden: false, multiple: true }, value %>
               <i class="<%= icon_class value %>" aria-hidden="true"></i>
               <span><%= key %></span>
             </label>
@@ -38,18 +44,16 @@
       <hr>
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
           <%= label_tag "Available Days", nil, class: "filter-heading" %>
         </div>
       </div>
 
       <% Listing::WEEK_DAYS.each do |day| %>
-        <div class="row ml-0 ct-u-marginBottom10">
-          <div class="checkbox ct-u-displayTableCell">
-            <label>
-              <%= check_box_tag "days_available[]", day, days_filter_checked?(day, params[:days_available]), { class: "activity-check", include_hidden: false, multiple: true } %>
-              <%= day %>
-            </label>
+        <div class="row ct-u-marginBottom10">
+          <div class="ct-u-displayTableCell">
+            <%= check_box_tag "days_available[]", day, days_filter_checked?(day, params[:days_available]), { class: "activity-check col-md-1 col-sm-1 col-xs-1", include_hidden: false, multiple: true } %>
+            <label><%= day %></label>
           </div>
         </div>
       <% end %>

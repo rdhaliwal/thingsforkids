@@ -9,6 +9,11 @@ module ListingHelper
     'paid_listing_form'
   end
 
+  def render_logo(logo)
+    return image_tag(logo, alt: "") if logo.attached?
+    image_tag("logo.png", alt: "")
+  end
+
   def days_filter_checked?(day, params)
     params.include?(day) if params.present?
   end

@@ -1,0 +1,7 @@
+<% listings.each_with_index do |listing, index| %>
+  <% if index % 3 == 0 %>
+    <div class="row"></div>
+  <% end %>
+
+  <%= render 'listing', listing: listing %>
+<% end %>

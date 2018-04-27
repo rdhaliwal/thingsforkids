@@ -3,7 +3,7 @@ class MyListingsController < ApplicationController
   before_action :set_listing, only: [:edit, :update, :destroy]
 
   def index
-    @listings = current_user.listings.page(params[:page])
+    @listings = current_user.listings.page(params[:page]).per(8)
   end
 
   def edit

@@ -5,24 +5,30 @@
 <section>
   <div class="container" id="filters" style="width: 100%">
     <div class="row">
-      <div class="col-lg-4 col-lg-push-8 map-style" id="map" data-icon=<%= asset_url('map_icon.png') %>>
+      <div class="col-lg-3 col-lg-push-9 map-style" id="map" data-icon=<%= asset_url('map_icon.png') %>>
         <div class="ct-js-googleMap ct-googleMap ct-googleMap-2col ct-js-googleMap--group" data-location="Richmond" data-icon="assets/images/marker-house.png" data-display-desc="true" data-zoom="14" data-height="1750" >
         </div>
       </div>
 
-      <div class="col-lg-3 col-lg-pull-4">
+      <div class="col-lg-2 col-sm-3 col-xs-4 col-lg-pull-3 p-0">
         <div class="ct-u-marginTop80 hidden-md hidden-lg"></div>
         <%= render "shared/filters", css_class: "form ct-formSearch--fullWidth ct-u-marginBottom50 ct-u-paddingTop30" %>
       </div>
 
-      <div class="col-lg-5 col-lg-pull-4">
+      <div class="col-lg-7 col-lg-pull-3">
+        <div class="row">
+          <div class="col-md-12 mt-18">
+            <span class="listings-heading"><%= page_entries_info(@listings, entry_name: 'Listing' ) %></span>
+          </div>
+        </div>
+
         <div id="loader">
           <%= image_tag 'loader.gif' %>
         </div>
         <div class="row">
-          <div id="listings" class="scrollable-content">
+          <div id="listings" class="scrollable-content mt-18">
             <% if @listings.present? %>
-              <%= render @listings %>
+              <%= render 'listing_iterator', listings: @listings %>
             <% else %>
               <%= render 'message' %>
             <% end %>

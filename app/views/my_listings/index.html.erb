@@ -1,5 +1,20 @@
 <section class="ct-u-paddingTop50 ct-u-paddingBottom60" id="my-listings">
   <div class="container">
+
+    <div class="row mt-sm-35">
+      <div class="col-md-3 col-md-push-3">
+        <div class="ct-form--item">
+          <%= link_to "Add a Free Listing", listings_path(listing_type: 'free'), class: "btn btn-warning center-block", method: :post %>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-md-push-3 mt-4">
+        <div class="ct-form--item mt-4">
+          <%= link_to "Add a Premium Listing", listings_path(listing_type: 'premium'), class: "btn btn-warning center-block", method: :post %>
+        </div>
+      </div>
+    </div>
+
     <div class="ct-section--products">
       <div class="row">
         <div class="col-md-12">
@@ -24,15 +39,17 @@
           </div>
 
           <div class="row ct-js-search-results ct-showProducts--default" id="listings">
-            <% @listings.each do |listing| %>
+            <% @listings.each_with_index do |listing, index| %>
+              <% if index%4 == 0 %>
+                <div class="row"></div>
+              <% end %>
+
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="ct-itemProducts ct-u-marginBottom30 ct-hover">
                   <%= link_to listing do %>
-                    <div class="ct-main-content list-height">
-                      <div class="ct-imageBox">
-                        <% if listing.logo.attached? %>
-                          <%= image_tag listing.logo, alt: "", class: "image-style" %><i class="fa fa-eye"></i>
-                        <% end %>
+                    <div class="ct-main-content">
+                      <div class="ct-imageBox list-height">
+                        <%= render_logo listing.logo %>
                       </div>
 
                       <div class="ct-main-text">
@@ -47,6 +64,17 @@
                         <div class="ct-product--description">
                           <%= truncate_short_description listing.short_description %>
                         </div>
+                      </div>
+
+                      <hr>
+                      <div class="col-md-12">
+                        <%= link_to edit_my_listing_path(listing), class: "btn btn-md btn-default ml-10" do %>
+                          <i class="fa fa-edit"></i> Edit
+                        <% end %>
+
+                        <%= link_to my_listing_path(listing), method: :delete, class: "btn btn-md btn-default ml-10" do %>
+                          <i class="fa fa-trash-o"></i> Delete
+                        <% end %>
                       </div>
                     </div>
                   <% end %>

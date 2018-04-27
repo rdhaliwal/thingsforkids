@@ -15,7 +15,7 @@
     keys = {37: 1, 38: 1, 39: 1, 40: 1}
     $(window).data('ajaxready', true).scroll ->
       return if $(window).data('ajaxready') == false
-      if $('#listings').scrollTop() - previous_value >= 400
+      if $('#listings').scrollTop() - previous_value >= 0
         previous_value = $('#listings').scrollTop()
         $(window).data('ajaxready', false);
         url = $('.pagination .next-page').attr('href')

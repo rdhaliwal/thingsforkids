@@ -1,8 +1,8 @@
 <% if @listings.present? && params[:page].blank? %>
-  $('#listings').html("<%= j render @listings %>");
+  $('#listings').html("<%= j render 'listing_iterator', listings: @listings %>");
   Map.listings(<%= "#{@listings.ids}" %>, true);
 <% elsif @listings.present? && params[:page].present? %>
-    $('#listings').append("<%= j render @listings %>");
+    $('#listings').append("<%= j render 'listing_iterator', listings: @listings %>");
     Map.listings(<%= "#{@listings.ids}" %>, false);
 <% else %>
   $('#listings').html("<%= j render 'message' %>");
@@ -15,3 +15,5 @@
   $('.pagination').remove();
 <% end %>
 $('#loader').hide();
+$('#filters #range').text('<%= range(params[:age]) %>');
+$('.listings-heading').html('<%= j page_entries_info(@listings, entry_name: "Listing" ) %>');
