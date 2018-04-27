@@ -23,7 +23,7 @@ class StripeInvoiceEvents
   private
 
     def stripe_subscription
-        stripe_invoice.subscription
+      stripe_invoice.subscription
     end
 
     def stripe_next_payment_attempt
