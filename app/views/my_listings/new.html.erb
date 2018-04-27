@@ -64,7 +64,7 @@
       <%= render 'basic_info', f: f %>
       <%= render 'amenities', f: f %>
       <% unless params[:type] == "free" %>
-        <%=  render 'images_form', f: f %>
+        <%= render 'images_form', f: f %>
         <%= render 'price', f: f %>
       <% end %>
     <% end %>

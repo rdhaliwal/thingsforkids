@@ -36,9 +36,10 @@ class MyListingsController < ApplicationController
 
     def listing_params
       params.require(:listing).permit(:business_name, :manager_name, :manager_job_title, :description, :address, :city,
-                                      :state, :postcode, :website, :activity_type, :email, :phone, :logo, :price, :indoors,
+                                      :state, :postcode, :website, :activity_type, :email, :phone, :logo, :indoors,
                                       :outdoors, :highchairs, :disability_access, :parking, :free_trial, :undercover,
                                       :bbq, :toilets, :baby_change_room, :listing_type, :facbook_url, :instagram_url,
-                                      :status, :parties, :short_description, :min_age, :max_age, :opens_at, :closes_at, images: [], days_available: [])
+                                      :status, :parties, :short_description, :min_age, :max_age, :opens_at, :closes_at,
+                                      images: [], days_available: [])
     end
 end

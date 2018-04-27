@@ -1,11 +1,11 @@
 ActiveAdmin.register Listing do
   before_action :set_created_by, only: [:create]
 
-  permit_params :activity_type, :listing_type, :min_age, :max_age, :business_name, :description, :logo, :user_id, :short_description,
-                :facbook_url, :instagram_url, :manager_name, :manager_job_title, :phone, :email, :website, :price,
+  permit_params :activity_type, :listing_type, :min_age, :max_age, :business_name, :description, :logo, :user_id,
+                :facbook_url, :instagram_url, :manager_name, :manager_job_title, :phone, :email, :website, :state,
                 :postcode, :please_bring, :indoors, :outdoors, :parties, :disability_access, :parking, :free_trial,
-                :undercover, :bbq, :toilets, :highchairs, :baby_change_room, :opens_at, :closes_at, :address, :city, :state,
-                :status, :created_by_admin, days_available: [], images: []
+                :undercover, :bbq, :toilets, :highchairs, :baby_change_room, :opens_at, :closes_at, :address, :city,
+                :status, :created_by_admin, :short_description, days_available: [], images: []
 
   controller do
     def set_created_by
@@ -35,7 +35,6 @@ ActiveAdmin.register Listing do
     f.inputs :phone
     f.inputs :email
     f.inputs :website
-    f.inputs :price
     f.inputs :postcode
     f.inputs :please_bring
     f.inputs :indoors
