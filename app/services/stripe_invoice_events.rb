@@ -10,7 +10,7 @@ class StripeInvoiceEvents
   def payment_succeeded
     return unless listing.present?
     invoice = listing.create_invoice(amount: stripe_invoice.amount_due, stripe_invoice_id: stripe_invoice.id)
-    listing.update_attribute(has_paid: true)
+    listing.update(has_paid: true)
     InvoicesMailer.dispatch_invoice(invoice.id).deliver_later
   end
 
