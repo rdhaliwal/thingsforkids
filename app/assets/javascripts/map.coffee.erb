@@ -115,16 +115,16 @@
 
   set_marker_icon_type = (activity_type) ->
     if activity_type == "POI"
-      return "/assets/POI.png"
+      return "<%= asset_path 'POI.png' %>"
     else if activity_type == "Classes"
-      return "/assets/classes.png"
+      return "<%= asset_path 'classes.png' %>"
     else if activity_type == "Play Centres"
-      return "/assets/playcentre.png"
+      return "<%= asset_path 'playcentre.png' %>"
     else if activity_type == "Childcare Centres"
-      return "/assets/childcare.png"
+      return "<%= asset_path 'childcare.png' %>"
     else if activity_type == "Kid Friendly Cafes"
-      return "/assets/cafe.png"
+      return "<%= asset_path 'cafe.png' %>"
     else if activity_type == "Parks & Playgrounds"
-      return "/assets/parkplaygrounds.png"
+      return "<%= asset_path 'parkplaygrounds.png' %>"
 
 ).call this
