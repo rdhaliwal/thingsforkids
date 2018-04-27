@@ -100,7 +100,7 @@
                       <span class="ct-fw-600">Activity Type</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell text-right">
+                    <div class="ct-u-displayTableCell">
                       <span><%= @listing.activity_type %></span>
                     </div>
                   </div>
@@ -110,7 +110,7 @@
                       <span class="ct-fw-600">Age Range</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell text-right">
+                    <div class="ct-u-displayTableCell">
                       <span><%= @listing.age_range %></span>
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                       <span class="ct-fw-600">Location</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell text-right">
+                    <div class="ct-u-displayTableCell">
                       <span><%= @listing.location %></span>
                     </div>
                   </div>
@@ -129,7 +129,7 @@
                     <div class="ct-u-displayTableCell">
                        <span class="ct-fw-600">Opens at</span>
                     </div>
-                    <div class="ct-u-displayTableCell text-right">
+                    <div class="ct-u-displayTableCell">
                       <span><%= @listing.opens_at.strftime("%H:%M:%S") if @listing.opens_at.present? %></span>
                     </div>
                   </div>
@@ -139,7 +139,7 @@
                       <span class="ct-fw-600">Closes at</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell text-right">
+                    <div class="ct-u-displayTableCell">
                       <span><%= @listing.closes_at.strftime("%H:%M:%S") if @listing.closes_at.present? %></span>
                     </div>
                   </div>
@@ -149,7 +149,7 @@
                       <span class="ct-fw-600">Days</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell text-right">
+                    <div class="ct-u-displayTableCell">
                       <% @listing.days_available.each do |day| %>
                         <span class="ct-price"><%= render_day(day) %></span>
                       <% end %>
