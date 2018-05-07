@@ -18,6 +18,20 @@ module ListingHelper
     params.include?(day) if params.present?
   end
 
+  def render_age_range(listing)
+    "#{render_min_age(listing)} - #{render_max_age(listing)}"
+  end
+
+  def render_min_age(listing)
+    return 0 unless listing.present?
+    listing.min_age || 0
+  end
+
+  def render_max_age(listing)
+    return 10 unless listing.present?
+    listing.max_age || 10
+  end
+
   def min_age_range(params)
     return 0 unless params.present?
     params[:min_age] || 0
@@ -81,5 +95,24 @@ module ListingHelper
       'Saturday' => 'Sat',
       'Sunday' => 'Sun',
     }[day]
+  end
+
+  def description_max_words(type)
+    return '400' if type == 'premium'
+    '50'
+  end
+
+  def render_city(listing)
+    listing.city || 'Melbourne'
+  end
+
+  def render_state(listing)
+    listing.state || 'VIC'
+  end
+
+  def render_day_error_message(listing)
+    return unless listing.present?
+    return unless listing.errors.any?
+    "<div class='invalid-feedback'>No day is selected in available days</div>".html_safe if listing.errors[:days_available].present?
   end
 end

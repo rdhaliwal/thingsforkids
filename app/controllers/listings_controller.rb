@@ -19,7 +19,7 @@ class ListingsController < ApplicationController
       end
     end
 
-    @listings = @listings.sort_listings.page(params[:page])
+    @listings = @listings.sort_listings.page(params[:page]).per(9)
 
     respond_to do |format|
       format.html

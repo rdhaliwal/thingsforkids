@@ -134,6 +134,8 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    geocomplete_rails (1.7.0)
+      railties (>= 3.1)
     gibbon (3.2.0)
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
@@ -332,6 +334,7 @@ DEPENDENCIES
   dotenv-rails
   exception_notification
   geocoder!
+  geocomplete_rails
   gibbon
   httparty
   jbuilder (~> 2.5)

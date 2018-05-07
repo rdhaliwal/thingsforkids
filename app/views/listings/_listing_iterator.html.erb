@@ -5,3 +5,9 @@
 
   <%= render 'listing', listing: listing %>
 <% end %>
+
+<div class="row"></div>
+
+<div class="text-center">
+  <%= link_to 'Load More', '', class: 'btn btn-info load-more-listings' if @listings.next_page %>
+</div>

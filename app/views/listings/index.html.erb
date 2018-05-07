@@ -38,7 +38,7 @@
     </div>
 
     <div class="d-none">
-      <%= paginate @listings if @listings.present? %>
+      <%= paginate @listings, remote: true if @listings.present? %>
     </div>
 
     <div class="ct-u-marginBottom30 hidden-lg hidden-md"></div>

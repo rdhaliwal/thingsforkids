@@ -13,19 +13,31 @@
   SearchFilters.load_lists = ->
     previous_value = 0
     keys = {37: 1, 38: 1, 39: 1, 40: 1}
-    $(window).data('ajaxready', true).scroll ->
-      return if $(window).data('ajaxready') == false
-      if $('#listings').scrollTop() - previous_value >= 0
-        previous_value = $('#listings').scrollTop()
-        $(window).data('ajaxready', false);
-        url = $('.pagination .next-page').attr('href')
-        if url
-          disableScroll()
-          $('#loader').show()
-          $.getScript(url).done (script) ->
-            $(window).data('ajaxready', true)
-            $('#loader').hide()
-            enableScroll()
+    $(window).data('ajaxready', true);
+    $('#listings').scroll ->
+      scroll_listings()
+
+    $('.load-more-listings').click (e) ->
+      preventDefault(e)
+      scroll_listings()
+      $(this).addClass 'd-none'
+
+
+  scroll_listings = ->
+    return if $(window).data('ajaxready') == false
+    listings = $('#listings');
+    if (listings[0].scrollHeight - listings.scrollTop() == listings.outerHeight())
+      previous_value = $('#listings').scrollTop()
+      $(window).data('ajaxready', false);
+      url = $('.pagination .next-page').attr('href')
+      if url
+        disableScroll()
+        $('#loader').show()
+        $.getScript(url).done (script) ->
+          $(window).data('ajaxready', true)
+          $('#loader').hide()
+          enableScroll()
+
 
   preventDefault = (e) ->
     e = e or window.event

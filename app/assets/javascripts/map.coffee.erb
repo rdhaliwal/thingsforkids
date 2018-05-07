@@ -26,14 +26,14 @@
     geocoder = window.geocoder
     map = window.gmap
 
-    if clear_marker
-      clear_markers(window.markers)
-
     $.ajax
       type: 'GET'
       url: "/listings/addresses?listings[]=#{listings}",
       dataType: 'json'
       success: (data) ->
+        if clear_marker
+          clear_markers(window.markers, data.ids)
+
         if data.listings
           for listing in data.listings
             add_marker(map, bounds, geocoder, listing.address, markers, listing.id, listing.activity_type)
@@ -67,11 +67,11 @@
           lat_lng = $('#map-center').val().split(',', 2)
           map.setCenter(new google.maps.LatLng(parseFloat(lat_lng[0]), parseFloat(lat_lng[1])))
 
-  clear_markers = (markers) ->
+  clear_markers = (markers, ids) ->
     for marker in markers
+      if ids.includes(marker.id)
+        continue
       marker.setMap(null)
-    window.markers = []
-    markers = []
 
   highlight_listing = ->
     $('#listings').on 'mouseenter', '.list-container', ->

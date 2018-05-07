@@ -6,7 +6,7 @@
       </div>
 
       <div class="col-md-8">
-        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "ct-formRegister pull-right" }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "ct-formRegister pull-right" }) do |f| %>
           <%= f.hidden_field :reset_password_token %>
 
           <div class="form-group">

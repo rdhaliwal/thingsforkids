@@ -351,6 +351,7 @@ function makekenburns($element) {
       $('.ct-navigationGmaps').addClass('hidden');
     }
 
+    $('.geocomplete').geocomplete();
     var min_val = $('.slider-range').data('min');
     var max_val = $('.slider-range').data('max');
     $(".slider-range").slider({
@@ -361,8 +362,10 @@ function makekenburns($element) {
         $(".min-age").val(ui.values[0]);
         $(".max-age").val(ui.values[1]);
         $("#loader").show();
+        $("#basic-range-label").text(ui.values[0] + ' - ' + ui.values[1])
         var form = document.querySelector('.form');
-        Rails.fire(form, 'submit');
+        if(form != undefined)
+          Rails.fire(form, 'submit');
       }
     });
 

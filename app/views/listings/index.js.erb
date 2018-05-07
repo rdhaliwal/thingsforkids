@@ -1,3 +1,5 @@
+$('.load-more-listings').addClass('d-none');
+
 <% if @listings.present? && params[:page].blank? %>
   $('#listings').html("<%= j render 'listing_iterator', listings: @listings %>");
   Map.listings(<%= "#{@listings.ids}" %>, true);
@@ -8,12 +10,12 @@
   $('#listings').html("<%= j render 'message' %>");
   Map.listings(<%= "#{@listings.ids}" %>, true);
 <% end %>
-
 <% if @listings.next_page %>
-  $('.pagination').replaceWith('<%= j paginate @listings %>');
+  $('.pagination').replaceWith('<%= j paginate @listings, remote: true %>');
 <% else %>
-  $('.pagination').remove();
+  $('.pagination').html('');
 <% end %>
 $('#loader').hide();
 $('#filters #range').text('<%= range(params[:age]) %>');
 $('.listings-heading').html('<%= j page_entries_info(@listings, entry_name: "Listing" ) %>');
+SearchFilters.load_lists();

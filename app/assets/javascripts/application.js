@@ -28,5 +28,6 @@
 //= require moment.min
 //= require bootstrap-datetimepicker
 //= require main
+//= require geocomplete
 //= require_tree .
 
