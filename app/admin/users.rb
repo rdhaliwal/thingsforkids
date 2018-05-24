@@ -21,6 +21,9 @@ ActiveAdmin.register User do
   end
 
   member_action :send_invitation do
+    if resource.listings.blank?
+      return redirect_to admin_users_path, alert: "User doesn't have any listings."
+    end
     result = SendUserInvite.new(resource.email, current_admin_user).call
     if result
       redirect_to admin_users_path, notice: "Invitation sent!."

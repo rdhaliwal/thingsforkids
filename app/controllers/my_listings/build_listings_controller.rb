@@ -16,6 +16,9 @@ class MyListings::BuildListingsController < ApplicationController
         result, card = AddCreditCard.call!(current_user, params[:token])
         CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
       end
+      if @listing.valid? && step == steps.last
+        ListingsMailer.free_listing(@listing.id).deliver_later
+      end
       params[:type] = @listing.listing_type
       render_wizard(@listing, {}, { type: @listing.listing_type })
     rescue Exception => e

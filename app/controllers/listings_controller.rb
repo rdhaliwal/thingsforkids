@@ -1,8 +1,8 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show]
   before_action :set_listings, only: [:addresses]
-  before_action :set_user_listing, only: [:edit, :update]
   before_action :authenticate_user!, only: [:edit, :update, :create]
+  before_action :set_user_listing, only: [:edit, :update]
   before_action :check_premium, only: [:edit]
 
   def index

@@ -24,6 +24,7 @@ class CreateListingSubscription
       customer.save
       subscription = customer.subscriptions.create(plan: 'listing_annual', coupon: coupon)
       listing.update_attribute(:subscription_id, subscription.id)
+      ListingsMailer.premium_listing(listing.id).deliver_later
     end
   end
 end
