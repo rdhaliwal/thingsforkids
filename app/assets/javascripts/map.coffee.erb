@@ -47,6 +47,12 @@
     google.maps.event.removeListener(window.zoomListener)
     add_marker(window.gmap, window.bounds, window.geocoder, address, [], 1)
 
+  Map.set_center = (lat, lng) ->
+    if lat != ""
+      window.gmap.setCenter({ lat: parseFloat(lat), lng: parseFloat(lng) })
+    else
+      window.gmap.setCenter({ lat: -37.8152065, lng: 144.963937 }) #set Melbourne as default
+
   add_marker = (map, bounds, geocoder, address, markers, id, activity_type) ->
     icon = set_marker_icon_type(activity_type)
     geocoder.geocode { 'address': address }, (results, status) ->

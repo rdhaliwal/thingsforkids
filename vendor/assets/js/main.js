@@ -1654,11 +1654,13 @@ function makekenburns($element) {
 
   $(window).on('resize', function() {
     var snapper = initSnapper();
-    if ($(window).width() < 768) {
-      snapper.enable();
-    } else {
-      snapper.close();
-      snapper.disable();
+    if (snapper != undefined) {
+      if ($(window).width() < 768) {
+        snapper.enable();
+      } else {
+        snapper.close();
+        snapper.disable();
+      }
     }
   })
 

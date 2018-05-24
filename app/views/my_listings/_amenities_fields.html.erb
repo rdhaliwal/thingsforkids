@@ -19,25 +19,25 @@
           <div class="ct-checbox--custom">
             <%= f.check_box :indoors, id: "ct-checbox--custom" %>
             <label for="ct-checbox--custom"></label>
-            <span> Indoors</span>
+            <label for="ct-checbox--custom" class="ct-checkbox-span"> Indoors</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :outdoors, id: "ct-checbox--custom2" %>
             <label for="ct-checbox--custom2"></label>
-            <span> Outdoors</span>
+            <label for="ct-checbox--custom2" class="ct-checkbox-span"> Outdoors</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :disability_access, id: "ct-checbox--custom3" %>
             <label for="ct-checbox--custom3"></label>
-            <span> Disability Access</span>
+            <label for="ct-checbox--custom3" class="ct-checkbox-span"> Disability Access</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :parking, id: "ct-checbox--custom4" %>
             <label for="ct-checbox--custom4"></label>
-            <span> Parking</span>
+            <label for="ct-checbox--custom4" class="ct-checkbox-span"> Parking</label>
           </div>
         </div>
 
@@ -45,25 +45,25 @@
           <div class="ct-checbox--custom">
             <%= f.check_box :free_trial, id: "ct-checbox--custom5" %>
             <label for="ct-checbox--custom5"></label>
-            <span> Free Trial</span>
+            <label for="ct-checbox--custom5" class="ct-checkbox-span"> Free Trial</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :undercover, id: "ct-checbox--custom6" %>
             <label for="ct-checbox--custom6"></label>
-            <span> Undercover</span>
+            <label for="ct-checbox--custom6" class="ct-checkbox-span"> Undercover</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :bbq, id: "ct-checbox--custom7" %>
             <label for="ct-checbox--custom7"></label>
-            <span> BBQ</span>
+            <label for="ct-checbox--custom7" class="ct-checkbox-span"> BBQ</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :toilets, id: "ct-checbox--custom8" %>
             <label for="ct-checbox--custom8"></label>
-            <span> Toilets</span>
+            <label for="ct-checbox--custom8" class="ct-checkbox-span"> Toilets</label>
           </div>
         </div>
 
@@ -71,19 +71,19 @@
           <div class="ct-checbox--custom">
             <%= f.check_box :highchairs, id: "ct-checbox--custom9" %>
             <label for="ct-checbox--custom9"></label>
-            <span> Highchairs</span>
+            <label for="ct-checbox--custom9" class="ct-checkbox-span"> Highchairs</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :baby_change_room, id: "ct-checbox--custom10" %>
             <label for="ct-checbox--custom10"></label>
-            <span> Baby Change Room</span>
+            <label for="ct-checbox--custom10" class="ct-checkbox-span"> Baby Change Room</label>
           </div>
 
           <div class="ct-checbox--custom">
             <%= f.check_box :parties, id: "ct-checbox--custom11" %>
             <label for="ct-checbox--custom11"></label>
-            <span> Parties</span>
+            <label for="ct-checbox--custom11" class="ct-checkbox-span"> Parties</label>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@
               <div class="ct-checbox--custom">
                 <%= check_box_tag "listing[days_available][]", day, @listing.days_available.include?(day), { id: "#{day}" } %>
                 <label for="<%= day %>"></label>
-                <span> <%= day %></span>
+                <label for="<%= day %>" class="ct-checkbox-span"><%= day %></label>
               </div>
             <% end %>
             <%= render_day_error_message(f.object) %>
