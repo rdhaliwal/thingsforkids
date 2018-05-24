@@ -111,26 +111,27 @@
               type: 'hidden'
               value: id
               name: 'q[id_in][]').appendTo '.form'
-        else
-          $('<input>').attr(
-            type: 'hidden'
-            value: '-9999'
-            name: 'q[id_in][]').appendTo '.form'
-
         $('.form').submit()
 
   set_marker_icon_type = (activity_type) ->
+    icon =
+      scaledSize: new google.maps.Size(35, 35),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(0, 0)
+
     if activity_type == "POI"
-      return "<%= asset_path 'POI.png' %>"
+      icon['url'] = "<%= asset_path 'POI.png' %>"
     else if activity_type == "Classes"
-      return "<%= asset_path 'classes.png' %>"
+      icon['url'] = "<%= asset_path 'classes.png' %>"
     else if activity_type == "Play Centres"
-      return "<%= asset_path 'playcentre.png' %>"
+      icon['url'] = "<%= asset_path 'playcentre.png' %>"
     else if activity_type == "Childcare Centres"
-      return "<%= asset_path 'childcare.png' %>"
+      icon['url'] = "<%= asset_path 'childcare.png' %>"
     else if activity_type == "Kid Friendly Cafes"
-      return "<%= asset_path 'cafe.png' %>"
+      icon['url'] = "<%= asset_path 'cafe.png' %>"
     else if activity_type == "Parks & Playgrounds"
-      return "<%= asset_path 'parkplaygrounds.png' %>"
+      icon['url'] = "<%= asset_path 'parkplaygrounds.png' %>"
+
+    icon
 
 ).call this
