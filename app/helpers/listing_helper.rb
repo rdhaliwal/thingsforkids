@@ -76,6 +76,7 @@ module ListingHelper
   end
 
   def render_image image
+    return unless image.variable?
     image.variant(combine_options: { resize: '870x442^', gravity: 'Center', extent: '870x442', quality: 95 })
   end
 
