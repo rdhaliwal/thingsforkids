@@ -70,7 +70,9 @@
               <div class="ct-owl-controls--type2" data-single="true" data-pagination="false" data-navigation="false" data-snap-ignore="true" id="sync1">
                 <% @listing.images.each do |image| %>
                   <div class="item">
-                    <%= image_tag render_image(image), alt: "" %>
+                    <% if image.variable? %>
+                      <%= image_tag render_image(image), alt: "" %>
+                    <% end %>
                   </div>
                 <% end %>
               </div>
