@@ -50,8 +50,8 @@
 
 <% content_for :js_init do %>
   $('#loader').hide()
-  SearchFilters.fetch_lists();
-  SearchFilters.load_lists();
+  SearchFilters.fetch_listings();
+  SearchFilters.load_listings();
   <% if session[:postcode].present? %>
     SearchFilters.disable_content(false);
   <% else %>

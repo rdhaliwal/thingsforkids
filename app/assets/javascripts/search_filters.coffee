@@ -1,8 +1,12 @@
 (->
   window.SearchFilters or (window.SearchFilters = {})
 
-  SearchFilters.fetch_lists = ->
+  SearchFilters.fetch_listings = ->
     $('#filters').on 'change', '.activity-check', ->
+      $('#loader').show()
+      $('.form').submit()
+
+    $('#filters').on 'focusout', '#q_postcode_eq', ->
       $('#loader').show()
       $('.form').submit()
 
@@ -10,7 +14,7 @@
     if disable
       $('#footer, #navbar, #filters, #mobile-nav').addClass 'disabled-content'
 
-  SearchFilters.load_lists = ->
+  SearchFilters.load_listings = ->
     previous_value = 0
     keys = {37: 1, 38: 1, 39: 1, 40: 1}
     $(window).data('ajaxready', true);

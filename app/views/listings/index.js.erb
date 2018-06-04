@@ -18,7 +18,7 @@ $('.load-more-listings').addClass('d-none');
 $('#loader').hide();
 $('#filters #range').text('<%= range(params[:age]) %>');
 $('.listings-heading').html('<%= j page_entries_info(@listings, entry_name: "Listing" ) %>');
-SearchFilters.load_lists();
+SearchFilters.load_listings();
 
 <% if params[:postcode] %>
   Map.set_center('<%= session[:lat] %>', '<%= session[:lng] %>');
