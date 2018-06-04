@@ -19,35 +19,39 @@
           <%= f.text_field :manager_job_title, class: "form-control input-lg ct-input--border" %>
         </div>
 
-        <div class="ct-u-marginBottom40">
-          <%= f.label :description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-          <%= f.text_area :description, class: "form-control input-lg ct-input--border count-words", data: { max_words: description_max_words(params[:type]), count_field: '#description-words' } %>
-          <div id="description-words" class="pull-right"></div>
-        </div>
+        <% if params[:type] == 'premium' %>
+          <div class="ct-u-marginBottom40">
+            <%= f.label :description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+            <%= f.text_area :description, class: "form-control input-lg ct-input--border count-words", data: { max_words: description_max_words(params[:type]), count_field: '#description-words' } %>
+            <div id="description-words" class="pull-right"></div>
+          </div>
+        <% end %>
 
-        <div class="ct-u-marginBottom40">
-          <%= f.label :short_description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-          <%= f.text_area :short_description, size: "30x10", class: "form-control input-lg ct-input--border short-description count-words", placeholder: "Max 20 words", data: { max_words: '20', count_field: '#short-description-words' } %>
-          <div id="short-description-words" class="pull-right"></div>
-        </div>
+        <% if params[:type] == 'free' %>
+          <div class="ct-u-marginBottom40">
+            <%= f.label :short_description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+            <%= f.text_area :short_description, size: "30x10", class: "form-control input-lg ct-input--border short-description count-words", placeholder: "Max 20 words", data: { max_words: '20', count_field: '#short-description-words' } %>
+            <div id="short-description-words" class="pull-right"></div>
+          </div>
+        <% end %>
 
         <div class="ct-u-marginBottom40">
           <%= f.label :website, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
           <%= f.text_field :website, class: "form-control input-lg ct-input--border" %>
+        </div>
+
+        <div class="col-md-12 text-center">
+          <label id="basic-range-label" class="age-range-label"><%= render_age_range(f.object) %></label>
+          <div id="basic-info-range" class="slider-range" data-min="<%= render_min_age(f.object) %>" data-max="<%= render_max_age(f.object) %>"></div>
+          <label class="text-center center-block">Age range</label>
+          <%= f.hidden_field :min_age, { class: "min-age" } %>
+          <%= f.hidden_field :max_age, { class: "max-age" } %>
         </div>
       </div>
     </div>
   </div>
 
   <div class="col-md-6">
-    <div class="col-md-12 text-center">
-      <label id="basic-range-label" class="age-range-label"><%= render_age_range(f.object) %></label>
-      <div id="basic-info-range" class="slider-range" data-min="<%= render_min_age(f.object) %>" data-max="<%= render_max_age(f.object) %>"></div>
-      <label class="text-center center-block">Age range</label>
-      <%= f.hidden_field :min_age, { class: "min-age" } %>
-      <%= f.hidden_field :max_age, { class: "max-age" } %>
-    </div>
-
     <div class="col-md-12">
       <div class="form-group ct-u-marginBottom40">
         <%= f.label  :activity_type, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
@@ -62,28 +66,10 @@
       </div>
     </div>
 
-
     <div class="col-md-12">
       <div class="form-group ct-u-marginBottom40">
         <%= f.label :phone, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
         <%= f.phone_field :phone, class: "form-control input-lg ct-input--border" %>
-      </div>
-    </div>
-
-    <div class="col-md-12">
-      <div class="form-group ct-u-marginBottom40">
-        <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Add logo</label>
-        <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
-          <li>
-            <div class="col-sm-6 col-md-6">
-              <%= f.file_field :logo, { id: "file-logo", class: "images ct-media--content" }  %>
-            </div>
-
-            <div class="ct-media--left">
-              <%= image_tag "content/gallery-thumbnail-1.jpg", size: "92x71", alt: "", id: "image_tag-logo" %>
-            </div>
-          </li>
-        </ul>
       </div>
     </div>
 

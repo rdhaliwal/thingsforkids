@@ -87,7 +87,7 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:facbook_url, :instagram_url, :listing_type, :status, :description, images: [])
+      params.require(:listing).permit(:facbook_url, :instagram_url, :listing_type, :status, :description, :logo, images: [])
     end
 
     def check_premium

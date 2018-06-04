@@ -20,6 +20,23 @@
 
   <div class="col-md-4 col-lg-6">
     <div class="col-md-12">
+      <div class="form-group ct-u-marginBottom40">
+        <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Add logo</label>
+        <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
+          <li>
+            <div class="col-sm-6 col-md-6">
+              <%= f.file_field :logo, { id: "file-logo", class: "images ct-media--content" }  %>
+            </div>
+
+            <div class="ct-media--left">
+              <%= image_tag "content/gallery-thumbnail-1.jpg", size: "92x71", alt: "", id: "image_tag-logo" %>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-12">
       <div class="form-group">
         <%= f.label :facbook_url, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
         <%= f.text_field :facbook_url, class: "form-control input-lg ct-input--border ct-u-marginBottom40" %>

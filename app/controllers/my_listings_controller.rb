@@ -7,6 +7,16 @@ class MyListingsController < ApplicationController
   end
 
   def edit
+    if @listing.basic?
+      return redirect_to my_listing_build_listing_path(@listing.id, :basic_info, type: @listing.listing_type)
+    elsif @listing.amenities?
+      return redirect_to my_listing_build_listing_path(@listing.id, :amenities, type: @listing.listing_type)
+    elsif @listing.images?
+      return redirect_to my_listing_build_listing_path(@listing.id, :images_form, type: @listing.listing_type)
+    elsif @listing.price?
+      return redirect_to my_listing_build_listing_path(@listing.id, :price, type: @listing.listing_type)
+    end
+
     params[:type] = @listing.listing_type
   end
 

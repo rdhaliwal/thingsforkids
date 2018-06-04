@@ -66,7 +66,8 @@ module ListingHelper
     "parks_playgroundsbanner.png" if listing_type_value == 6 || listing_type_value == nil
   end
 
-  def truncate_short_description description
+  def truncate_short_description listing
+    description = listing.description || listing.short_description
     description.truncate(145) if description.present?
   end
 
