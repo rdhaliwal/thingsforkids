@@ -55,7 +55,7 @@
     <div class="col-md-12">
       <div class="form-group ct-u-marginBottom40">
         <%= f.label  :activity_type, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-        <%= f.select :activity_type, Listing.activity_types.keys, { include_blank: true }, class: "ct-js-select ct-select2--light ct-select-lg chosen-select" %>
+        <%= f.select :activity_type, Listing.activity_types.keys, { include_blank: true }, class: "ct-js-select ct-select2--light ct-select-lg" %>
       </div>
     </div>
 
@@ -90,7 +90,7 @@
     <div class="col-md-4">
       <div class="form-group ct-u-marginBottom40">
         <%= f.label :state, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-        <%= f.select :state, states, { include_blank: true, selected: render_state(f.object) }, { class: "ct-js-select ct-select2--light ct-select-lg chosen-select" } %>
+        <%= f.select :state, states, { include_blank: true, selected: render_state(f.object) }, { class: "ct-js-select ct-select2--light ct-select-lg" } %>
       </div>
     </div>
 

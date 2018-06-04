@@ -5,7 +5,7 @@
       <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
         <% 8.times do |img| %>
           <li>
-            <div class="col-sm-6 col-md-8">
+            <div class="col-sm-12 col-md-12">
               <%= f.file_field :images, { name: "listing[images][]", id: "img-#{img}", class: "images ct-media--content" }  %>
             </div>
 
@@ -24,7 +24,7 @@
         <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Add logo</label>
         <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
           <li>
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-12 col-md-12">
               <%= f.file_field :logo, { id: "file-logo", class: "images ct-media--content" }  %>
             </div>
 

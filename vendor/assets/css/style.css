@@ -5613,7 +5613,7 @@ form input {
 .ct-formRegister .select2-container .select2-choice .select2-chosen,
 .ct-formContact--map .select2-container .select2-choice .select2-chosen,
 .ct-formSubmission .select2-container .select2-choice .select2-chosen {
-  width: 150px;
+  width: 100%;
 }
 .select2-drop {
   z-index: 10001;
