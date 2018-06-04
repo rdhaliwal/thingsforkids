@@ -49,6 +49,19 @@ class Listing < ApplicationRecord
     premium:  2,
   }
 
+  AMENITIES = {
+    indoors: 'indoors',
+    outdoors: 'Outdoors',
+    parties: 'Parties',
+    disability_access: 'Disability Access',
+    parking: 'Parking',
+    undercover: 'Undercover',
+    bbq: 'BBQ',
+    toilets: 'Toilets',
+    highchairs: 'Highchairs',
+    baby_change_room: 'Baby Change Room',
+  }
+
   paginates_per 6
 
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)

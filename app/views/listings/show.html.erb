@@ -181,59 +181,13 @@
                 <div class="ct-u-displayTableVertical ct-productDetails--type2 ct-u-marginBottom20">
                   <div class="ct-u-displayTableCell">
                     <ul class="list-unstyled">
-                      <li>
-                        <i class="<%= render_icon @listing, "indoors" %>"></i>
-                        <span class="text-capitalize">Indoors</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "outdoors" %>"></i>
-                        <span class="text-capitalize">Outdoors</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "parties" %>"></i>
-                        <span class="text-capitalize">Parties</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "disability_access" %>"></i>
-                        <span class="text-capitalize">Disability Access</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "parking" %>"></i>
-                        <span class="text-capitalize">parking</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "undercover" %>"></i>
-                        <span class="text-capitalize">undercover</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="ct-u-displayTableCell">
-                    <ul class="list-unstyled">
-                      <li>
-                        <i class="<%= render_icon @listing, "bbq" %>"></i>
-                        <span class="text-capitalize">BBQ</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "toilets" %>"></i>
-                        <span class="text-capitalize">toilets</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "highchairs" %>"></i>
-                        <span class="text-capitalize">Highchairs</span>
-                      </li>
-
-                      <li>
-                        <i class="<%= render_icon @listing, "baby_change_room" %>"></i>
-                        <span class="text-capitalize">Baby Change Room</span>
-                      </li>
+                      <% Listing::AMENITIES.each do |key, value| %>
+                        <% next unless @listing.send(key) %>
+                        <li>
+                          <i class="fa fa-check-circle"></i>
+                          <span class="text-capitalize"><%= value %></span>
+                        </li>
+                      <% end %>
                     </ul>
                   </div>
                 </div>
