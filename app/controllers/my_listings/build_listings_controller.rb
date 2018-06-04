@@ -30,7 +30,7 @@ class MyListings::BuildListingsController < ApplicationController
 
     def set_steps
       if params[:type].blank? && params[:listing].blank?
-        return redirect_to pricing_my_listings_path, alert: "Please select a package."
+        return redirect_to pricing_path, alert: "Please select a package."
       elsif params[:type] == "free"
         self.steps = [:basic_info, :amenities]
       elsif params[:type] == "premium"
