@@ -4,11 +4,11 @@ class UserMailer < ApplicationMailer
     @listing = @user.listings.first
     @inviter = AdminUser.find(inviter_id)
     @token = invitation_token
-    mail(to: @user.email, subject: "New invitation")
+    mail(to: @user.email, subject: "Check out your listing on things for kids! Want to add more?")
   end
 
   def welcome user_id
     @user = User.find(user_id)
-    mail(to: @user.email, subject: "You have successfully registered with Things For Kids")
+    mail(to: @user.email, subject: "Welcome to things for kids!")
   end
 end
