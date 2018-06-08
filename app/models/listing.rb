@@ -3,6 +3,8 @@ class Listing < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
+  searchkick
+
   validates :status, presence: true, if: :created_by_admin?
   validates :email, :business_name, :manager_name, :manager_job_title, :website,
             :activity_type, :phone, :address, :city, :state, :postcode, :min_age, :max_age, presence: :true, if: [:active_or_basic_info?, :validate?]
@@ -25,6 +27,7 @@ class Listing < ApplicationRecord
   after_validation :validate_address, if: [:active_or_basic_info?, :validate?]
 
   before_save :sanitize_array_input
+  after_create :reindex_listings
 
   delegate :email, to: :user, prefix: true
 
@@ -66,6 +69,10 @@ class Listing < ApplicationRecord
   paginates_per 6
 
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
+
+  def search_data
+    attributes
+  end
 
   def full_address
     "#{address}, #{city}, #{state} #{postcode}"
@@ -118,5 +125,9 @@ class Listing < ApplicationRecord
   def short_description_length
     number_of_words = self.short_description.split(' ').length
     errors.add(:short_description, "Short description must be under 20 words") if number_of_words > 20
+  end
+
+  def reindex_listings
+    Listing.reindex
   end
 end
