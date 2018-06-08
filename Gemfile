@@ -31,6 +31,7 @@ gem "mini_magick"
 gem 'gibbon'
 gem 'premailer-rails'
 gem 'geocomplete_rails'
+gem 'searchkick'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
