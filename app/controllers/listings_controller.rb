@@ -7,19 +7,12 @@ class ListingsController < ApplicationController
 
   def index
     session[:postcode] = session[:postcode] || params[:postcode]
-    listings  = params[:days_available].present? ? Listing.match_days(params[:days_available]) : Listing
-    listings  = listings.match_age(params[:age][:min_age], params[:age][:max_age]) if params[:age].present?
-    @q        = listings.ransack(params[:q])
-    @listings = @q.result(distinct: true).active_listings.sort_listings
-
+    @q        = Listing.ransack()
     if session[:postcode].present?
       session[:lat], session[:lng] = ConvertPostcode.call(session[:postcode]) if session[:lat].blank?
-      if session[:lat].present? && session[:lng].present?
-        @listings = @listings.match_postcode(session[:lat], session[:lng])
-      end
     end
 
-    @listings = @listings.page(params[:page]).per(9)
+    @listings = SearchListings.call(params, session)
 
     respond_to do |format|
       format.html

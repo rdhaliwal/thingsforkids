@@ -39,7 +39,7 @@
       <% Listing.activity_types.each do |key, value| %>
         <div class="row mt-4">
           <div class="ct-u-displayTableCell">
-            <%= f.check_box "activity_type_in", { class: "activity-check col-md-1 col-xs-1 col-sm-1", include_hidden: false, multiple: true }, value %>
+            <%= f.check_box "activity_type_in", { class: "activity-check col-md-1 col-xs-1 col-sm-1", include_hidden: false, multiple: true }, key %>
             <label>
               <i class="<%= icon_class value %>" aria-hidden="true"></i>
               <span><%= key %></span>

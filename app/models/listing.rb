@@ -3,7 +3,7 @@ class Listing < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
-  searchkick
+  searchkick locations: [:location]
 
   validates :status, presence: true, if: :created_by_admin?
   validates :email, :business_name, :manager_name, :manager_job_title, :website,
@@ -71,7 +71,9 @@ class Listing < ApplicationRecord
   WEEK_DAYS = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
 
   def search_data
-    attributes
+    attributes.merge(
+      location: { lat: latitude, lon: longitude }
+    )
   end
 
   def full_address

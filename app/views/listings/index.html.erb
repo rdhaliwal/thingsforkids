@@ -58,7 +58,4 @@
   <% else %>
     SearchFilters.disable_content(true);
   <% end %>
-  Map.init()
-  Map.listings(<%= "#{@listings.ids}" %>, true);
-  Map.set_center('<%= session[:lat] %>', '<%= session[:lng] %>');
 <% end %>

@@ -49,9 +49,9 @@
 
   Map.set_center = (lat, lng) ->
     if lat != ""
-      window.gmap.setCenter({ lat: parseFloat(lat), lng: parseFloat(lng) })
+      map.setCenter({ lat: parseFloat(lat), lng: parseFloat(lng) })
     else
-      window.gmap.setCenter({ lat: -37.8152065, lng: 144.963937 }) #set Melbourne as default
+      map.setCenter({ lat: -37.8152065, lng: 144.963937 }) #set Melbourne as default
 
   add_marker = (map, bounds, geocoder, address, markers, id, activity_type) ->
     icon = set_marker_icon_type(activity_type)
@@ -79,15 +79,15 @@
         continue
       marker.setMap(null)
 
-  highlight_listing = ->
+  Map.highlight_listing = ->
     $('#listings').on 'mouseenter', '.list-container', ->
-        markers = window.markers
+        markers = map.markers
         for marker in markers
           if marker.id == parseInt this.href.split('/')[4]
             marker.setAnimation 1
 
     $('#listings').on 'mouseleave', '.list-container', ->
-        markers = window.markers
+        markers = map.markers
         for marker in markers
           if marker.id == parseInt this.href.split('/')[4]
             marker.setAnimation(null)
@@ -113,7 +113,7 @@
               name: 'q[id_in][]').appendTo '.form'
         $('.form').submit()
 
-  set_marker_icon_type = (activity_type) ->
+  Map.set_marker_icon_type = (activity_type) ->
     icon =
       scaledSize: new google.maps.Size(35, 35),
       origin: new google.maps.Point(0,0),

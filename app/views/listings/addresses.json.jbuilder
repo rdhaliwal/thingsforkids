@@ -3,4 +3,4 @@ json.listings @listings.each do |listing|
   json.address listing.full_address
   json.activity_type listing.activity_type
 end
-json.ids @listings.ids
+json.ids @listings.pluck(:id)
