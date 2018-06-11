@@ -23,15 +23,13 @@ class SearchListings
 
     def conditions
       conditions = {}
-      conditions[:location]     = near_condition if session[:postcode].present?
-      conditions[:location]     = frame_coordinates if params[:l].present?
-      if params[:q].present?
-        conditions[:activity_type] = params[:q][:activity_type_in] if params[:q][:activity_type_in].present?
-        conditions[:days_available] = days_condition if params[:q][:days_available].present?
-      end
-      conditions[:status] = :active
-      conditions[:min_age] = min_age if params[:age].present?
-      conditions[:max_age] = max_age if params[:age].present?
+      conditions[:location]       = near_condition if session[:postcode].present?
+      conditions[:location]       = frame_coordinates if params[:l].present?
+      conditions[:activity_type]  = params[:activity_type] if params[:activity_type].present?
+      conditions[:days_available] = days_condition if params[:days_available].present?
+      conditions[:status]         = :active
+      conditions[:min_age]        = min_age if params[:age].present?
+      conditions[:max_age]        = max_age if params[:age].present?
       conditions
     end
 
@@ -61,7 +59,7 @@ class SearchListings
 
     def days_condition
       {
-        all: params[:q][:days_available]
+        all: params[:days_available]
       }
     end
 

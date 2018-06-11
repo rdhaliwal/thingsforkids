@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
 
   def index
     session[:postcode] = session[:postcode] || params[:postcode]
-    @q        = Listing.ransack()
+
     if session[:postcode].present?
       session[:lat], session[:lng] = ConvertPostcode.call(session[:postcode]) if session[:lat].blank?
     end
