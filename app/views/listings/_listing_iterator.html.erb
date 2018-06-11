@@ -1,4 +1,4 @@
-<%= tag.div id: "listings-list", data: { listings: listings.to_json(methods: [:full_address]), l: params[:l] } %>
+<%= listings_list(listings) %>
 
 <% listings.each_with_index do |listing, index| %>
   <% if index % 3 == 0 %>

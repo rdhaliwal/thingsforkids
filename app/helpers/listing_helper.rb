@@ -112,4 +112,8 @@ module ListingHelper
     return unless listing.errors.any?
     "<div class='invalid-feedback'>No day is selected in available days</div>".html_safe if listing.errors[:days_available].present?
   end
+
+  def listings_list(listings)
+    tag.div class: "listings-list", data: { listings: listings.to_json(methods: [:full_address]), l: params[:l], ids: listings.pluck(:id) }
+  end
 end

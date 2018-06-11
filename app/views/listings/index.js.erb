@@ -20,4 +20,4 @@ SearchFilters.load_listings();
 <% if params[:postcode] %>
   Map.set_center('<%= session[:lat] %>', '<%= session[:lng] %>');
 <% end %>
-addMarkers();
+Map.addMarkers();

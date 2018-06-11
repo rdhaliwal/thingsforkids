@@ -1,45 +1,59 @@
 (->
   window.Map or (window.Map = {})
+
   Map.init = ->
-    mapOptions = { zoom: 11, scrollwheel: false }
+    if $('#map').length
+      map = window.map = new GMaps(
+        div: '#map'
+        lat: -37.8152065
+        lng: 144.963937)
 
-    window.bounds = new google.maps.LatLngBounds()
-    window.geocoder = new google.maps.Geocoder()
-    window.gmap = new google.maps.Map(document.getElementById('map'), mapOptions)
-    window.gmap.setTilt(45)
-    window.markers = []
+      Map.addMarkers()
+      Map.highlight_listing()
 
-    boundsListener = google.maps.event.addListener window.gmap, 'bounds_changed', ->
-      @setZoom 13
-      google.maps.event.removeListener boundsListener
+      map.addListener 'dragend', ->
+        bounds = map.getBounds()
+        location = "#{bounds.getSouthWest().toUrlValue()}, #{bounds.getNorthEast().toUrlValue()}"
+        $('<input>').attr(
+          type: 'hidden'
+          value: location
+          name: 'l').appendTo '.form'
+        $('.form').submit()
 
-    window.dragListener = google.maps.event.addListener window.gmap, 'dragend', ->
-      if this.center
-        listings_search()
+  Map.setSafeBounds = (element) ->
+    l = element.dataset.l
+    if l
+      latlngs = l.split(',')
+      southWest = new (google.maps.LatLng)(latlngs[0], latlngs[1])
+      northEast = new (google.maps.LatLng)(latlngs[2], latlngs[3])
+      bounds = new (google.maps.LatLngBounds)(southWest, northEast)
+      zoom = map.getZoom()
+      map.fitBounds bounds, 0
+      map.setZoom zoom
+    else
+      map.fitZoom()
+    return
 
-    window.zoomListener = google.maps.event.addListener window.gmap, 'zoom_changed', ->
-      if this.center
-        listings_search()
+  Map.addMarkers = ->
+    listings = $('.listings-list').map(-> JSON.parse @dataset.listings).get()
+    ids = $('.listings-list').map(-> JSON.parse @dataset.ids).get()
 
-  Map.listings = (listings, clear_marker) ->
-    bounds = window.bounds
-    geocoder = window.geocoder
-    map = window.gmap
+    remove_marker_list = []
+    for marker in map.markers
+      if marker && ids.includes(marker.id)
+        continue
+      remove_marker_list.push marker
+    map.removeMarkers(remove_marker_list)
 
-    $.ajax
-      type: 'GET'
-      url: "/listings/addresses?listings[]=#{listings}",
-      dataType: 'json'
-      success: (data) ->
-        if clear_marker
-          clear_markers(window.markers, data.ids)
-
-        if data.listings
-          for listing in data.listings
-            add_marker(map, bounds, geocoder, listing.address, markers, listing.id, listing.activity_type)
-          window.markers = markers
-
-    highlight_listing()
+    for listing in listings
+      if listing.latitude and listing.longitude
+        marker = map.addMarker(
+          id: listing.id
+          lat: listing.latitude
+          lng: listing.longitude
+          title: listing.address
+          icon: Map.set_marker_icon_type(listing.activity_type))
+    Map.setSafeBounds document.querySelector('.listings-list')
 
   Map.initCompanyMap = (address) ->
     Map.init()
@@ -53,32 +67,6 @@
     else
       map.setCenter({ lat: -37.8152065, lng: 144.963937 }) #set Melbourne as default
 
-  add_marker = (map, bounds, geocoder, address, markers, id, activity_type) ->
-    icon = set_marker_icon_type(activity_type)
-    geocoder.geocode { 'address': address }, (results, status) ->
-      if status == 'OK'
-        marker = new (google.maps.Marker)(
-          map: map
-          position: results[0].geometry.location
-          id: id
-          title: address
-          icon: icon
-        )
-
-        bounds.extend(marker.position)
-        markers.push marker
-        if !map.center && !$('#map-center').val()
-          map.setCenter(marker.getPosition())
-        else if !map.center
-          lat_lng = $('#map-center').val().split(',', 2)
-          map.setCenter(new google.maps.LatLng(parseFloat(lat_lng[0]), parseFloat(lat_lng[1])))
-
-  clear_markers = (markers, ids) ->
-    for marker in markers
-      if ids.includes(marker.id)
-        continue
-      marker.setMap(null)
-
   Map.highlight_listing = ->
     $('#listings').on 'mouseenter', '.list-container', ->
         markers = map.markers
@@ -91,27 +79,6 @@
         for marker in markers
           if marker.id == parseInt this.href.split('/')[4]
             marker.setAnimation(null)
-
-  listings_search = ->
-    lat = window.gmap.getCenter().lat()
-    lng = window.gmap.getCenter().lng()
-    $('#loader').show()
-
-    $.ajax
-      type: 'GET'
-      url: "/listings/addresses?lat=#{lat}&lng=#{lng}&zoom=#{window.gmap.getZoom()}",
-      dataType: 'json'
-      success: (data) ->
-        $("input[name='q[id_in][]'").remove()
-        $('#map-center').val("#{lat},#{lng}")
-
-        if data.ids.length != 0
-          for id in data.ids
-            $('<input>').attr(
-              type: 'hidden'
-              value: id
-              name: 'q[id_in][]').appendTo '.form'
-        $('.form').submit()
 
   Map.set_marker_icon_type = (activity_type) ->
     icon =

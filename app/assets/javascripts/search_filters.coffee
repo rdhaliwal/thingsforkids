@@ -16,7 +16,6 @@
 
   SearchFilters.load_listings = ->
     previous_value = 0
-    keys = {37: 1, 38: 1, 39: 1, 40: 1}
     $(window).data('ajaxready', true);
     $('#listings').scroll ->
       scroll_listings()
@@ -50,6 +49,7 @@
     return e.returnValue = false
 
   preventDefaultForScrollKeys = (e) ->
+    keys = {37: 1, 38: 1, 39: 1, 40: 1}
     if keys[e.keyCode]
       preventDefault e
       return false
