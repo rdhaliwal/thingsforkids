@@ -7,10 +7,7 @@ Rails.application.routes.draw do
 
   root 'listings#index'
 
-  resources :listings, only: [:index, :show, :edit, :update, :create] do
-    get 'addresses', on: :collection
-    post 'draw', on: :collection
-  end
+  resources :listings, only: [:index, :show, :edit, :update, :create]
 
   resources :users, only: [:edit, :update]
 

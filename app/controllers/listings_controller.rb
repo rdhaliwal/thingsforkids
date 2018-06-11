@@ -1,6 +1,5 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show]
-  before_action :set_listings, only: [:addresses]
   before_action :authenticate_user!, only: [:edit, :update, :create]
   before_action :set_user_listing, only: [:edit, :update]
   before_action :check_premium, only: [:edit]
@@ -49,29 +48,10 @@ class ListingsController < ApplicationController
     end
   end
 
-  def addresses
-    respond_to do |format|
-      format.json
-    end
-  end
-
-  def draw
-    @listings = Listing.where(id: params[:listings].first.split(','))
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
   private
 
     def set_listing
       @listing = Listing.find(params[:id])
-    end
-
-    def set_listings
-      return @listings = Listing.near([params[:lat], params[:lng]], 10) if params[:lat] && params[:lng]
-      @listings = Listing.where(id: params[:listings].first.split(','))
     end
 
     def set_user_listing
