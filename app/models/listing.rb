@@ -16,12 +16,6 @@ class Listing < ApplicationRecord
   validate  :description_length, if: [:active_or_basic_info?, :validate?, :premium?]
   validate  :short_description_length,  if: [:active_or_basic_info?, :validate?, :free?]
 
-  scope :match_postcode, -> (lat, lng) { near([lat,lng], 99999, order: :postcode) }
-  scope :match_days, -> (days) { where('days_available && array[?]', days) }
-  scope :match_age, -> (min_age, max_age) { where('min_age <= ? AND max_age >= ?', max_age, min_age) }
-  scope :active_listings, -> { where(status: :active) }
-  scope :sort_listings, -> { order(listing_type: :desc)}
-
   geocoded_by :full_address
   after_validation :geocode, if: -> (obj){ obj.address.present? and obj.address_changed? }
   after_validation :validate_address, if: [:active_or_basic_info?, :validate?]
