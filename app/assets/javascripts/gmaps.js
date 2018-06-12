@@ -553,6 +553,10 @@ var GMaps = (function(global) {
           markers_length = this.markers.length,
           i;
 
+      if (markers_length == 0) {
+        return this.setZoom(9);
+      }
+
       for (i = 0; i < markers_length; i++) {
         if(typeof(this.markers[i].visible) === 'boolean' && this.markers[i].visible) {
           latLngs.push(this.markers[i].getPosition());
