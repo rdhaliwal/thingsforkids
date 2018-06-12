@@ -1,4 +1,6 @@
 <div id="listing-header">
+  <%= listing_json(@listing) %>
+
   <header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax" data-bg-image=<%= asset_url(set_banner(get_activity_type_value(@listing.activity_type))) %> data-bg-image-mobile=<%= asset_url(set_banner(get_activity_type_value(@listing.activity_type))) %>>
     <div class="ct-mediaSection-inner">
       <div class="container">
@@ -271,5 +273,5 @@
 
 <% content_for :js_init do %>
   Map.init()
-  Map.listings(<%= "#{@listing.id}" %>, true);
+  Map.set_zoom(12)
 <% end %>

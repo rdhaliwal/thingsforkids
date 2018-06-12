@@ -67,6 +67,9 @@
     else
       map.setCenter({ lat: -37.8152065, lng: 144.963937 }) #set Melbourne as default
 
+  Map.set_zoom = (zoom) ->
+    map.setZoom(zoom)
+
   Map.highlight_listing = ->
     $('#listings').on 'mouseenter', '.list-container', ->
         markers = map.markers

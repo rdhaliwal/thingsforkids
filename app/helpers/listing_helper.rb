@@ -116,4 +116,8 @@ module ListingHelper
   def listings_list(listings)
     tag.div class: "listings-list", data: { listings: listings.to_json(methods: [:full_address]), l: params[:l], ids: listings.pluck(:id) }
   end
+
+  def listing_json(listing)
+    tag.div class: "listings-list", data: { listings: listing.to_json(methods: [:full_address]), l: params[:l], ids: listing.id }
+  end
 end
