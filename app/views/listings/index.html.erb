@@ -50,7 +50,7 @@
 </div>
 
 <% content_for :js_init do %>
-  $('#loader').hide()
+  $('#loader').hide();
   SearchFilters.fetch_listings();
   SearchFilters.load_listings();
   <% if session[:postcode].present? %>
@@ -58,5 +58,5 @@
   <% else %>
     SearchFilters.disable_content(true);
   <% end %>
-  Map.init()
+  Map.init();
 <% end %>

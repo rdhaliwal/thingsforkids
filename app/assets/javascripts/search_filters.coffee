@@ -6,7 +6,7 @@
       $('#loader').show()
       $('.form').submit()
 
-    $('#filters').on 'focusout', '#q_postcode_eq', ->
+    $('#filters').on 'focusout', '#postcode_search', ->
       $('#loader').show()
       $('.form').submit()
 

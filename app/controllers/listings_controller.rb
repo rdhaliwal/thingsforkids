@@ -5,10 +5,9 @@ class ListingsController < ApplicationController
   before_action :check_premium, only: [:edit]
 
   def index
-    session[:postcode] = session[:postcode] || params[:postcode]
-
-    if session[:postcode].present?
-      session[:lat], session[:lng] = ConvertPostcode.call(session[:postcode]) if session[:lat].blank?
+    if params[:postcode].present? && session[:postcode] != params[:postcode]
+      session[:postcode] = params[:postcode]
+      session[:lat], session[:lng] = ConvertPostcode.call(session[:postcode])
     end
 
     @listings = SearchListings.call(params, session)
