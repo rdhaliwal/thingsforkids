@@ -24,6 +24,11 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, false  # Change to true if using ActiveRecord
 
+set :production_db, 'thingsforkids_production'
+set :development_db, 'thingsforkids_development'
+set :remote_dump_base, '/tmp/dumps'
+set :local_dump_base, '/tmp/dumps'
+
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
@@ -33,7 +38,8 @@ set :puma_init_active_record, false  # Change to true if using ActiveRecord
 
 ## Linked Files & Directories (Default None):
 # set :linked_files, %w{config/database.yml}
-# set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :bundle_binstubs, nil
+set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
