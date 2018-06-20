@@ -83,8 +83,8 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  config.action_mailer.default_url_options = { host: ENV['BASE_URL'] }
-  config.action_mailer.asset_host = ENV['BASE_URL']
+  config.action_mailer.default_url_options = { host: Rails.application.credentials.base_url }
+  config.action_mailer.asset_host = Rails.application.credentials.base_url
 
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
@@ -94,9 +94,9 @@ Rails.application.configure do
   end
 
   ActionMailer::Base.smtp_settings = {
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    domain: ENV['BASE_URL'],
+    user_name: Rails.application.credentials.sendgrid_username,
+    password: Rails.application.credentials.sendgrid_password,
+    domain: Rails.application.credentials.base_url,
     address: 'smtp.sendgrid.net',
     port: 587,
     authentication: :plain,

@@ -1,10 +1,10 @@
 Rails.configuration.stripe = {
-  publishable_key: ENV['STRIPE_PUBLISHABLE_KEY'],
-  secret_key: ENV['STRIPE_SECRET_KEY']
+  publishable_key: Rails.application.credentials.stripe_publishable_key,
+  secret_key: Rails.application.credentials.stripe_secret_key
 }
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
-STRIPE_PUBLIC_KEY = ENV['STRIPE_PUBLISHABLE_KEY']
-StripeEvent.signing_secret = ENV['STRIPE_SIGNING_SECRET']
+STRIPE_PUBLIC_KEY = Rails.application.credentials.stripe_publishable_key
+StripeEvent.signing_secret = Rails.application.credentials.stripe_signing_secret
 
 StripeEvent.configure do |events|
   events.subscribe 'invoice.payment_succeeded' do |event|
