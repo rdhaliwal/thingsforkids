@@ -7,6 +7,7 @@ class ListingsController < ApplicationController
   def index
     if params[:postcode].present? && session[:postcode] != params[:postcode]
       session[:postcode] = params[:postcode]
+      params[:l] = ""
       session[:lat], session[:lng] = ConvertPostcode.call(session[:postcode])
     end
 
