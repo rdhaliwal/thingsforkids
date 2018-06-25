@@ -16,7 +16,7 @@ class MyListings::BuildListingsController < ApplicationController
         result, card = AddCreditCard.call!(current_user, params[:token])
         CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
         if @listing.subscription_id.present?
-          ListingsMailer.premium_listing(listing.id).deliver_later
+          ListingsMailer.premium_listing(@listing.id).deliver_later
         end
       end
       if @listing.valid? && step == steps.last

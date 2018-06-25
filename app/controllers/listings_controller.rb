@@ -38,7 +38,7 @@ class ListingsController < ApplicationController
           result, card = AddCreditCard.call!(current_user, params[:token])
           CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
           if @listing.subscription_id.present?
-            ListingsMailer.upgraded_to_premium(listing.id).deliver_later
+            ListingsMailer.upgraded_to_premium(@listing.id).deliver_later
           end
         end
         redirect_to @listing, notice: "Congratulations! You have upgraded the listing to premium."
