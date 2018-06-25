@@ -1,112 +1,115 @@
 <div id="amenities_fields" class=<%= add_class %>>
-  <div class="col-md-6 col-lg-6">
-    <div class="form-group">
-      <div class="row ct-u-marginBottom40">
-        <div class="col-md-6">
-          <%= f.label :opens_at, class: "ct-fw-600 text-uppercase ct-u-marginBottom10"%>
-          <%= f.text_field :opens_at, class: "form-control input-lg ct-input--border timepicker", placeholder: "Opens at" %>
-        </div>
-
-        <div class="col-md-6">
-          <%= f.label :closes_at, class: "ct-fw-600 text-uppercase ct-u-marginBottom10"%>
-          <%= f.text_field :closes_at, class: "form-control input-lg ct-input--border timepicker", placeholder: "Closes at" %>
-        </div>
-      </div>
-      <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Listing summary</label><br>
-      <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Amenites <span>Please check what applies</span></label>
-      <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
-        <div class="ct-u-displayTableCell">
-          <div class="ct-checbox--custom">
-            <%= f.check_box :indoors, id: "ct-checbox--custom" %>
-            <label for="ct-checbox--custom"></label>
-            <label for="ct-checbox--custom" class="ct-checkbox-span"> Indoors</label>
+  <% if params[:type] != "free" %>
+    <div class="col-md-6 col-lg-6">
+      <div class="form-group">
+        <div class="row ct-u-marginBottom40">
+          <div class="col-md-6">
+            <%= f.label :opens_at, class: "ct-fw-600 text-uppercase ct-u-marginBottom10"%>
+            <%= f.text_field :opens_at, class: "form-control input-lg ct-input--border timepicker", placeholder: "Opens at" %>
           </div>
 
-          <div class="ct-checbox--custom">
-            <%= f.check_box :outdoors, id: "ct-checbox--custom2" %>
-            <label for="ct-checbox--custom2"></label>
-            <label for="ct-checbox--custom2" class="ct-checkbox-span"> Outdoors</label>
-          </div>
-
-          <div class="ct-checbox--custom">
-            <%= f.check_box :disability_access, id: "ct-checbox--custom3" %>
-            <label for="ct-checbox--custom3"></label>
-            <label for="ct-checbox--custom3" class="ct-checkbox-span"> Disability Access</label>
-          </div>
-
-          <div class="ct-checbox--custom">
-            <%= f.check_box :parking, id: "ct-checbox--custom4" %>
-            <label for="ct-checbox--custom4"></label>
-            <label for="ct-checbox--custom4" class="ct-checkbox-span"> Parking</label>
+          <div class="col-md-6">
+            <%= f.label :closes_at, class: "ct-fw-600 text-uppercase ct-u-marginBottom10"%>
+            <%= f.text_field :closes_at, class: "form-control input-lg ct-input--border timepicker", placeholder: "Closes at" %>
           </div>
         </div>
 
-        <div class="ct-u-displayTableCell ct-radio--items">
-          <div class="ct-checbox--custom">
-            <%= f.check_box :free_trial, id: "ct-checbox--custom5" %>
-            <label for="ct-checbox--custom5"></label>
-            <label for="ct-checbox--custom5" class="ct-checkbox-span"> Free Trial</label>
+        <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Listing summary</label><br>
+        <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Amenites <span>Please check what applies</span></label>
+        <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
+          <div class="ct-u-displayTableCell">
+            <div class="ct-checbox--custom">
+              <%= f.check_box :indoors, id: "ct-checbox--custom" %>
+              <label for="ct-checbox--custom"></label>
+              <label for="ct-checbox--custom" class="ct-checkbox-span"> Indoors</label>
+            </div>
+
+            <div class="ct-checbox--custom">
+              <%= f.check_box :outdoors, id: "ct-checbox--custom2" %>
+              <label for="ct-checbox--custom2"></label>
+              <label for="ct-checbox--custom2" class="ct-checkbox-span"> Outdoors</label>
+            </div>
+
+            <div class="ct-checbox--custom">
+              <%= f.check_box :disability_access, id: "ct-checbox--custom3" %>
+              <label for="ct-checbox--custom3"></label>
+              <label for="ct-checbox--custom3" class="ct-checkbox-span"> Disability Access</label>
+            </div>
+
+            <div class="ct-checbox--custom">
+              <%= f.check_box :parking, id: "ct-checbox--custom4" %>
+              <label for="ct-checbox--custom4"></label>
+              <label for="ct-checbox--custom4" class="ct-checkbox-span"> Parking</label>
+            </div>
           </div>
 
-          <div class="ct-checbox--custom">
-            <%= f.check_box :undercover, id: "ct-checbox--custom6" %>
-            <label for="ct-checbox--custom6"></label>
-            <label for="ct-checbox--custom6" class="ct-checkbox-span"> Undercover</label>
+          <div class="ct-u-displayTableCell ct-radio--items">
+            <div class="ct-checbox--custom">
+              <%= f.check_box :free_trial, id: "ct-checbox--custom5" %>
+              <label for="ct-checbox--custom5"></label>
+              <label for="ct-checbox--custom5" class="ct-checkbox-span"> Free Trial</label>
+            </div>
+
+            <div class="ct-checbox--custom">
+              <%= f.check_box :undercover, id: "ct-checbox--custom6" %>
+              <label for="ct-checbox--custom6"></label>
+              <label for="ct-checbox--custom6" class="ct-checkbox-span"> Undercover</label>
+            </div>
+
+            <div class="ct-checbox--custom">
+              <%= f.check_box :bbq, id: "ct-checbox--custom7" %>
+              <label for="ct-checbox--custom7"></label>
+              <label for="ct-checbox--custom7" class="ct-checkbox-span"> BBQ</label>
+            </div>
+
+            <div class="ct-checbox--custom">
+              <%= f.check_box :toilets, id: "ct-checbox--custom8" %>
+              <label for="ct-checbox--custom8"></label>
+              <label for="ct-checbox--custom8" class="ct-checkbox-span"> Toilets</label>
+            </div>
           </div>
 
-          <div class="ct-checbox--custom">
-            <%= f.check_box :bbq, id: "ct-checbox--custom7" %>
-            <label for="ct-checbox--custom7"></label>
-            <label for="ct-checbox--custom7" class="ct-checkbox-span"> BBQ</label>
-          </div>
+          <div class="ct-u-displayTableCell ct-radio--items">
+            <div class="ct-checbox--custom">
+              <%= f.check_box :highchairs, id: "ct-checbox--custom9" %>
+              <label for="ct-checbox--custom9"></label>
+              <label for="ct-checbox--custom9" class="ct-checkbox-span"> Highchairs</label>
+            </div>
 
-          <div class="ct-checbox--custom">
-            <%= f.check_box :toilets, id: "ct-checbox--custom8" %>
-            <label for="ct-checbox--custom8"></label>
-            <label for="ct-checbox--custom8" class="ct-checkbox-span"> Toilets</label>
-          </div>
-        </div>
+            <div class="ct-checbox--custom">
+              <%= f.check_box :baby_change_room, id: "ct-checbox--custom10" %>
+              <label for="ct-checbox--custom10"></label>
+              <label for="ct-checbox--custom10" class="ct-checkbox-span"> Baby Change Room</label>
+            </div>
 
-        <div class="ct-u-displayTableCell ct-radio--items">
-          <div class="ct-checbox--custom">
-            <%= f.check_box :highchairs, id: "ct-checbox--custom9" %>
-            <label for="ct-checbox--custom9"></label>
-            <label for="ct-checbox--custom9" class="ct-checkbox-span"> Highchairs</label>
-          </div>
-
-          <div class="ct-checbox--custom">
-            <%= f.check_box :baby_change_room, id: "ct-checbox--custom10" %>
-            <label for="ct-checbox--custom10"></label>
-            <label for="ct-checbox--custom10" class="ct-checkbox-span"> Baby Change Room</label>
-          </div>
-
-          <div class="ct-checbox--custom">
-            <%= f.check_box :parties, id: "ct-checbox--custom11" %>
-            <label for="ct-checbox--custom11"></label>
-            <label for="ct-checbox--custom11" class="ct-checkbox-span"> Parties</label>
+            <div class="ct-checbox--custom">
+              <%= f.check_box :parties, id: "ct-checbox--custom11" %>
+              <label for="ct-checbox--custom11"></label>
+              <label for="ct-checbox--custom11" class="ct-checkbox-span"> Parties</label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
-  <div class="col-md-6 col-lg-6">
-    <div class="row">
-      <div class="form-group">
-        <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Available days <span>Please check what applies</span></label>
-        <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
-          <div class="ct-u-displayTableCell">
-            <% Listing::WEEK_DAYS.each do |day| %>
-              <div class="ct-checbox--custom">
-                <%= check_box_tag "listing[days_available][]", day, @listing.days_available.include?(day), { id: "#{day}" } %>
-                <label for="<%= day %>"></label>
-                <label for="<%= day %>" class="ct-checkbox-span"><%= day %></label>
-              </div>
-            <% end %>
-            <%= render_day_error_message(f.object) %>
+    <div class="col-md-6 col-lg-6">
+      <div class="row">
+        <div class="form-group">
+          <label class="ct-fw-600 text-uppercase ct-u-marginBottom20">Available days <span>Please check what applies</span></label>
+          <div class="ct-u-displayTable ct-radio--items ct-u-marginBottom40">
+            <div class="ct-u-displayTableCell">
+              <% Listing::WEEK_DAYS.each do |day| %>
+                <div class="ct-checbox--custom">
+                  <%= check_box_tag "listing[days_available][]", day, @listing.days_available.include?(day), { id: "#{day}" } %>
+                  <label for="<%= day %>"></label>
+                  <label for="<%= day %>" class="ct-checkbox-span"><%= day %></label>
+                </div>
+              <% end %>
+              <%= render_day_error_message(f.object) %>
+            </div>
           </div>
         </div>
-      </div>
 
       <% unless upgrade_action? %>
         <div class="ct-container--Big">

@@ -2,7 +2,7 @@
   <div class="ct-mediaSection-inner">
     <div class="container">
       <div class="ct-steps--submission center-block ct-u-marginBottom20">
-        <% unless  params[:type] == "free" %>
+        <% unless params[:type] == "free" %>
           <div class="ct-steps--item">
             <div class="ct-steps--counter ct-steps--active" id="step1-counter">
               <span>1</span>
@@ -30,7 +30,6 @@
       </div>
 
       <div class="ct-u-displayTable ct-steps--title text-center">
-
         <% if params[:type] == "free" %>
           <div class="ct-u-displayTableCell">
             <h2>Listing Details</h2>
@@ -39,15 +38,12 @@
           <div class="ct-u-displayTableCell">
             <span>Title</span>
           </div>
-
           <div class="ct-u-displayTableCell" >
-            <span>Price & Amentities</span>
+            <span>Amentities</span>
           </div>
-
           <div class="ct-u-displayTableCell">
             <span>Images</span>
           </div>
-
           <div class="ct-u-displayTableCell">
             <span>Done!</span>
           </div>
@@ -56,6 +52,7 @@
     </div>
   </div>
 </header>
+
 <section class="ct-u-paddingTop50 ct-u-paddingBottom100">
   <div class="container">
     <%= form_for @listing, url: my_listings_path, html: { role: "form", class: "ct-formSubmission", id: listing_form_id(params[:type]) } do |f| %>

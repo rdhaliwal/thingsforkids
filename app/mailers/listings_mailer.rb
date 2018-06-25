@@ -8,4 +8,9 @@ class ListingsMailer < ApplicationMailer
     @listing = Listing.find(listing_id)
     mail(to: @listing.email, subject: "Thank you for creating your listing on things for kids.")
   end
+
+  def upgraded_to_premium(listing_id)
+    @listing = Listing.find(listing_id)
+    mail(to: @listing.email, subject: "Thank you for upgrading your listing on things for kids.")
+  end
 end
