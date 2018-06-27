@@ -65,6 +65,7 @@ class MyListings::BuildListingsController < ApplicationController
       when :price
         status = 'price'
       end
+      params[:listing] = {} if params[:type] == 'free' && params[:listing].blank? && status == 'amenities'
       params[:listing][:status] = step == steps.last ? 'active' : status
     end
 
