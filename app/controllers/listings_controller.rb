@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
     if params[:postcode].present? && session[:postcode] != params[:postcode]
       session[:postcode] = params[:postcode]
       params[:l] = ""
-      session[:lat], session[:lng] = ConvertPostcode.call(session[:postcode])
+      set_coordinates
     end
 
     @listings = SearchListings.call(params, session)
@@ -71,5 +71,10 @@ class ListingsController < ApplicationController
 
     def check_premium
       redirect_to @listing, alert: "Listing has already been upgraded." if @listing.premium?
+    end
+
+    def set_coordinates
+      postcode = Postcode.find_by(code: session[:postcode]) || Postcode.find_by(code: 3000)
+      session[:lat], session[:lng] = [postcode.latitude, postcode.longitude]
     end
 end
