@@ -50,7 +50,7 @@
                   <%= link_to listing do %>
                     <div class="ct-main-content">
                       <div class="ct-imageBox list-height">
-                        <%= render_logo listing.logo %>
+                        <%= render_logo listing.logo if listing.premium? %>
                       </div>
 
                       <div class="ct-main-text">

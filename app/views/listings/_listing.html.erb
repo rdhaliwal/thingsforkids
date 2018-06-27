@@ -3,7 +3,7 @@
     <%= link_to listing, class: 'list-container' do %>
       <div class="ct-main-content list-height">
         <div class="ct-imageBox">
-          <%= render_logo listing.logo %>
+          <%= render_logo listing.logo if listing.premium? %>
           <i class="fa fa-eye"></i>
         </div>
 
