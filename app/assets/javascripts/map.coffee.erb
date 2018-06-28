@@ -8,6 +8,8 @@
         lat: -37.8152065
         lng: 144.963937)
 
+      bounds_changed = window.bounds_changed = false
+
       Map.addMarkers()
       Map.highlight_listing()
 
@@ -19,6 +21,21 @@
           value: location
           name: 'l').appendTo '.form'
         $('.form').submit()
+
+      map.addListener 'zoom_changed', ->
+        bounds = map.getBounds()
+        if window.bounds_changed
+          window.bounds_changed = false
+        else
+          location = "#{bounds.getSouthWest().toUrlValue()}, #{bounds.getNorthEast().toUrlValue()}"
+          $('<input>').attr(
+            type: 'hidden'
+            value: location
+            name: 'l').appendTo '.form'
+          window.bounds_changed = true
+          $('.form').submit()
+
+      window.bounds_changed = true
       map.setZoom 12
 
   Map.setSafeBounds = (element) ->
@@ -29,10 +46,13 @@
       northEast = new (google.maps.LatLng)(latlngs[2], latlngs[3])
       bounds = new (google.maps.LatLngBounds)(southWest, northEast)
       zoom = map.getZoom()
+      window.bounds_changed = true
       map.fitBounds bounds, 0
+      window.bounds_changed = true
       map.setZoom zoom
     else
       map.fitZoom()
+      window.bounds_changed = true
     return
 
   Map.addMarkers = ->
