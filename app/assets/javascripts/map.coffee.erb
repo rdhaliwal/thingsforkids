@@ -38,6 +38,16 @@
       window.bounds_changed = true
       map.setZoom 12
 
+  Map.showPageMap = (coordinates) ->
+    if $('#map').length
+      map = window.map = new GMaps(
+        div: '#map'
+        lat: coordinates[0]
+        lng: coordinates[1])
+
+      Map.addMarkers()
+      map.setZoom 12
+
   Map.setSafeBounds = (element) ->
     l = element.dataset.l
     if l
