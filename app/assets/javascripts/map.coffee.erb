@@ -9,9 +9,24 @@
         lng: 144.963937)
 
       bounds_changed = window.bounds_changed = false
+      initmap = window.initmap = true
 
       Map.addMarkers()
       Map.highlight_listing()
+
+      map.addListener 'bounds_changed', ->
+        if window.initmap
+          bounds = map.getBounds()
+          location = "#{bounds.getSouthWest().toUrlValue()}, #{bounds.getNorthEast().toUrlValue()}"
+          latlngs = location.split(',')
+          southWest = new (google.maps.LatLng)(latlngs[0], latlngs[1])
+          northEast = new (google.maps.LatLng)(latlngs[2], latlngs[3])
+          bounds = new (google.maps.LatLngBounds)(southWest, northEast)
+          zoom = map.getZoom()
+          window.bounds_changed = true
+          window.initmap = false
+          map.fitBounds bounds, 0
+          map.setZoom zoom
 
       map.addListener 'dragend', ->
         bounds = map.getBounds()
