@@ -21,7 +21,6 @@ class Listing < ApplicationRecord
   after_validation :validate_address, if: [:active_or_basic_info?, :validate?]
 
   before_save :sanitize_array_input
-  after_create :reindex_listings
 
   delegate :email, to: :user, prefix: true
 
@@ -121,9 +120,5 @@ class Listing < ApplicationRecord
   def short_description_length
     number_of_words = self.short_description.split(' ').length
     errors.add(:short_description, "Short description must be under 20 words") if number_of_words > 20
-  end
-
-  def reindex_listings
-    Listing.reindex
   end
 end
