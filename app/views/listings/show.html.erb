@@ -270,6 +270,6 @@
 </section>
 
 <% content_for :js_init do %>
-  Map.init();
+  Map.showPageMap(<%= render_coordinates(@listing) %>);
   Map.set_zoom(12);
 <% end %>
