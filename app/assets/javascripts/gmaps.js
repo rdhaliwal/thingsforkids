@@ -553,7 +553,18 @@ var GMaps = (function(global) {
           markers_length = this.markers.length,
           i;
 
-      return this.setZoom(12);
+      if (markers_length <= 1) {
+        return this.setZoom(12);
+      }
+
+      for (i = 0; i < markers_length; i++) {
+        if(typeof(this.markers[i].visible) === 'boolean' && this.markers[i].visible) {
+          latLngs.push(this.markers[i].getPosition());
+        }
+      }
+
+      this.fitLatLngBounds(latLngs);
+
     };
 
     /**
