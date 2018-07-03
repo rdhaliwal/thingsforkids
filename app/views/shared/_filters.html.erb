@@ -10,7 +10,13 @@
 
       <div class="row ct-u-marginBottom20">
         <%= label_tag "Postcode", nil, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-        <%= text_field_tag :postcode, nil, class: "form-control input-lg ct-input--border", id: "postcode_search" %>
+        <div class="col-md-9">
+          <%= text_field_tag :postcode, nil, class: "form-control ct-input--border", id: "postcode_searchbox" %>
+        </div>
+
+        <div class="col-md-3 text-center">
+          <%= link_to "Go", listings_path, class: 'btn btn-warning', id: "postcode_btn", method: :get, remote: true %>
+        </div>
       </div>
 
       <div class="row ct-u-marginBottom20">

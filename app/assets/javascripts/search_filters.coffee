@@ -6,10 +6,6 @@
       $('#loader').show()
       $('.form').submit()
 
-    $('#filters').on 'focusout', '#postcode_search', ->
-      $('#loader').show()
-      $('.form').submit()
-
   SearchFilters.disable_content = (disable) ->
     if disable
       $('#footer, #navbar, #filters, #mobile-nav').addClass 'disabled-content'
