@@ -25,7 +25,7 @@ ActiveAdmin.register Listing do
       f.input :days_available, as: :check_boxes, collection: Listing::WEEK_DAYS
     end
     f.inputs "Add logo" do
-      f.file_field :logo unless f.object.logo.attached?
+      f.file_field :logo, direct_upload: true unless f.object.logo.attached?
       f.input :logo, hint: image_tag(f.object.logo, size: "75x75") if f.object.logo.attached?
     end
     f.inputs :facbook_url
@@ -66,7 +66,7 @@ ActiveAdmin.register Listing do
 
     f.inputs "Add images " do
       (8 - f.object.images.size).times do
-        f.file_field :images, name: "listing[images][]"
+        f.file_field :images, name: "listing[images][]", direct_upload: true
       end
     end
     render 'admin/listings/images', listing: f.object
