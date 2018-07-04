@@ -31,6 +31,8 @@ gem 'gibbon'
 gem 'premailer-rails'
 gem 'geocomplete_rails'
 gem 'searchkick'
+gem 'resque'
+gem 'resque_mailer'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
