@@ -11,13 +11,13 @@ class StripeInvoiceEvents
     return unless listing.present?
     invoice = listing.create_invoice(amount: stripe_invoice.amount_due, stripe_invoice_id: stripe_invoice.id)
     listing.update(has_paid: true)
-    InvoicesMailer.dispatch_invoice(invoice.id).deliver_later
+    InvoicesMailer.dispatch_invoice(invoice.id).deliver
   end
 
   def payment_failed
     return unless listing.present?
     return downgrade_listing if stripe_next_payment_attempt.blank?
-    InvoicesMailer.problem_with_payment(listing.id).deliver_later
+    InvoicesMailer.problem_with_payment(listing.id).deliver
   end
 
   private
@@ -36,6 +36,6 @@ class StripeInvoiceEvents
 
     def downgrade_listing
       listing.update(listing_type: :free)
-      InvoicesMailer.downgrade_listing(listing.id).deliver_later
+      InvoicesMailer.downgrade_listing(listing.id).deliver
     end
 end
