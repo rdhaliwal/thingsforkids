@@ -9,13 +9,16 @@
     <div class="ct-u-displayTableVertical ct-u-marginBottom20">
 
       <div class="row ct-u-marginBottom20">
-        <%= label_tag "Postcode", nil, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
-        <div class="col-md-9">
+        <div class="col-md-12">
+          <%= label_tag "Postcode", nil, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+        </div>
+
+        <div class="col-md-7 p-0">
           <%= text_field_tag :postcode, nil, class: "form-control ct-input--border", id: "postcode_searchbox" %>
         </div>
 
-        <div class="col-md-3 text-center">
-          <%= link_to "Go", listings_path, class: 'btn btn-warning', id: "postcode_btn", method: :get, remote: true %>
+        <div class="col-md-5 text-center">
+          <%= submit_tag "Go", { class: 'btn btn-warning', id: "postcode_btn" } %>
         </div>
       </div>
 
