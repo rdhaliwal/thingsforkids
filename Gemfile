@@ -26,7 +26,6 @@ gem 'exception_notification'
 gem 'stripe_event'
 gem 'wicked'
 gem 'devise_invitable'
-gem 'sidekiq'
 gem "mini_magick"
 gem 'gibbon'
 gem 'premailer-rails'
