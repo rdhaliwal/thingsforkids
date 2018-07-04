@@ -33,6 +33,7 @@ gem 'geocomplete_rails'
 gem 'searchkick'
 gem 'resque'
 gem 'resque_mailer'
+gem 'resque-web', require: 'resque_web'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
