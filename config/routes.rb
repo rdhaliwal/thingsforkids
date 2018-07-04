@@ -23,4 +23,7 @@ Rails.application.routes.draw do
   get 'pricing', to: 'pages#pricing'
 
   mount StripeEvent::Engine, at: '/stripe-events'
+
+  require "resque_web"
+  mount ResqueWeb::Engine => "/resque_web"
 end
