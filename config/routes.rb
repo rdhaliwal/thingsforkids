@@ -24,6 +24,6 @@ Rails.application.routes.draw do
 
   mount StripeEvent::Engine, at: '/stripe-events'
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  require "resque_web"
+  mount ResqueWeb::Engine => "/resque_web"
 end

@@ -16,11 +16,11 @@ class MyListings::BuildListingsController < ApplicationController
         result, card = AddCreditCard.call!(current_user, params[:token])
         CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
         if @listing.subscription_id.present?
-          ListingsMailer.premium_listing(@listing.id).deliver_later
+          ListingsMailer.premium_listing(@listing.id).deliver
         end
       end
       if @listing.valid? && step == steps.last
-        ListingsMailer.free_listing(@listing.id).deliver_later
+        ListingsMailer.free_listing(@listing.id).deliver
       end
       params[:type] = @listing.listing_type
       render_wizard(@listing, {}, { type: @listing.listing_type })
