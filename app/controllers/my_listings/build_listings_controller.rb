@@ -21,9 +21,11 @@ class MyListings::BuildListingsController < ApplicationController
           return render_wizard(@listing, { alert: result_subscription }, { type: @listing.listing_type })
         end
       end
+
       if @listing.valid? && step == steps.last && @listing.free?
         ListingsMailer.free_listing(@listing.id).deliver
       end
+
       params[:type] = @listing.listing_type
       render_wizard(@listing, {}, { type: @listing.listing_type })
     rescue Exception => e

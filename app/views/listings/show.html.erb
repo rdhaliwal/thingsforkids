@@ -20,10 +20,6 @@
           <div class="col-md-4 ct-u-marginTop30">
             <div class="ct-u-displayTableCell text-right">
               <% if user_signed_in? && @listing.owner?(current_user) %>
-                <%= link_to edit_my_listing_path(@listing), class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
-                  <i class="fa fa-edit"></i>
-                <% end %>
-
                 <%= link_to my_listing_path(@listing), method: :delete, class: "btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" do %>
                   <i class="fa fa-trash-o" ></i>
                 <% end %>
@@ -224,7 +220,7 @@
                       <div class="ct-personContent">
                         <div class="ct-personName ct-u-paddingBottom10 ct-u-marginBottom20">
                           <h5 class="ct-fw-600"><%= @listing.manager_name %></h5>
-                          <p><%= @listing.business_name %></p>
+                          <p><%= @listing.manager_job_title %></p>
                         </div>
 
                         <div class="ct-personDescription  ct-u-paddingBottom10 ct-u-marginBottom20">

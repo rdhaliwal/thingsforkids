@@ -1,4 +1,4 @@
-jQuery ->
+$(document).on 'turbolinks:load', ->
   payment.setupForm()
 
 payment =

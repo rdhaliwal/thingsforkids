@@ -43,6 +43,8 @@ class ListingsController < ApplicationController
           else
             redirect_to @listing, alert: "Error: #{result_subscription}"
           end
+        else
+          render :edit
         end
       else
         render :edit
