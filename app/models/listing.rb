@@ -92,6 +92,10 @@ class Listing < ApplicationRecord
     user == current_user
   end
 
+  def description_text
+    premium? ? description : short_description
+  end
+
   private
 
   def sanitize_array_input

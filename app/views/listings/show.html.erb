@@ -172,9 +172,11 @@
               <div class="ct-heading ct-u-marginBottom20">
                 <h3 class="text-uppercase">Description</h3>
               </div>
+
               <p class="ct-u-marginBottom20">
-                <%= @listing.description %>
+                <%= @listing.description_text %>
               </p>
+
               <% if @listing.premium? %>
                 <div class="ct-heading ct-u-marginBottom20">
                   <h3 class="text-uppercase">Listing Details</h3>
@@ -213,9 +215,11 @@
                 <div class="widget">
                   <div class="widget-inner">
                     <div class="ct-personBox text-left">
-                      <div class="ct-imagePerson">
-                        <%= render_logo @listing.logo %>
-                      </div>
+                      <% if @listing.premium? %>
+                        <div class="ct-imagePerson">
+                          <%= render_logo @listing.logo %>
+                        </div>
+                      <% end %>
 
                       <div class="ct-personContent">
                         <div class="ct-personName ct-u-paddingBottom10 ct-u-marginBottom20">
