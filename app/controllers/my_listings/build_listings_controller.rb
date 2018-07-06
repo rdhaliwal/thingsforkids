@@ -14,9 +14,11 @@ class MyListings::BuildListingsController < ApplicationController
       @listing.update_attributes(listing_params)
       if params[:token].present? && step == steps.last
         result, card = AddCreditCard.call!(current_user, params[:token])
-        CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
-        if @listing.subscription_id.present?
+        result_subscription = CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
+        if result_subscription == true
           ListingsMailer.premium_listing(@listing.id).deliver
+        else
+          return render_wizard(@listing, { alert: result_subscription }, { type: @listing.listing_type })
         end
       end
       if @listing.valid? && step == steps.last

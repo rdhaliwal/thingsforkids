@@ -18,12 +18,17 @@ class CreateListingSubscription
   end
 
   def call
-    return unless card.present?
-    ActiveRecord::Base.transaction do
-      customer.default_source = card
-      customer.save
-      subscription = customer.subscriptions.create(plan: 'listing_annual', coupon: coupon)
-      listing.update_attribute(:subscription_id, subscription.id)
+    begin
+      ActiveRecord::Base.transaction do
+        customer.default_source = card
+        customer.save
+        subscription = customer.subscriptions.create(plan: 'listing_annual', coupon: coupon)
+        listing.update_attribute(:subscription_id, subscription.id)
+        listing.premium!
+        return true
+      end
+    rescue Exception => e
+      return e.message
     end
   end
 end

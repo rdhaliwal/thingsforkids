@@ -36,12 +36,14 @@ class ListingsController < ApplicationController
       if @listing.update(listing_params)
         if params[:token].present?
           result, card = AddCreditCard.call!(current_user, params[:token])
-          CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
-          if @listing.subscription_id.present?
+          result_subscription = CreateListingSubscription.call(current_user, @listing, card, params[:coupon])
+          if result_subscription == true
             ListingsMailer.upgraded_to_premium(@listing.id).deliver
+            redirect_to @listing, notice: "Congratulations! You have upgraded the listing to premium."
+          else
+            redirect_to @listing, alert: "Error: #{result_subscription}"
           end
         end
-        redirect_to @listing, notice: "Congratulations! You have upgraded the listing to premium."
       else
         render :edit
       end
@@ -63,10 +65,10 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:facbook_url, :instagram_url, :listing_type, :status, :description,
-                                      :logo, :indoors, :outdoors, :highchairs, :disability_access, :parking,
-                                      :free_trial, :undercover, :bbq, :toilets, :baby_change_room, :parties,
-                                      :opens_at, :closes_at, images: [])
+      params.require(:listing).permit(:facbook_url, :instagram_url, :status, :description, :logo, :indoors, :outdoors,
+                                      :days_available, :highchairs, :disability_access, :parking, :free_trial, :bbq,
+                                      :undercover, :toilets, :baby_change_room, :parties, :opens_at, :closes_at,
+                                      images: [])
     end
 
     def check_premium
