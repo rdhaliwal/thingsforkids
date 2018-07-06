@@ -29,6 +29,7 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    @listing.description = @listing.short_description
   end
 
   def update
