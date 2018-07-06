@@ -45,10 +45,7 @@
   </div>
 </div>
 
-<% content_for :javascript do %>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script type="text/javascript">
-    Stripe.setPublishableKey("<%= Rails.application.credentials.stripe_publishable_key %>");
-    Financials.init_card_fields();
-  </script>
+<% content_for :js_init do %>
+  Stripe.setPublishableKey("<%= Rails.application.credentials.stripe_publishable_key %>");
+  Financials.init_card_fields();
 <% end %>
