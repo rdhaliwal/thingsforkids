@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
  def create
     super
-    UserMailer.welcome(resource.id).deliver if resource.persisted?
+    UserMailer.welcome(resource.id).deliver! if resource.persisted?
   end
 
   protected

@@ -27,7 +27,7 @@ class SendUserInvite
     end
 
     def invite_email
-      UserMailer.user_invite(invitee.id, invitee.raw_invitation_token, inviter.id).deliver
-      AdminMailer.new_user_invite(invitee.id, inviter.id).deliver
+      UserMailer.user_invite(invitee.id, invitee.raw_invitation_token, inviter.id).deliver!
+      AdminMailer.new_user_invite(invitee.id, inviter.id).deliver!
     end
 end
