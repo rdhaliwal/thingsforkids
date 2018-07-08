@@ -69,9 +69,8 @@ class ListingsController < ApplicationController
 
     def listing_params
       params.require(:listing).permit(:facbook_url, :instagram_url, :status, :description, :logo, :indoors, :outdoors,
-                                      :days_available, :highchairs, :disability_access, :parking, :free_trial, :bbq,
-                                      :undercover, :toilets, :baby_change_room, :parties, :opens_at, :closes_at,
-                                      images: [])
+                                      :highchairs, :disability_access, :parking, :free_trial, :bbq, :undercover, :toilets,
+                                      :baby_change_room, :parties, :opens_at, :closes_at, images: [], days_available: [])
     end
 
     def check_premium
