@@ -84,7 +84,7 @@ class Listing < ApplicationRecord
   end
 
   def description_length
-    number_of_words = self.description.split(' ').length
+    number_of_words = description.to_s.split(' ').length
     return errors.add(:description, ": Description must be under 50 words") if number_of_words > 50 && self.free?
     errors.add(:description, "Description must be under 400 words") if number_of_words > 400 && self.premium?
   end
@@ -124,7 +124,7 @@ class Listing < ApplicationRecord
   end
 
   def short_description_length
-    number_of_words = self.short_description.split(' ').length
+    number_of_words = short_description.to_s.split(' ').length
     errors.add(:short_description, "Short description must be under 20 words") if number_of_words > 20
   end
 
