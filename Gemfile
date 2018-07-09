@@ -34,6 +34,7 @@ gem 'searchkick'
 gem 'resque'
 gem 'resque_mailer'
 gem 'resque-web', require: 'resque_web'
+gem 'activeadmin_addons'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
