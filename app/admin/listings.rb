@@ -49,7 +49,7 @@ ActiveAdmin.register Listing do
     f.inputs :highchairs
     f.inputs :baby_change_room
     f.inputs do
-      f.input :user, collection: User.pluck(:email, :id)
+      f.input :user, collection: User.pluck(:email, :id), input_html: { class: "select2" }
     end
     f.inputs do
       f.input :opens_at, as: :time_picker
