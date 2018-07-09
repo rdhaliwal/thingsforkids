@@ -9,7 +9,10 @@
 
         <div class="ct-main-text">
           <div class="ct-product--tilte">
-            <%= listing.business_name %>
+            <i class="<%= icon_class get_activity_type_value(listing.activity_type) %>"></i>
+            <div class="<%= title_color get_activity_type_value(listing.activity_type) %> listing-title">
+              <%= listing.business_name %>
+            </div>
           </div>
 
           <div class="ct-product--description">

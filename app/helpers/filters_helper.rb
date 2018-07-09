@@ -7,4 +7,13 @@ module FiltersHelper
     return "fa fa-coffee fa-2 kidscafes-icon-color" if value == 5
     "fa fa-tree parks-icon-color" if value == 6
   end
+
+  def title_color value
+    return "poi-icon-color" if value == 1
+    return "classes-icon-color" if value == 2
+    return "playcenter-icon-color" if value == 3
+    return "childcare-icon-color" if value == 4
+    return "kidscafes-icon-color" if value == 5
+    "parks-icon-color" if value == 6
+  end
 end
