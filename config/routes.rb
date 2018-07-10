@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :messages, only: [:create]
+  resources :listing_images, only: [:destroy]
 
   get 'contact-us', to: 'pages#contact'
   post 'subscribe', to: 'pages#mailchimp_subscription'
