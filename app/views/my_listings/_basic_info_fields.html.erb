@@ -21,7 +21,7 @@
 
         <% if params[:type] == 'premium' %>
           <div class="ct-u-marginBottom40">
-            <%= f.label :description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+            <%= f.label :description, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %><div id="total-words">(400 words max)</div>
             <%= f.text_area :description, class: "form-control input-lg ct-input--border count-words", data: { max_words: description_max_words(params[:type]), count_field: '#description-words' } %>
             <div id="description-words" class="pull-right"></div>
           </div>
