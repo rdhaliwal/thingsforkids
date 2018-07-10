@@ -12,7 +12,7 @@ class SearchListings
   end
 
   def call
-    Listing.search query, where: conditions, per_page: 9, page: params[:page], order: order
+    Listing.search query, where: conditions, order: order
   end
 
   private
