@@ -1,31 +1,31 @@
 <%= form_tag(root_path, method: :get, remote: true, class: css_class) do %>
   <div class="row">
-    <div class="col-md-12 p-0">
+    <div class="col-md-12 paddings">
       <%= label_tag "Filter Listings", nil, class: "filter-heading" %>
     </div>
   </div>
 
-  <div class="form-group mt-18">
+  <div class="form-group mt-18 paddings">
     <div class="ct-u-displayTableVertical ct-u-marginBottom20">
 
       <div class="row ct-u-marginBottom20">
-        <div class="col-md-12">
-          <%= label_tag "Postcode", nil, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+        <div class="col-md-12 pl-4">
+          <%= label_tag "Postcode", nil, class: "ct-fw-600 ct-u-marginBottom10" %>
         </div>
 
-        <div class="col-md-7 p-0">
+        <div class="col-md-6 p-0">
           <%= text_field_tag :postcode, nil, class: "form-control ct-input--border", id: "postcode_searchbox" %>
         </div>
 
-        <div class="col-md-5 text-center">
+        <div class="col-md-6 text-center">
           <%= submit_tag "Go", { class: 'btn btn-warning', id: "postcode_btn" } %>
         </div>
       </div>
 
       <div class="row ct-u-marginBottom20">
-        <div class="col-md-12">
+        <div class="col-md-12 ml--8">
           <div class="ct-u-displayTableCell">
-            <div class="col-md-12 text-center p-0">
+            <div class="col-md-12 text-center padding-lr-0">
               <div class="ct-u-displayTableCell">
                 <label id="range" class="age-range-label"><%= range(params[:age]) %></label>
                 <div id="age_range" class="slider-range" data-min="<%= min_age_range(params[:age]) %>" data-max="<%= max_age_range(params[:age]) %>"></div>
@@ -40,7 +40,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-12 p-0">
+        <div class="col-md-12 pl-5 pl-2">
           <%= label_tag "Activity Type", nil, class: "filter-heading" %>
         </div>
       </div>
@@ -49,17 +49,19 @@
         <div class="row mt-4">
           <div class="ct-u-displayTableCell">
             <%= check_box_tag "activity_type[]", key, false,class: "activity-check col-md-1 col-xs-1 col-sm-1", include_hidden: false, multiple: true %>
-            <label>
+            <div class="col-sm-1 col-xs-1 align-icon">
               <i class="<%= icon_class value %>" aria-hidden="true"></i>
-              <span><%= key %></span>
-            </label>
+            </div>
+            <div class="col-sm-9 align-icon-text">
+              <label><span><%= key %></span></label>
+            </div>
           </div>
         </div>
       <% end %>
       <hr>
 
       <div class="row">
-        <div class="col-md-12 p-0">
+        <div class="col-md-12 pl-5 pl-2">
           <%= label_tag "Available Days", nil, class: "filter-heading" %>
         </div>
       </div>
@@ -68,7 +70,9 @@
         <div class="row ct-u-marginBottom10">
           <div class="ct-u-displayTableCell">
             <%= check_box_tag "days_available[]", day, days_filter_checked?(day, params[:days_available]), { class: "activity-check col-md-1 col-sm-1 col-xs-1", include_hidden: false, multiple: true } %>
-            <label><%= day %></label>
+            <div class="col-md-9 align-icon">
+              <label><%= day %></label>
+            </div>
           </div>
         </div>
       <% end %>
