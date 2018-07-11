@@ -1,16 +1,16 @@
 <div id="listing-header">
   <%= listing_json(@listing) %>
 
-  <header class="ct-mediaSection" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax" data-bg-image=<%= asset_url(set_banner(get_activity_type_value(@listing.activity_type))) %> data-bg-image-mobile=<%= asset_url(set_banner(get_activity_type_value(@listing.activity_type))) %>>
+  <header class="ct-mediaSection <%= set_header_colour get_activity_type_value(@listing.activity_type) %>" data-stellar-background-ratio="0.3" data-height="140" data-type="parallax">
     <div class="ct-mediaSection-inner">
       <div class="container">
         <div class="ct-u-displayTableVertical">
-          <div class="col-md-8">
+          <div class="col-md-8 p-0">
             <div class="ct-textBox ct-u-text--white ct-u-displayTableCell text-left">
-              <h2 class="text-uppercase listing-address"><%= @listing.business_name %></h2>
-              <h2 class="text-uppercase listing-address"><%= @listing.address %></h2>
-              <h4 class="text-uppercase"><%= @listing.location %></h4>
-              <label class="ct-u-marginBottom10 text-uppercase"> <i class="<%= icon_class get_activity_type_value(@listing.activity_type) %>"></i>
+              <h2 class="business-name"><%= @listing.business_name %></h2>
+              <h2 class="listing-address"><%= @listing.address %></h2>
+              <h4 class="listing-address pb-24"><%= @listing.location %></h4>
+              <label class="ct-u-marginBottom10 pb-42"></i>
                 <%= @listing.activity_type %>
               </label>
               <br>
@@ -39,16 +39,16 @@
 <section class="ct-u-paddingBottom60" id="single-listing">
   <div class="container">
     <%= render "shared/errors", resource: @message %>
-    <div class="ct-productMeta--single text-uppercase">
+    <div class="ct-productMeta--single">
       <div class="row">
         <div class="col-md-8 col-lg-9">
           <div class="ct-u-displayTableVertical">
             <div class="ct-u-displayTableCell text-left">
-              <i class="fa fa-calendar"></i><h6>published on <%= @listing.created_at.strftime("%B %d, %Y %H:%M:%S") %></h6>
+              <i class="fa fa-calendar"></i><h6>Published on <%= @listing.created_at.strftime("%B %d, %Y %H:%M:%S") %></h6>
             </div>
 
             <div class="ct-u-displayTableCell text-left">
-              <i class="fa fa-pencil-square-o"></i><h6>updated on <%= @listing.updated_at.strftime("%B %d, %Y %H:%M:%S") %></h6>
+              <i class="fa fa-pencil-square-o"></i><h6>Updated on <%= @listing.updated_at.strftime("%B %d, %Y %H:%M:%S") %></h6>
             </div>
 
             <div class="ct-u-displayTableCell text-right">
@@ -91,7 +91,7 @@
             <div class="col-md-4">
               <% if @listing.premium? %>
                 <div class="ct-heading ct-u-marginBottom20">
-                  <h3 class="text-uppercase">Summary</h3>
+                  <h3>Summary</h3>
                 </div>
 
                 <div class="ct-u-displayTableVertical ct-productDetails">
@@ -120,7 +120,7 @@
                       <span class="ct-fw-600">Location</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell">
+                    <div class="ct-u-displayTableCell lh-18">
                       <span><%= @listing.location %></span>
                     </div>
                   </div>
@@ -149,7 +149,7 @@
                       <span class="ct-fw-600">Days</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell">
+                    <div class="ct-u-displayTableCell lh-18">
                       <% @listing.days_available.each do |day| %>
                         <span class="ct-price"><%= render_day(day) %></span>
                       <% end %>
@@ -166,7 +166,7 @@
 
             <div class="col-md-8">
               <div class="ct-heading ct-u-marginBottom20">
-                <h3 class="text-uppercase">Description</h3>
+                <h3>Description</h3>
               </div>
 
               <p class="ct-u-marginBottom20">
@@ -175,7 +175,7 @@
 
               <% if @listing.premium? %>
                 <div class="ct-heading ct-u-marginBottom20">
-                  <h3 class="text-uppercase">Listing Details</h3>
+                  <h3>Listing Details</h3>
                 </div>
 
                 <div class="ct-u-displayTableVertical ct-productDetails--type2 ct-u-marginBottom20">
@@ -194,7 +194,7 @@
               <% end %>
 
               <div class="ct-heading ct-u-marginBottom20">
-                <h3 class="text-uppercase">Map</h3>
+                <h3>Map</h3>
               </div>
 
               <div id="map" class="map-style" data-icon=<%= asset_url('map_icon.png') %>>
@@ -219,7 +219,7 @@
 
                       <div class="ct-personContent">
                         <div class="ct-personName ct-u-paddingBottom10 ct-u-marginBottom20">
-                          <h5 class="ct-fw-600"><%= @listing.manager_name %></h5>
+                          <h5 class="ct-fw-600 lh-24"><%= @listing.manager_name %></h5>
                           <p><%= @listing.manager_job_title %></p>
                         </div>
 
