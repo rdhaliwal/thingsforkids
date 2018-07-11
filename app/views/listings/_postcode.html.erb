@@ -6,6 +6,7 @@
           <div class="form-group">
             <div class="ct-form--item ct-u-marginBottom20">
               <%= label_tag "Please enter your postcode", nil, class: "ct-fw-600 text-uppercase ct-u-marginBottom10" %>
+              <%= label_tag "Please note that this site is in development, and we're adding postcodes as fast we can!", nil, class: "postcode-note" %>
               <%= text_field_tag "postcode", nil, class: "form-control input-lg ct-input--border", id: "postcode-text", required: true %>
             </div>
 

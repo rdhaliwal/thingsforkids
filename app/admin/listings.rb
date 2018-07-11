@@ -11,6 +11,17 @@ ActiveAdmin.register Listing do
     def set_created_by
       params[:listing][:created_by_admin] = true
     end
+
+    def destroy
+      if resource.premium?
+        subscription_id = resource.subscription_id
+        RemoveSubscription.call(subscription_id) if subscription_id.present?
+      end
+
+      if resource.destroy
+        redirect_to admin_listings_path, notice: "Listing was successfully removed."
+      end
+    end
   end
 
   form do |f|

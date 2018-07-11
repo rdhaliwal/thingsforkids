@@ -3,7 +3,22 @@
     <div class="form-group ">
       <label class="ct-fw-600 text-uppercase ct-u-marginBottom10">Upload featured images</label>
       <ul class="list-unstyled ct-productBox--thumbnail ct-u-marginBottom50">
-        <% 8.times do |img| %>
+        <% f.object.images.each do |image| %>
+          <li>
+            <div class="ct-media--left">
+              <%= image_tag image, size: "92x71" %>
+            </div>
+
+            <div class="ct-media--content">
+              <span><%= image.filename %></span>
+              <%= link_to listing_image_path(id: image.id, listing_id: f.object.id), method: :delete do %>
+                <i class="fa fa-trash-o"></i> Delete
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+
+        <% (8 - f.object.images.count).times do |img| %>
           <li>
             <div class="col-sm-12 col-md-12">
               <%= f.file_field :images, { multiple: false, direct_upload: true, name: "listing[images][]", id: "img-#{img}", class: "images ct-media--content" }  %>
@@ -29,7 +44,7 @@
             </div>
 
             <div class="ct-media--left">
-              <%= image_tag "content/gallery-thumbnail-1.jpg", size: "92x71", alt: "", id: "image_tag-logo" %>
+              <%= image_tag logo_path(f.object), size: "92x71", alt: "", id: "image_tag-logo" %>
             </div>
           </li>
         </ul>

@@ -124,4 +124,9 @@ module ListingHelper
   def render_coordinates(listing)
     [listing.latitude, listing.longitude]
   end
+
+  def logo_path listing
+    return listing.logo if listing.logo.attached?
+    "content/gallery-thumbnail-1.jpg"
+  end
 end
