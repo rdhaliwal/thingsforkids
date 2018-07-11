@@ -5,7 +5,7 @@
     <div class="ct-mediaSection-inner">
       <div class="container">
         <div class="ct-u-displayTableVertical">
-          <div class="col-md-8 p-0">
+          <div class="col-md-8 p-0 ml--13">
             <div class="ct-textBox ct-u-text--white ct-u-displayTableCell text-left">
               <h2 class="business-name"><%= @listing.business_name %></h2>
               <h2 class="listing-address"><%= @listing.address %></h2>
@@ -41,7 +41,7 @@
     <%= render "shared/errors", resource: @message %>
     <div class="ct-productMeta--single">
       <div class="row">
-        <div class="col-md-8 col-lg-9">
+        <div class="col-md-8 col-lg-9 ml--13">
           <div class="ct-u-displayTableVertical">
             <div class="ct-u-displayTableCell text-left">
               <i class="fa fa-calendar"></i><h6>Published on <%= @listing.created_at.strftime("%B %d, %Y %H:%M:%S") %></h6>
@@ -91,7 +91,7 @@
             </div>
           <% end %>
 
-          <div class="row mt-115">
+          <div class="row mt-115 ml--30">
             <div class="col-md-4">
               <% if @listing.premium? %>
                 <div class="ct-heading ct-u-marginBottom20">
