@@ -23,7 +23,7 @@ class MyListings::BuildListingsController < ApplicationController
       end
 
       if @listing.valid? && step == steps.last && @listing.free?
-        ListingsMailer.free_listing(@listing.id).deliver!
+        ListingsMailer.free_listing(@listing.id).deliver
       end
 
       params[:type] = @listing.listing_type
