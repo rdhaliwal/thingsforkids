@@ -888,7 +888,12 @@ GMaps.prototype.addMarker = function(options) {
   this.markers.push(marker);
 
   GMaps.fire('marker_added', marker, this);
-
+  marker.addListener('click', function() {
+    var list = "#list-" + marker.id
+    $('.product-width').removeClass('highlight-listing');
+    $('#listings').scrollTop($(list).offset().top);
+    $(list).addClass('highlight-listing');
+  });
   return marker;
 };
 
