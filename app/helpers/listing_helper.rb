@@ -57,13 +57,13 @@ module ListingHelper
     Listing.activity_types[activity_type]
   end
 
-  def set_banner listing_type_value
-    return "POIbanner.png" if listing_type_value == 1
-    return "classesbanner.png" if listing_type_value == 2
-    return "playcenterbanner.png" if listing_type_value == 3
-    return "childcarebanner.png" if listing_type_value == 4
-    return "cafebanner.png" if listing_type_value == 5
-    "parks_playgroundsbanner.png" if listing_type_value == 6 || listing_type_value == nil
+  def set_header_colour listing_type_value
+    return "POI-color" if listing_type_value == 1
+    return "classes-color" if listing_type_value == 2
+    return "playcenter-color" if listing_type_value == 3
+    return "childcare-color" if listing_type_value == 4
+    return "cafe-color" if listing_type_value == 5
+    "parks_playgrounds-color" if listing_type_value == 6 || listing_type_value == nil
   end
 
   def truncate_short_description listing
