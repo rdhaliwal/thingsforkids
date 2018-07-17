@@ -129,4 +129,8 @@ module ListingHelper
     return listing.logo if listing.logo.attached?
     "content/gallery-thumbnail-1.jpg"
   end
+
+  def margin_top_class listing
+    "mt-115" if listing.premium?
+  end
 end
