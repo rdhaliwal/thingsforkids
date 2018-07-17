@@ -133,4 +133,8 @@ module ListingHelper
   def margin_top_class listing
     "mt-115" if listing.premium?
   end
+
+  def line_height_class index
+    "lh-18" if index > 3
+  end
 end
