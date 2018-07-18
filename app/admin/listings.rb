@@ -68,7 +68,9 @@ ActiveAdmin.register Listing do
     f.inputs do
       f.input :closes_at, as: :time_picker
     end
-    f.inputs :address
+    f.inputs do
+      f.input :address, input_html: { class: "geocomplete", autocomplete: true }
+    end
     f.inputs :city
     f.inputs do
       f.input :state, collection: states
