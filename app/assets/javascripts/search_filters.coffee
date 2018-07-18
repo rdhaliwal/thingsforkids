@@ -3,8 +3,10 @@
 
   SearchFilters.fetch_listings = ->
     $('#filters').on 'change', '.activity-check', ->
-      $('#loader').show()
       $('.form').submit()
+
+    $('.form, .contactForm').submit ->
+      $('#loader').show()
 
   SearchFilters.disable_content = (disable) ->
     if disable
