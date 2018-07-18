@@ -91,7 +91,7 @@
             </div>
           <% end %>
 
-          <div class="row mt-115 ml--30">
+          <div class="row ml--30 <%= margin_top_class @listing %>">
             <div class="col-md-4">
               <% if @listing.premium? %>
                 <div class="ct-heading ct-u-marginBottom20">
@@ -124,8 +124,8 @@
                       <span class="ct-fw-600">Location</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell lh-18">
-                      <span><%= @listing.location %></span>
+                    <div class="ct-u-displayTableCell">
+                      <span class="lh-18"><%= @listing.location %></span>
                     </div>
                   </div>
 
@@ -153,9 +153,9 @@
                       <span class="ct-fw-600">Days</span>
                     </div>
 
-                    <div class="ct-u-displayTableCell lh-18">
-                      <% @listing.days_available.each do |day| %>
-                        <span class="ct-price"><%= render_day(day) %></span>
+                    <div class="ct-u-displayTableCell">
+                      <% @listing.days_available.each_with_index do |day, index| %>
+                        <span class="ct-price <%= line_height_class index %>"><%= render_day(day) %></span>
                       <% end %>
                     </div>
                   </div>
