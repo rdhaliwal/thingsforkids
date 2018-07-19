@@ -65,7 +65,7 @@
         <div class="col-md-8 col-lg-9">
           <% if @listing.premium? %>
             <div class="row">
-              <div class="ct-gallery ct-u-marginBottom30">
+              <div class="ct-gallery ct-u-marginBottom30 p-8">
                 <div class="ct-owl-controls--type2" data-single="true" data-pagination="false" data-navigation="false" data-snap-ignore="true" id="sync1">
                   <% @listing.images.each do |image| %>
                     <div class="item">
@@ -78,7 +78,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row thumbnails">
               <div class="ct-navigationThumbnail">
                 <div class="ct-owl-controls--type3" data-single="false" data-items="8" data-pagination="false" data-snap-ignore="true" id="sync2">
                   <% @listing.images.each do |image| %>
@@ -91,7 +91,7 @@
             </div>
           <% end %>
 
-          <div class="row ml--30 <%= margin_top_class @listing %>">
+          <div class="row ml--30 ml--12 <%= margin_top_class @listing %>">
             <div class="col-md-4">
               <% if @listing.premium? %>
                 <div class="ct-heading ct-u-marginBottom20">
