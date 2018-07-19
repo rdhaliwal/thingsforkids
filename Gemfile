@@ -29,7 +29,6 @@ gem 'devise_invitable'
 gem "mini_magick"
 gem 'gibbon'
 gem 'premailer-rails'
-gem 'geocomplete_rails'
 gem 'searchkick'
 gem 'resque'
 gem 'resque_mailer'
