@@ -1,5 +1,7 @@
 <%= listings_list(listings) %>
-
+<span id="back-to-top">
+  <i class="fa fa-angle-double-up"></i>
+</span>
 <% listings.each_with_index do |listing, index| %>
   <% if index % 2 == 0 %>
     <div class="row"></div>

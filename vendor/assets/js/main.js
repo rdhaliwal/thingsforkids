@@ -351,7 +351,6 @@ function makekenburns($element) {
       $('.ct-navigationGmaps').addClass('hidden');
     }
 
-    $('.geocomplete').geocomplete();
     var min_val = $('.slider-range').data('min');
     var max_val = $('.slider-range').data('max');
     $(".slider-range").slider({

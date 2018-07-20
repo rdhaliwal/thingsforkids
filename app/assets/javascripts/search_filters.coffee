@@ -3,8 +3,21 @@
 
   SearchFilters.fetch_listings = ->
     $('#filters').on 'change', '.activity-check', ->
-      $('#loader').show()
       $('.form').submit()
+
+    $('.form, .contactForm').submit ->
+      $('#loader').show()
+
+  SearchFilters.init_scollup_button = ->
+    $('#back-to-top').on 'click', ->
+      $('body,html').animate { scrollTop: 0 }, 600
+      $('#back-to-top').fadeOut()
+
+    $('#listings').scroll ->
+      if $('#listings').scrollTop() >= 400
+        $('#back-to-top').fadeIn()
+      else
+        $('#back-to-top').fadeOut()
 
   SearchFilters.disable_content = (disable) ->
     if disable

@@ -31,4 +31,3 @@
 //= require geocomplete
 //= require direct_uploads
 //= require_tree .
-

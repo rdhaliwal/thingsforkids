@@ -889,10 +889,16 @@ GMaps.prototype.addMarker = function(options) {
 
   GMaps.fire('marker_added', marker, this);
   marker.addListener('click', function() {
-    var list = "#list-" + marker.id
-    $('.product-width').removeClass('highlight-listing');
-    $('#listings').scrollTop($(list).offset().top);
-    $(list).addClass('highlight-listing');
+    var listing = 'list-' + marker.id
+    var listing_id = '#' + listing
+    var listing_element = document.getElementById(listing);
+
+    if(!$(listing_id).hasClass('highlight-listing')) {
+      $('.product-width').removeClass('highlight-listing');
+      $(listing_id).addClass('highlight-listing');
+    }
+
+    listing_element.scrollIntoView({behavior: "instant", block: "center", inline: "nearest"});
   });
   return marker;
 };
