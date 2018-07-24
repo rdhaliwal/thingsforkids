@@ -8,11 +8,8 @@ class ListingsController < ApplicationController
     if params[:postcode].present? && session[:postcode] != params[:postcode]
       session[:postcode] = params[:postcode]
       params[:l] = ""
-      session[:l] = params[:l]
       set_coordinates
     end
-    session[:l] = params[:l] if params[:l].present?
-
     @listings = SearchListings.call(params, session)
 
     respond_to do |format|
