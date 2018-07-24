@@ -68,7 +68,7 @@ module ListingHelper
 
   def truncate_short_description listing
     description = listing.description || listing.short_description
-    description.truncate(145) if description.present?
+    description.split[0...20].join(' ') if description.present?
   end
 
   def render_image image
