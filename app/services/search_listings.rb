@@ -23,7 +23,7 @@ class SearchListings
 
     def conditions
       conditions = {}
-      conditions[:postcode]       = session[:postcode] if session[:postcode].present?
+      conditions[:postcode]       = session[:postcode] if session[:postcode].present? && session[:l].blank?
       conditions[:location]       = frame_coordinates if session[:l].present?
       conditions[:activity_type]  = params[:activity_type] if params[:activity_type].present?
       conditions[:days_available] = days_condition if params[:days_available].present?
