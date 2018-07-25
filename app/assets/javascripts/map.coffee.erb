@@ -1,6 +1,21 @@
 (->
   window.Map or (window.Map = {})
 
+  update_markers = ->
+    bounds = map.getBounds()
+    if window.bounds_changed
+      window.bounds_changed = false
+    else
+      location = "#{bounds.getSouthWest().toUrlValue()}, #{bounds.getNorthEast().toUrlValue()}"
+      $('<input>').attr(
+        type: 'hidden'
+        value: location
+        name: 'l').appendTo '.form'
+      window.bounds_changed = true
+      $('.form').submit()
+
+
+
   Map.init = ->
     if $('#map').length
       map = window.map = new GMaps(
@@ -15,27 +30,10 @@
       Map.highlight_listing()
 
       map.addListener 'dragend', ->
-        bounds = map.getBounds()
-        location = "#{bounds.getSouthWest().toUrlValue()}, #{bounds.getNorthEast().toUrlValue()}"
-        $('<input>').attr(
-          type: 'hidden'
-          value: location
-          name: 'l').appendTo '.form'
-        $('.form').submit()
+        update_markers()
 
       map.addListener 'zoom_changed', ->
-        bounds = map.getBounds()
-        if window.bounds_changed
-          window.bounds_changed = false
-        else
-          location = "#{bounds.getSouthWest().toUrlValue()}, #{bounds.getNorthEast().toUrlValue()}"
-          $('<input>').attr(
-            type: 'hidden'
-            value: location
-            name: 'l').appendTo '.form'
-          window.bounds_changed = true
-          $('.form').submit()
-
+        update_markers()
       window.bounds_changed = true
 
   Map.showPageMap = (coordinates) ->
@@ -63,7 +61,10 @@
     else
       window.bounds_changed = true
       map.fitZoom()
-    return
+
+      setTimeout (->
+        update_markers()
+      ), 100
 
   Map.addMarkers = ->
     listings = $('.listings-list').map(-> JSON.parse @dataset.listings).get()
