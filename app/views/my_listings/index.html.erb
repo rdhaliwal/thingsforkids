@@ -65,11 +65,13 @@
 
                       <hr>
                       <div class="col-md-12">
-                        <%= link_to edit_my_listing_path(listing), class: "btn btn-md btn-default ml-10" do %>
-                          <i class="fa fa-edit"></i> Edit
+                        <% if listing.free? %>
+                          <%= link_to edit_listing_path(listing), class: "btn btn-md btn-default" do %>
+                            <i class="fa fa-edit"></i> Upgrade
+                          <% end %>
                         <% end %>
 
-                        <%= link_to my_listing_path(listing), method: :delete, class: "btn btn-md btn-default ml-10" do %>
+                        <%= link_to my_listing_path(listing), method: :delete, data: {confirm: 'Are you sure you want to delete this listing?'}, class: "btn btn-md btn-default" do %>
                           <i class="fa fa-trash-o"></i> Delete
                         <% end %>
                       </div>
