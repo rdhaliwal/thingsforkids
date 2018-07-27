@@ -22,7 +22,7 @@ class CreateListingSubscription
       ActiveRecord::Base.transaction do
         customer.default_source = card
         customer.save
-        subscription = customer.subscriptions.create(plan: 'listing_annual', coupon: coupon)
+        subscription = customer.subscriptions.create(plan: 'listing_annual', coupon: coupon, tax_percent: 10)
         listing.update_attribute(:subscription_id, subscription.id)
         listing.premium!
         return true
