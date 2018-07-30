@@ -137,4 +137,13 @@ module ListingHelper
   def line_height_class index
     "lh-18" if index > 3
   end
+
+  def  btn_size(listing)
+    return "btn-md" if listing.premium?
+    "btn-sm"
+  end
+
+  def is_update?
+    controller_name == "listings" && action_name == "edit"
+  end
 end

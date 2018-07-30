@@ -11,7 +11,7 @@
 
             <div class="ct-media--content">
               <span><%= image.filename %></span>
-              <%= link_to listing_image_path(id: image.id, listing_id: f.object.id), method: :delete do %>
+              <%= link_to listing_image_path(id: image.id, listing_id: f.object.id, update: is_update?), method: :delete do %>
                 <i class="fa fa-trash-o"></i> Delete
               <% end %>
             </div>
