@@ -19,10 +19,6 @@
       else
         $('#back-to-top').fadeOut()
 
-  SearchFilters.disable_content = (disable) ->
-    if disable
-      $('#footer, #navbar, #filters, #mobile-nav').addClass 'disabled-content'
-
   SearchFilters.load_listings = ->
     previous_value = 0
     $(window).data('ajaxready', true);

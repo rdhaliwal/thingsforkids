@@ -54,10 +54,8 @@
   SearchFilters.fetch_listings();
   SearchFilters.load_listings();
   SearchFilters.init_scollup_button();
-  <% if session[:postcode].present? %>
-    SearchFilters.disable_content(false);
-  <% else %>
-    SearchFilters.disable_content(true);
+  <% if session[:postcode].blank? %>
+    $('#footer, #navbar, #filters, #mobile-nav').addClass 'disabled-content'
   <% end %>
   Map.init();
 

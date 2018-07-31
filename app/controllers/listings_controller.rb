@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
   def index
     if params[:postcode].present? && session[:postcode] != params[:postcode]
       session[:postcode] = params[:postcode]
-      session[:l] = ""
+      session[:l] = params[:l] = ""
       set_coordinates
     elsif params[:l].present? && session[:l] != params[:l]
       session[:l] = params[:l]
