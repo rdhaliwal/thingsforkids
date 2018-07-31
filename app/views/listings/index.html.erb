@@ -1,3 +1,7 @@
+<% content_for :turbolinks_meta do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
 <% if session[:postcode].blank? %>
   <%= render "postcode" %>
 <% end %>
@@ -54,12 +58,14 @@
   SearchFilters.fetch_listings();
   SearchFilters.load_listings();
   SearchFilters.init_scollup_button();
-  <% if session[:postcode].blank? %>
-    $('#footer, #navbar, #filters, #mobile-nav').addClass 'disabled-content'
-  <% end %>
   Map.init();
-
-  <% if session[:postcode] %>
+  <% if session[:postcode].blank? %>
+    $('#footer, #navbar, #filters, #mobile-nav').addClass('disabled-content');
+  <% else %>
     Map.set_center('<%= session[:lat] %>', '<%= session[:lng] %>');
+  <% end %>
+
+  <% if params[:postcode].present? %>
+    Map.set_zoom(14);
   <% end %>
 <% end %>

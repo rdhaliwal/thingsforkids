@@ -95,6 +95,7 @@
       map.setCenter({ lat: -37.8152065, lng: 144.963937 }) #set Melbourne as default
 
   Map.set_zoom = (zoom) ->
+    window.bounds_changed = true
     map.setZoom(zoom)
 
   Map.highlight_listing = ->
