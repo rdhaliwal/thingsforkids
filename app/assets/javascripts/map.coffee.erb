@@ -7,14 +7,14 @@
       window.bounds_changed = false
     else
       location = "#{bounds.getSouthWest().toUrlValue()}, #{bounds.getNorthEast().toUrlValue()}"
+      $("#location_bounds").remove();
       $('<input>').attr(
         type: 'hidden'
         value: location
-        name: 'l').appendTo '.form'
+        name: 'l'
+        id: 'location_bounds').appendTo '.form'
       window.bounds_changed = true
       $('.form').submit()
-
-
 
   Map.init = ->
     if $('#map').length
@@ -22,9 +22,6 @@
         div: '#map'
         lat: -37.8152065
         lng: 144.963937)
-
-      bounds_changed = window.bounds_changed = false
-      initmap = window.initmap = true
 
       Map.addMarkers()
       Map.highlight_listing()
@@ -34,7 +31,6 @@
 
       map.addListener 'zoom_changed', ->
         update_markers()
-      window.bounds_changed = true
 
   Map.showPageMap = (coordinates) ->
     if $('#map').length
@@ -59,7 +55,6 @@
       window.bounds_changed = true
       map.setZoom zoom
     else
-      window.bounds_changed = true
       map.fitZoom()
 
       setTimeout (->

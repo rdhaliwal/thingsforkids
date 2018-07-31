@@ -60,4 +60,8 @@
     SearchFilters.disable_content(true);
   <% end %>
   Map.init();
+
+  <% if session[:postcode] %>
+    Map.set_center('<%= session[:lat] %>', '<%= session[:lng] %>');
+  <% end %>
 <% end %>
